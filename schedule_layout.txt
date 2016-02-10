@@ -11,15 +11,15 @@ WEEK 2
 -Settings Light/Dark Layout
 -Room Search Light/Dark Layout
 -Room Results Light/Dark Layout
--Trip Search Light/Dark Layout
--Trip Results Light/Dark Layout
+-Event Search Light/Dark Layout
+-Event Results Light/Dark Layout
 -Scavenger Hunt Light/Dark Layout
 
 WEEK 3
 ================
 -Initialize Service Schema
 -Initialize Room Schema
--Initialize Trip Schema
+-Initialize Event Schema
 -Implement Service Search for Android
 -Implement Service Search for iOS
 -Implement Add To Favorites for Android
@@ -49,8 +49,8 @@ WEEK 6
 ================
 -Implement Room Search for Android
 -Implement Room Search for iOS
--Implement Trip Search for Android
--Implement Trip Search for iOS
+-Implement Event Search for Android
+-Implement Event Search for iOS
 -Implement Back Button for Android
 -Implement Back Button for iOS
 
@@ -58,8 +58,8 @@ WEEK 7
 ================
 -Implement Scavenger Hunt for Android
 -Implement Scavenger Hunt for iOS
--Gather Trip Information
--Populate Trip Database
+-Gather Event Information
+-Populate Event Database
 
 WEEK 8
 ================
