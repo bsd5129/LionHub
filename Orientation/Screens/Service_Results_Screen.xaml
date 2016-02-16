@@ -1,20 +1,42 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Orientation.Service_Results_Screen">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Orientation.Service_Results_Screen" Title="Service Results">
 	<ContentPage.Content>
 		
-		<StackLayout VerticalOptions="FillAndExpand"
+
+            <Grid>
+            	<Grid.RowDefinitions>
+            		<RowDefinition Height="*"></RowDefinition>
+            		<RowDefinition Height="*"></RowDefinition>
+            	</Grid.RowDefinitions>
+            	<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*"></ColumnDefinition>
+				</Grid.ColumnDefinitions>
+
+				<StackLayout VerticalOptions="FillAndExpand"
                      HorizontalOptions="FillAndExpand"
                      Orientation="Vertical"
-                     Spacing="15">
-            <TextCell x:Name="name" Text="Name: {Collecting data}"></TextCell>
-            <TextCell x:Name="description" Text="Description: {Collecting data}"></TextCell>
-            <TextCell x:Name="coordinates" Text="Coordinates: {Collecting data}"></TextCell>
-            <TextCell x:Name="phone" Text="Phone Number: {Collecting data}"></TextCell>
-            <TextCell x:Name="website" Text="Website: {Collecting data}"></TextCell>
-            
-            <Button x:Name="addToFavorite" Text="Add To Favorite" Clicked="OnAddToFavorite" />
-            <Button x:Name="takeMeThere" Text="Take Me There" Clicked="OnTakeMeThere" />
-        </StackLayout>	
+                     Padding="15, 30, 15, 0"
+                     Grid.Row="0" Grid.Column="0">
+
+	            <Label x:Name="name" Text="Name: {Collecting data}"></Label>
+	            <Label x:Name="description" Text="Description: {Binding data}"></Label>
+	            <Label x:Name="coordinates" Text="Coordinates: {Binding data}"></Label>
+	            <Label x:Name="phone" Text="Phone Number: {Binding data}"></Label>
+	            <Label x:Name="website" Text="Website: {Binding data}"></Label>
+	            </StackLayout>
+
+	            <StackLayout VerticalOptions="FillAndExpand"
+                     HorizontalOptions="FillAndExpand"
+                     Orientation="Vertical"
+                     Padding="15, 30, 15, 0"
+                     Grid.Row="1" Grid.Column="0">
+	             <Button x:Name="addToFavorite" Text="Add To Favorite"></Button>
+	            <Button x:Name="takeMeThere" Text="Take Me There"></Button>
+
+	            </StackLayout>
+
+            </Grid>
+        
 	
 	</ContentPage.Content>
 </ContentPage>
