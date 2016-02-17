@@ -10,6 +10,7 @@ namespace Orientation
 		public Service_Results_Screen ()
 		{
 			InitializeComponent ();
+
 		}
 	}
 }

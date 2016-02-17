@@ -10,6 +10,7 @@ namespace Orientation
 		public Favorites_Screen ()
 		{
 			InitializeComponent ();
+			stackLayout.Children.Add (TabMenu.getInstance());
 		}
 	}
 }
