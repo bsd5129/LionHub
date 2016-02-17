@@ -1,5 +1,132 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Orientation.Home_Screen">
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+			 x:Class="Orientation.Home_Screen">
 	<ContentPage.Content>
+		<!--Layout for the vertical orientation-->
+		<StackLayout>
+			<!--PSU Banner-->
+			<Image
+				Width="*"
+				Height ="*"
+				Source ="psu_logo.png"
+				<!--If we can get an URI for the Image ImageUri=""-->/>
+			
+			<!--Image, to be replace by a carousel image slider-->
+			<Image
+				Width="*"
+				Height ="*"
+				Source=""
+				<!--If we can get an URI for the Image ImageUri=""-->/>
+			<!---------------------------------------------------------------->
+			
+			<!--Button layout for Services, Events, Scavenger Hunt, Rooms-->
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="*" />
+					<RowDefinition Height="*" />
+				</Grid.RowDefinitions>
+
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+				
+				<!--Services Button-->
+				<Button
+					Grid.Row="0"
+					Grid.Column ="0">
+						<Image
+							Width="*"
+							Height ="*"
+							Source=""
+							Text="Services"
+							<!--If we can get an URI for the Image ImageUri=""-->/>
+				</Button>
+				
+				<!--Scavenger Hunt Button-->
+				<Button
+					Grid.Row="0"
+					Grid.Column ="1">
+					<Image
+						Width="*"
+						Height ="*"
+						Source=""
+						Text="Scavenger Hunt"
+						<!--If we can get an URI for the Image ImageUri=""-->/>
+				</Button>
+				
+				<!--Rooms Button-->
+				<Button
+					Grid.Row="1"
+					Grid.Column ="0">
+					<Image
+						Width="*"
+						Height="*"
+						Source="*"
+						Text="Rooms"
+						<!--If we can get an URI for the Image ImageUri=""-->/>
+				</Button>
+				
+				<!--Events Button-->
+				<Button
+					Grid.Row="1"
+					Grid.Column ="1">
+					<Image
+						Width="*"
+						Height="*"
+						Source=""
+						Text="Events"
+						<!--If we can get an URI for the Image ImageUri=""-->/>
+				</Button>
+			</Grid>
+			
+			<!--Favorites, Location, Settings button in an horizontal stack layout-->
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="*" />
+				</Grid.RowDefinitions>
+
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+				
+				<!--Location-->
+				<Button
+					Grid.Row="0"
+					Grid.Column="0">
+					<Image
+						Width="*"
+						Height="*"
+						Source=""
+						<!--If we can get an URI for the Image ImageUri=""-->/>
+				</Button>
+				
+				<!--Favorites-->
+				<Button
+					Grid.Row="0"
+					Grid.Column="1">
+					<Image
+						Width="*"
+						Height ="*"
+						Source=""
+						<!--If we can get an URI for the Image ImageUri=""-->/>
+				</Button>
+				
+				<!--Settings-->
+				<Button
+					Grid.Row="0"
+					Grid.Column="2">
+					<Image
+						Width="*"
+						Height="*"
+						Source=""
+						<!--If we can get an URI for the Image ImageUri=""-->/>
+				</Button>
+			</Grid>
+			
+		</StackLayout>
 	</ContentPage.Content>
 </ContentPage>
