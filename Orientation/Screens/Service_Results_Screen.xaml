@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Orientation.Service_Results_Screen" Title="Service Results">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Orientation.Service_Results_Screen" Title="Service Name">
 	<ContentPage.Content>
 		
 
@@ -18,11 +18,12 @@
                      Padding="15, 30, 15, 0"
                      Grid.Row="0" Grid.Column="0">
 
-	            <Label x:Name="name" Text="Name: {Collecting data}"></Label>
+	            <Label x:Name="name" Text="Name: {Binding data}"></Label>
 	            <Label x:Name="description" Text="Description: {Binding data}"></Label>
 	            <Label x:Name="coordinates" Text="Coordinates: {Binding data}"></Label>
 	            <Label x:Name="phone" Text="Phone Number: {Binding data}"></Label>
 	            <Label x:Name="website" Text="Website: {Binding data}"></Label>
+
 	            </StackLayout>
 
 	            <StackLayout VerticalOptions="FillAndExpand"

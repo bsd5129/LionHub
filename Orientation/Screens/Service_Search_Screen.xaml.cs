@@ -10,7 +10,8 @@ namespace Orientation
 		public Service_Search_Screen ()
 		{
 			InitializeComponent ();
-			stackLayout.Children.Add (TabMenu.getInstance ());
+			NavigationPage.SetHasBackButton (this, false);
+			stackLayout.Children.Add (new TabMenu(1));
 		}
 	}
 }

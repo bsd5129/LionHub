@@ -7,16 +7,14 @@ namespace Orientation
 	public partial class MenuButton : ContentView
 	{
 		private TabMenu parent;
-		private ContentPage linkedPage;
 		private string imageBaseName;
 		private bool buttonSelected = false;
 
-		public MenuButton (TabMenu parentMenu, string name, string imageBase, ContentPage link)
+		public MenuButton (TabMenu parentMenu, string name, string imageBase)
 		{
 			InitializeComponent ();
 			parent = parentMenu;
 			imageBaseName = imageBase;
-			linkedPage = link;
 			buttonText.Text = name;
 			image.Source = imageBaseName + ".png";
 
@@ -25,8 +23,7 @@ namespace Orientation
 			tap.Tapped += (object sender, EventArgs e) => {
 				if (!buttonSelected)
 				{
-					parent.setSelected (this);
-					App.Current.MainPage = new NavigationPage(linkedPage);
+					parentMenu.pressMenuButton(name);
 				}
 			};
 
@@ -46,11 +43,6 @@ namespace Orientation
 			}
 
 			buttonSelected = isSelected;
-		}
-
-		public ContentPage getLinkedPage()
-		{
-			return linkedPage;
 		}
 	}
 }

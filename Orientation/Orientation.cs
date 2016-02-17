@@ -8,7 +8,8 @@ namespace Orientation
 	{
 		public App ()
 		{
-			MainPage = new NavigationPage (new Service_Search_Screen ());
+			//new NavigationPage(new Service_Results_Screen ());
+			MainPage = new NavigationPage(new Home_Screen ());
 		}
 
 		protected override void OnStart ()

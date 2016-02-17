@@ -9,7 +9,6 @@
 					</DataTemplate>
 				</ListView.ItemTemplate>
 			</ListView>
-			<Label Text="HELLO"></Label>
 		</StackLayout>
 	</ContentPage.Content>
 </ContentPage>

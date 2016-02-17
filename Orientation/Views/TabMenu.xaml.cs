@@ -6,58 +6,45 @@ namespace Orientation
 {
 	public partial class TabMenu : ContentView
 	{
-		private static TabMenu instance;
-		private MenuButton selected;
-
-		private static ContentPage homeScreen, serviceSearchScreen, favoritesScreen, serviceResultsScreen, whereAmIScreen;
-
-		private TabMenu ()
-		{
-			instance = this;
-
-			if (homeScreen == null)
-				homeScreen = new Home_Screen ();
-
-			if (serviceSearchScreen == null)
-				serviceSearchScreen = new Service_Search_Screen ();
-
-			if (favoritesScreen == null)
-				favoritesScreen = new Favorites_Screen ();
-
-			if (serviceResultsScreen == null)
-				serviceResultsScreen = new Service_Results_Screen ();
-
-			if (whereAmIScreen == null)
-				whereAmIScreen = new Where_Am_I_Screen ();
-
+		public TabMenu (int selectedId)
+		{	
 			InitializeComponent ();
-			grid.Children.Add (new MenuButton(this, "Home", "home", homeScreen), 0, 0);
-			grid.Children.Add (new MenuButton(this, "Services", "services", serviceSearchScreen), 1, 0);
-			grid.Children.Add (new MenuButton(this, "Favorites", "favorite", favoritesScreen), 2, 0);
-			grid.Children.Add (new MenuButton(this, "Rooms", "rooms", serviceResultsScreen), 3, 0);
-			grid.Children.Add (new MenuButton(this, "Scavenger", "scavengerHunt", whereAmIScreen), 4, 0);
+			grid.Children.Add (new MenuButton(this, "Home", "home"), 0, 0);
+			grid.Children.Add (new MenuButton(this, "Services", "services"), 1, 0);
+			grid.Children.Add (new MenuButton(this, "Favorites", "favorite"), 2, 0);
+			grid.Children.Add (new MenuButton(this, "Rooms", "rooms"), 3, 0);
+			grid.Children.Add (new MenuButton(this, "Scavenger", "scavengerHunt"), 4, 0);
 
-			setSelected ((MenuButton)grid.Children [1]);
+			((MenuButton)grid.Children [selectedId]).setSelected(true);
 		}
 
-		public void setSelected(MenuButton menuButton)
+		public void pressMenuButton(string name)
 		{
-			if (selected != null && selected == menuButton)
-				return;
-
-			if (selected != null)
-				selected.setSelected (false);
-
-			menuButton.setSelected (true);
-			selected = menuButton;
+			if (name.Equals ("Home")) {
+				changeVisiblePage (null);
+			}
+			else if (name.Equals ("Services")) {
+				changeVisiblePage (new Service_Search_Screen());
+			}
+			else if (name.Equals ("Favorites")) {
+				changeVisiblePage (new Favorites_Screen ());
+			}
+			else if (name.Equals ("Rooms")) {
+				//changeVisiblePage (new Rooms_Screen());
+			}
+			else if (name.Equals ("Scavenger")) {
+				//changeVisiblePage (new Scavenger_Hunt_Screen());
+			}
 		}
 
-		public static TabMenu getInstance()
+		public void changeVisiblePage(ContentPage page)
 		{
-			if (instance != null)
-				return instance;
+			NavigationPage navPage = new NavigationPage(new Home_Screen ());
 
-			return new TabMenu ();
+			if (page != null)
+				navPage.PushAsync (page);
+
+			App.Current.MainPage = navPage;
 		}
 	}
 }
