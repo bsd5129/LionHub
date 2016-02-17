@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Orientation.HomeListItem">
+	<ContentView.Content>
+		<StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Start" Padding="0, 0, 0, 15">
+			<Image x:Name="image" WidthRequest="48" HeightRequest="48" HorizontalOptions="CenterAndExpand"></Image>
+			<BoxView WidthRequest="35"></BoxView>
+			<Label x:Name="buttonText" FontSize="20" XAlign="Start" YAlign="Center"></Label>
+		</StackLayout>
+	</ContentView.Content>
+</ContentView>
