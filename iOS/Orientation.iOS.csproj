@@ -126,9 +126,17 @@
     <BundleResource Include="Resources\services.png" />
     <BundleResource Include="Resources\favorite_selected.png" />
     <BundleResource Include="Resources\favorite.png" />
-    <BundleResource Include="Resources\psuLogo.png" />
     <BundleResource Include="Resources\events.png" />
     <BundleResource Include="Resources\settings.png" />
     <BundleResource Include="Resources\whereAmI.png" />
+    <BundleResource Include="Resources\events_darkTheme.png" />
+    <BundleResource Include="Resources\favorite_darkTheme.png" />
+    <BundleResource Include="Resources\home_darkTheme.png" />
+    <BundleResource Include="Resources\rooms_darkTheme.png" />
+    <BundleResource Include="Resources\scavengerHunt_darkTheme.png" />
+    <BundleResource Include="Resources\services_darkTheme.png" />
+    <BundleResource Include="Resources\settings_darkTheme.png" />
+    <BundleResource Include="Resources\whereAmI_darkTheme.png" />
+    <BundleResource Include="Resources\psuLogo.png" />
   </ItemGroup>
 </Project>
