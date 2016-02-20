@@ -17,14 +17,14 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Orientation" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="kId-c2-rCX" misplaced="YES">
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LionHub" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="kId-c2-rCX" misplaced="YES">
                     <rect key="frame" x="20" y="140" width="441" height="43"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" customColorSpace="calibratedWhite" colorSpace="calibratedRGB" red="1" green="1" blue="1" alpha="1"/>
             <constraints>
                 <constraint firstItem="kId-c2-rCX" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="bottom" multiplier="1/3" constant="1" id="5cJ-9S-tgC"/>
                 <constraint firstAttribute="centerX" secondItem="kId-c2-rCX" secondAttribute="centerX" id="Koa-jz-hwk"/>
@@ -38,4 +38,20 @@
             <point key="canvasLocation" x="548" y="455"/>
         </view>
     </objects>
+    <resources>
+        <image name="home_selected.png" width="64" height="64"/>
+        <image name="home.png" width="64" height="64"/>
+        <image name="rooms_selected.png" width="64" height="64"/>
+        <image name="rooms.png" width="64" height="64"/>
+        <image name="scavengerHunt_selected.png" width="64" height="64"/>
+        <image name="scavengerHunt.png" width="64" height="64"/>
+        <image name="services_selected.png" width="64" height="64"/>
+        <image name="services.png" width="64" height="64"/>
+        <image name="favorite_selected.png" width="64" height="64"/>
+        <image name="favorite.png" width="64" height="64"/>
+        <image name="psuLogo.png" width="521" height="263"/>
+        <image name="events.png" width="64" height="64"/>
+        <image name="settings.png" width="64" height="64"/>
+        <image name="whereAmI.png" width="64" height="64"/>
+    </resources>
 </document>

@@ -16,6 +16,9 @@ namespace Orientation
 			grid.Children.Add (new MenuButton(this, "Scavenger", "scavengerHunt"), 4, 0);
 
 			((MenuButton)grid.Children [selectedId]).setSelected(true);
+
+			if (((Orientation.App)App.Current).isDarkTheme())
+				setDarkTheme();
 		}
 
 		public void pressMenuButton(string name)
@@ -41,10 +44,22 @@ namespace Orientation
 		{
 			NavigationPage navPage = new NavigationPage(new Home_Screen ());
 
+			if (!((Orientation.App)App.Current).isDarkTheme())
+				navPage.BarBackgroundColor = Color.FromHex ("#EEEEEE");
+			else {
+				navPage.BarBackgroundColor = Color.FromHex ("#303030");
+				navPage.BarTextColor = Color.FromHex ("#BBBBBB");
+			}
+
 			if (page != null)
 				navPage.PushAsync (page);
 
 			App.Current.MainPage = navPage;
+		}
+
+		public void setDarkTheme()
+		{
+			grid.BackgroundColor = Color.FromHex ("#303030");
 		}
 	}
 }

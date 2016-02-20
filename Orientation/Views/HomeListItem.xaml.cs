@@ -6,12 +6,14 @@ namespace Orientation
 {
 	public partial class HomeListItem : ContentView
 	{
+		private string imageBase;
 
-		public HomeListItem (Home_Screen home, string name, string imageFile)
+		public HomeListItem (Home_Screen home, string name, string imageBase)
 		{
 			InitializeComponent ();
 			buttonText.Text = name;
-			image.Source = imageFile;
+			this.imageBase = imageBase;
+			image.Source = imageBase + ".png";
 
 			TapGestureRecognizer tap = new TapGestureRecognizer { NumberOfTapsRequired = 1 };
 
@@ -20,6 +22,15 @@ namespace Orientation
 			};
 
 			GestureRecognizers.Add (tap);
+
+			if (((Orientation.App)App.Current).isDarkTheme())
+				setDarkTheme();
+		}
+
+		public void setDarkTheme()
+		{
+			buttonText.TextColor = Color.FromHex ("#BBBBBB");
+			image.Source = imageBase + "_darkTheme.png";
 		}
 	}
 }

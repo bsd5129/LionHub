@@ -14,13 +14,16 @@ namespace Orientation
 
 			NavigationPage.SetHasNavigationBar (this, false);
 
-			grid.Children.Add (new HomeListItem (this, "Services", "services.png"), 0, 0);
-			grid.Children.Add (new HomeListItem (this, "Favorites", "favorite.png"), 0, 1);
-			grid.Children.Add (new HomeListItem (this, "Rooms", "rooms.png"), 0, 2);
-			grid.Children.Add (new HomeListItem (this, "Scavenger Hunt", "scavengerHunt.png"), 0, 3);
-			grid.Children.Add (new HomeListItem (this, "Events", "events.png"), 0, 4);
-			grid.Children.Add (new HomeListItem (this, "Where Am I?", "whereAmI.png"), 0, 5);
-			grid.Children.Add (new HomeListItem (this, "Settings", "settings.png"), 0, 6);
+			grid.Children.Add (new HomeListItem (this, "Services", "services"), 0, 0);
+			grid.Children.Add (new HomeListItem (this, "Favorites", "favorite"), 0, 1);
+			grid.Children.Add (new HomeListItem (this, "Rooms", "rooms"), 0, 2);
+			grid.Children.Add (new HomeListItem (this, "Scavenger Hunt", "scavengerHunt"), 0, 3);
+			grid.Children.Add (new HomeListItem (this, "Events", "events"), 0, 4);
+			grid.Children.Add (new HomeListItem (this, "Where Am I?", "whereAmI"), 0, 5);
+			grid.Children.Add (new HomeListItem (this, "Settings", "settings"), 0, 6);
+
+			if (((Orientation.App)App.Current).isDarkTheme())
+				setDarkTheme();
 		}
 
 		public void pressHomeListItem(string name)
@@ -72,7 +75,7 @@ namespace Orientation
 
 		public void pressEventsHomeListItem()
 		{
-			
+			((Orientation.App)App.Current).setDarkTheme (!((Orientation.App)App.Current).isDarkTheme ());
 		}
 
 		public void pressWhereAmIHomeListItem()
@@ -82,7 +85,13 @@ namespace Orientation
 
 		public void pressSettingsHomeListItem()
 		{
+			Navigation.PushAsync (new Service_Results_Screen());
+		}
 
+		public void setDarkTheme()
+		{
+			stackLayout.BackgroundColor = Color.FromHex ("#303030");
+			copyright.TextColor = Color.FromHex ("#BBBBBB");
 		}
 	}
 }

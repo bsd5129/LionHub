@@ -6,10 +6,11 @@ namespace Orientation
 {
 	public class App : Application
 	{
+		private bool isDark;
+
 		public App ()
 		{
-			//new NavigationPage(new Service_Results_Screen ());
-			MainPage = new NavigationPage(new Home_Screen ());
+			setDarkTheme (false);
 		}
 
 		protected override void OnStart ()
@@ -25,6 +26,29 @@ namespace Orientation
 		protected override void OnResume ()
 		{
 			// Handle when your app resumes
+		}
+
+		public bool isDarkTheme()
+		{
+			return isDark;
+		}
+
+		public void setDarkTheme(bool dark)
+		{
+			isDark = dark;
+			NavigationPage navPage = new NavigationPage (new Home_Screen ());
+			setNavigationTheme (navPage);
+			MainPage = navPage;
+		}
+
+		public void setNavigationTheme(NavigationPage page)
+		{
+			if (!isDark)
+				page.BarBackgroundColor = Color.FromHex ("#EEEEEE");
+			else {
+				page.BarBackgroundColor = Color.FromHex ("#303030");
+				page.BarTextColor = Color.FromHex ("#BBBBBB");
+			}
 		}
 	}
 }

@@ -6,14 +6,12 @@ namespace Orientation
 {
 	public partial class MenuButton : ContentView
 	{
-		private TabMenu parent;
 		private string imageBaseName;
 		private bool buttonSelected = false;
 
 		public MenuButton (TabMenu parentMenu, string name, string imageBase)
 		{
 			InitializeComponent ();
-			parent = parentMenu;
 			imageBaseName = imageBase;
 			buttonText.Text = name;
 			image.Source = imageBaseName + ".png";
@@ -28,14 +26,21 @@ namespace Orientation
 			};
 
 			GestureRecognizers.Add (tap);
+
+			if (((Orientation.App)App.Current).isDarkTheme())
+				setDarkTheme();
 		}
 
 		public void setSelected (bool isSelected)
 		{
 			if (isSelected) {
 				buttonText.TextColor = Color.FromHex ("#007aff");
-				BackgroundColor = Color.FromHex("#f2f2f2");
 				image.Source = imageBaseName + "_selected.png";
+
+				if (((Orientation.App)App.Current).isDarkTheme())
+					BackgroundColor = Color.FromHex("#303030");
+				else
+					BackgroundColor = Color.FromHex("#fafafa");
 			} else {
 				buttonText.TextColor = Color.Black;
 				BackgroundColor = Color.Transparent;
@@ -43,6 +48,12 @@ namespace Orientation
 			}
 
 			buttonSelected = isSelected;
+		}
+
+		public void setDarkTheme()
+		{
+			buttonText.TextColor = Color.FromHex ("#BBBBBB");
+			image.Source = imageBaseName + "_darkTheme.png";
 		}
 	}
 }

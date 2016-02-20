@@ -1,43 +1,22 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Orientation.Service_Results_Screen" Title="Service Name">
 	<ContentPage.Content>
-		
+		<StackLayout x:Name="stackLayout">
+			<StackLayout VerticalOptions="Start" Padding="15, 30, 15, 0" Spacing="20">
+	            <Label x:Name="name" Text="Name: {Binding data}" FontSize="14"></Label>
+		        <Label x:Name="description" Text="Description: {Binding data}" FontSize="14"></Label>
+		        <Label x:Name="coordinates" Text="Coordinates: {Binding data}" FontSize="14"></Label>
+		        <Label x:Name="phone" Text="Phone Number: {Binding data}" FontSize="14"></Label>
+		        <Label x:Name="website" Text="Website: {Binding data}" FontSize="14"></Label>
+		    </StackLayout>
 
-            <Grid>
-            	<Grid.RowDefinitions>
-            		<RowDefinition Height="*"></RowDefinition>
-            		<RowDefinition Height="*"></RowDefinition>
-            	</Grid.RowDefinitions>
-            	<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="*"></ColumnDefinition>
-				</Grid.ColumnDefinitions>
+            <StackLayout VerticalOptions="CenterAndExpand">
+            	<Button x:Name="addToFavorite" Text="Add To Favorite"></Button>
+            	<Button x:Name="takeMeThere" Text="Take Me There"></Button>
+            </StackLayout>
 
-				<StackLayout VerticalOptions="FillAndExpand"
-                     HorizontalOptions="FillAndExpand"
-                     Orientation="Vertical"
-                     Padding="15, 30, 15, 0"
-                     Grid.Row="0" Grid.Column="0">
-
-	            <Label x:Name="name" Text="Name: {Binding data}"></Label>
-	            <Label x:Name="description" Text="Description: {Binding data}"></Label>
-	            <Label x:Name="coordinates" Text="Coordinates: {Binding data}"></Label>
-	            <Label x:Name="phone" Text="Phone Number: {Binding data}"></Label>
-	            <Label x:Name="website" Text="Website: {Binding data}"></Label>
-
-	            </StackLayout>
-
-	            <StackLayout VerticalOptions="FillAndExpand"
-                     HorizontalOptions="FillAndExpand"
-                     Orientation="Vertical"
-                     Padding="15, 30, 15, 0"
-                     Grid.Row="1" Grid.Column="0">
-	             <Button x:Name="addToFavorite" Text="Add To Favorite"></Button>
-	            <Button x:Name="takeMeThere" Text="Take Me There"></Button>
-
-	            </StackLayout>
-
-            </Grid>
-        
+            <StackLayout x:Name="bottomLayout" Orientation="Horizontal" VerticalOptions="End"></StackLayout>
+        </StackLayout>
 	
 	</ContentPage.Content>
 </ContentPage>

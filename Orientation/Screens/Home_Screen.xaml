@@ -5,7 +5,7 @@
 			 Title="Home">
 	<ContentPage.Content>
 		<!--Layout for the vertical orientation-->
-		<StackLayout>
+		<StackLayout x:Name="stackLayout" BackgroundColor="#EEEEEE" Padding="15, 20, 15, 0">
 			<!--PSU Banner-->
 			<Image Source ="psuLogo.png" />
 			
@@ -24,7 +24,9 @@
 					<ColumnDefinition Width="*" />
 				</Grid.ColumnDefinitions>
 			</Grid>
-			
+
+			<Label XAlign="Center" Text=" "></Label>
+			<Label x:Name="copyright" XAlign="Center" Text="Senior Project 2016"></Label>
 		</StackLayout>
 	</ContentPage.Content>
 </ContentPage>

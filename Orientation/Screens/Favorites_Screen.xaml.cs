@@ -12,6 +12,15 @@ namespace Orientation
 			InitializeComponent ();
 			NavigationPage.SetHasBackButton (this, false);
 			stackLayout.Children.Add (new TabMenu(2));
+
+			if (((Orientation.App)App.Current).isDarkTheme())
+				setDarkTheme();
+		}
+
+		public void setDarkTheme()
+		{
+			stackLayout.BackgroundColor = Color.FromHex ("#BBBBBB");
+			favoritesList.BackgroundColor = Color.FromHex ("#BBBBBB");
 		}
 	}
 }
