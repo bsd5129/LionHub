@@ -65,17 +65,23 @@ namespace Orientation
 
 		public void pressRoomHomeListItem()
 		{
-			
+			//Uncomment the following when code is set
+			//Navigation.PushAsync (new Room_Search_Screen ());
+
 		}
 
 		public void pressScavengerHuntHomeListItem()
 		{
-			
+			//Uncomment the following when code is set
+			//Navigation.PushAsync (new Scavenger_Hunt_Screen ());
+			((Orientation.App)App.Current).setDarkTheme (!((Orientation.App)App.Current).isDarkTheme ());
+
 		}
 
 		public void pressEventsHomeListItem()
 		{
-			((Orientation.App)App.Current).setDarkTheme (!((Orientation.App)App.Current).isDarkTheme ());
+			Navigation.PushAsync (new Event_Search_Screen ());
+			//((Orientation.App)App.Current).setDarkTheme (!((Orientation.App)App.Current).isDarkTheme ());
 		}
 
 		public void pressWhereAmIHomeListItem()
