@@ -7,52 +7,37 @@ namespace Orientation
 {
 	public partial class Event_Search_Screen : ContentPage
 	{
-
-		private Label resultsLabel;
-		private SearchBar searchBar;
-
 		public Event_Search_Screen ()
 		{
 			InitializeComponent ();
 			NavigationPage.SetHasNavigationBar (this, true);
-			
-			resultsLabel = new Label {
-				Text = "",
-				VerticalOptions = LayoutOptions.FillAndExpand,
-				FontSize = 25,
 
-			};
+			//show_results.Content = results;
+			//thickness = new Thickness(10, Device.OnPlatform (20, 0, 0), 10, 5);
+			event_picker_month.Title = "Event Date";
+			event_picker_month.Items.Add("January");
+			event_picker_month.Items.Add("Febuary");
+			event_picker_month.Items.Add("March");
+			event_picker_month.Items.Add("April");
+			event_picker_month.Items.Add("May");
+			event_picker_month.Items.Add("June");
+			event_picker_month.Items.Add ("July");
+			event_picker_month.Items.Add ("August");
+			event_picker_month.Items.Add("September");
+			event_picker_month.Items.Add("October");
+			event_picker_month.Items.Add("November");
+			event_picker_month.Items.Add("December");
 
-
-
-			searchBar = new SearchBar {
-				Placeholder = "Enter Event",
-				SearchCommand = new Command (() => {resultsLabel.Text = "Event Results: " + searchBar.Text;}),
-			};
-
-			Content = new StackLayout {
-				VerticalOptions = LayoutOptions.Start,
-				Children = {
-					new Label {
-						HorizontalTextAlignment = TextAlignment.Center,
-						Text = "Event Search",
-						FontSize = 25
-					},
-					searchBar,
-					new ScrollView {
-						Content = resultsLabel,
-						VerticalOptions = LayoutOptions.FillAndExpand
-					}
-				},
-				Padding = new Thickness (10, Device.OnPlatform (20, 0, 0), 10, 5)
-			};
+			event_picker_year.Title = "Year";
+			event_picker_year.Items.Add("2016");
+			event_picker_year.Items.Add("2017");
 
 			if (((Orientation.App)App.Current).isDarkTheme ()) {
-				this.BackgroundColor = Color.FromHex ("#BBBBBB");
-				searchBar.BackgroundColor = Color.FromHex ("#BBBBBB");
-				searchBar.CancelButtonColor = Color.FromHex ("#303030");
+				BackgroundColor = Color.FromHex ("#303030");
+
 			}	
 		}
+			
 	}
 }
 

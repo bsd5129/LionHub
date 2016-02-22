@@ -138,5 +138,7 @@
     <BundleResource Include="Resources\settings_darkTheme.png" />
     <BundleResource Include="Resources\whereAmI_darkTheme.png" />
     <BundleResource Include="Resources\psuLogo.png" />
+    <BundleResource Include="Resources\campus_outside.jpg" />
+    <BundleResource Include="Resources\search_icon.png" />
   </ItemGroup>
 </Project>

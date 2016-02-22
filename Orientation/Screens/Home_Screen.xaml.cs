@@ -75,7 +75,6 @@ namespace Orientation
 			//Uncomment the following when code is set
 			//Navigation.PushAsync (new Scavenger_Hunt_Screen ());
 			((Orientation.App)App.Current).setDarkTheme (!((Orientation.App)App.Current).isDarkTheme ());
-
 		}
 
 		public void pressEventsHomeListItem()
