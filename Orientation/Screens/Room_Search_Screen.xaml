@@ -1,23 +1,26 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Orientation.Room_Search_Screen" Title="Room Search Screen">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Orientation.Room_Search_Screen" Title="Room Search">
 	<ContentPage.Content>
-		<StackLayout VerticalOptions="CenterAndExpand">
-            	<Entry   Text="Enter a room number" Keyboard="Text"></Entry>
-            	<Picker SelectedIndex="{Binding Industry}" HorizontalOptions="FillAndExpand">
+		<StackLayout Orientation="Vertical">
+			<StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+            	<Entry x:Name="roomNumber" Placeholder="Enter Room Number" Keyboard="Text"></Entry>
+            	<Picker x:Name="buildingName" SelectedIndex="{Binding Industry}">
         			<Picker.Items>
-           				 <x:String>EAB South Bulding</x:String>
+           				 <x:String>EAB South Building</x:String>
            				 <x:String>EAB North Building</x:String> 
-            			 <x:String>CUB Buidling</x:String>
-            			 <x:String>TL Bulding</x:String> 
-            			 <x:String>Olmsted Buidling</x:String>
-            			 <x:String>SSE Buidling</x:String>
+            			 <x:String>CUB Building</x:String>
+            			 <x:String>TL Building</x:String> 
+            			 <x:String>Olmsted Building</x:String>
+            			 <x:String>SSE Building</x:String>
             			 <x:String>Library</x:String> 
             			 <x:String>Church Hall</x:String>
             			 <x:String>Student Housing</x:String>
             			 <x:String>Child Care Center</x:String>
         			</Picker.Items>
    				</Picker> 
-   			<Button Text="Search" HorizontalOptions="End" VerticalOptions="EndAndExpand" />
+   				<Button Text="Search" HorizontalOptions="Center" />
+   			</StackLayout>
+   			<StackLayout x:Name="bottomLayout" Orientation="Horizontal" VerticalOptions="End"></StackLayout>
         </StackLayout>
 	</ContentPage.Content>
 </ContentPage>
