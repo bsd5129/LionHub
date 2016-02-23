@@ -2,8 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Orientation.Room_Search_Screen" Title="Room Search Screen">
 	<ContentPage.Content>
 		<StackLayout VerticalOptions="CenterAndExpand">
-            	<Entry   x:Name="room" Text="Enter a room number" Keyboard="Text"></Entry>
-            	<Picker  x:Name="buidling" SelectedIndex="{Binding Industry}" HorizontalOptions="FillAndExpand">
+            	<Entry   Text="Enter a room number" Keyboard="Text"></Entry>
+            	<Picker SelectedIndex="{Binding Industry}" HorizontalOptions="FillAndExpand">
         			<Picker.Items>
            				 <x:String>EAB South Bulding</x:String>
            				 <x:String>EAB North Building</x:String> 
@@ -17,7 +17,7 @@
             			 <x:String>Child Care Center</x:String>
         			</Picker.Items>
    				</Picker> 
-   			<Button x:Name="search" Text="Search" HorizontalOptions="End" VerticalOptions="EndAndExpand" />
+   			<Button Text="Search" HorizontalOptions="End" VerticalOptions="EndAndExpand" />
         </StackLayout>
 	</ContentPage.Content>
 </ContentPage>

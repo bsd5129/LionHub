@@ -2,8 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Orientation.Event_Search_Screen" Title="Event Search Screen">
 	<ContentPage.Content>
 	 <StackLayout>
-		 	<Image x:Name = "background" Source="search_icon.png"></Image>
-		 	 <StackLayout x:Name="page_holder" Orientation="Horizontal">
+		 	<Image Source="search_icon.png"></Image>
+		 	 <StackLayout Orientation="Horizontal">
 		
 				<Frame HorizontalOptions="CenterAndExpand" VerticalOptions="Center" BackgroundColor="#BBBBBB">
 					<Picker x:Name = "event_picker_month"/>
@@ -14,7 +14,7 @@
 				</Frame>
 
 		</StackLayout>
-		<Button x:Name = "search_button" Text="Search" />
+		<Button Text="Search" />
 		</StackLayout>
 	</ContentPage.Content>
 </ContentPage>
