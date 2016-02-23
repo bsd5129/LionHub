@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Orientation.Service_Results_Screen" Title="Service Name">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Orientation.Event_Results_Screen" Title="Event Results Screen">
 	<ContentPage.Content>
 		<StackLayout x:Name="stackLayout">
 			<StackLayout VerticalOptions="Start" Padding="15, 30, 15, 0" Spacing="20">

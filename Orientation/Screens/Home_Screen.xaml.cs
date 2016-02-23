@@ -66,7 +66,7 @@ namespace Orientation
 		public void pressRoomHomeListItem()
 		{
 			//Uncomment the following when code is set
-			//Navigation.PushAsync (new Room_Search_Screen ());
+			Navigation.PushAsync (new Room_Search_Screen ());
 
 		}
 

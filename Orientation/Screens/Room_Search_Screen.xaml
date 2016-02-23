@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Orientation.Service_Search_Screen" Title="Services">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Orientation.Room_Search_Screen" Title="Room Search Screen">
 	<ContentPage.Content>
 		<StackLayout VerticalOptions="CenterAndExpand">
             	<Entry   x:Name="room" Text="Enter a room number" Keyboard="Text"></Entry>
@@ -17,7 +17,7 @@
             			 <x:String>Child Care Center</x:String>
         			</Picker.Items>
    				</Picker> 
-   				<Button x:Name="search" Text="Search" HorizontalOptions="End" VerticalOptions="EndAndExpand" />
+   			<Button x:Name="search" Text="Search" HorizontalOptions="End" VerticalOptions="EndAndExpand" />
         </StackLayout>
 	</ContentPage.Content>
 </ContentPage>
