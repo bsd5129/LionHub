@@ -15,6 +15,9 @@
 				<Button Text="Extra Hint" Grid.Row="0" Grid.Column="0" />
 				<Button Text="Check Solution" Grid.Row="0" Grid.Column="1" />
 			</Grid>
+
+			<!-- FOR THE TAB MENU -->
+			<StackLayout x:Name="bottomLayout" Orientation="Horizontal" VerticalOptions="End"></StackLayout>
 		</StackLayout>
 	</ContentPage.Content>
 </ContentPage>

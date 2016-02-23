@@ -10,6 +10,7 @@ namespace Orientation
 		public Room_Search_Screen ()
 		{
 			InitializeComponent ();
+			NavigationPage.SetHasBackButton(this, false);
 			bottomLayout.Children.Add (new TabMenu(3));
 
 			roomNumber.WidthRequest = (int)(0.8 * ((Orientation.App)App.Current).getScreenSize().Width);

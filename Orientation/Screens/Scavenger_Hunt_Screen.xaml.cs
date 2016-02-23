@@ -10,6 +10,8 @@ namespace Orientation
 		public Scavenger_Hunt_Screen ()
 		{
 			InitializeComponent ();
+			NavigationPage.SetHasBackButton(this, false);
+			bottomLayout.Children.Add(new TabMenu(4));
 		}
 	}
 }
