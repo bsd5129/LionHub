@@ -14,7 +14,7 @@ namespace Orientation.iOS
 		{
 			global::Xamarin.Forms.Forms.Init ();
 
-			LoadApplication (new App ());
+			LoadApplication (new App (new Xamarin.Forms.Size(UIScreen.MainScreen.Bounds.Width, UIScreen.MainScreen.Bounds.Height)));
 
 			return base.FinishedLaunching (app, options);
 		}

@@ -10,7 +10,7 @@ using Android.OS;
 
 namespace Orientation.Droid
 {
-	[Activity (Label = "Orientation.Droid", Icon = "@drawable/icon", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+	[Activity (Label = "Orientation.Droid", Icon = "@drawable/icon", Theme="@android:style/Theme.Holo.Light", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
 	public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsApplicationActivity
 	{
 		protected override void OnCreate (Bundle bundle)
@@ -19,7 +19,7 @@ namespace Orientation.Droid
 
 			global::Xamarin.Forms.Forms.Init (this, bundle);
 
-			LoadApplication (new App ());
+			LoadApplication (new App (new Xamarin.Forms.Size((int)(Resources.DisplayMetrics.WidthPixels / Resources.DisplayMetrics.Density), (int)(Resources.DisplayMetrics.HeightPixels / Resources.DisplayMetrics.Density))));
 		}
 	}
 }
