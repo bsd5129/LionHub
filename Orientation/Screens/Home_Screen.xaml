@@ -4,12 +4,10 @@
 			 x:Class="Orientation.Home_Screen"
 			 Title="Home">
 	<ContentPage.Content>
-		<!--Layout for the vertical orientation-->
-		<StackLayout x:Name="stackLayout" BackgroundColor="#EEEEEE" Padding="15, 20, 15, 0">
-			<!--PSU Banner-->
+		<StackLayout x:Name="stackLayout" Padding="15, 10, 15, 15">
 			<Image Source ="psuLogo.png" />
 			
-			<Grid x:Name="grid" Padding="15, 20, 15, 0">
+			<Grid x:Name="grid" Padding="15, 10, 15, 0" VerticalOptions="Center" HorizontalOptions="CenterAndExpand">
 				<Grid.RowDefinitions>
 					<RowDefinition Height="48" />
 					<RowDefinition Height="48" />
@@ -21,12 +19,11 @@
 				</Grid.RowDefinitions>
 
 				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="Auto" />
 				</Grid.ColumnDefinitions>
 			</Grid>
 
-			<Label XAlign="Center" Text=" "></Label>
-			<Label x:Name="copyright" XAlign="Center" Text="Senior Project 2016"></Label>
+			<Label x:Name="copyright" XAlign="Center" VerticalOptions="EndAndExpand" Text="Senior Project 2016"></Label>
 		</StackLayout>
 	</ContentPage.Content>
 </ContentPage>
