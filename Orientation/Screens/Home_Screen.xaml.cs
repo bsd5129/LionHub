@@ -11,8 +11,6 @@ namespace Orientation
 		public Home_Screen ()
 		{
 			InitializeComponent ();
-
-			//NavigationPage.SetHasNavigationBar (this, false);
 			NavigationPage.SetBackButtonTitle (this, "Back");
 
 			psuLogo.WidthRequest = (int)(0.75 * ((Orientation.App)App.Current).getScreenSize().Width);

@@ -1,5 +1,20 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Orientation.Scavenger_Hunt_Screen">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Orientation.Scavenger_Hunt_Screen" Title="Scavenger Hunt">
 	<ContentPage.Content>
+		<StackLayout>
+			<Image Source="psuLogo.png" />
+			<Label Text="{Binding Data}" FontSize="14" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" ></Label>
+			<InputView ></InputView>
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto" />
+				</Grid.ColumnDefinitions>
+				<Button Text="Extra Hint" Grid.Row="0" Grid.Column="0" />
+				<Button Text="Check Solution" Grid.Row="0" Grid.Column="1" />
+			</Grid>
+		</StackLayout>
 	</ContentPage.Content>
 </ContentPage>

@@ -5,7 +5,7 @@
 			 Title="Home">
 	<ContentPage.Content>
 		<StackLayout x:Name="stackLayout" Padding="15, 0, 15, 15">
-			<Image x:Name="psuLogo" Source ="psuLogo.png" />
+		<Image x:Name="psuLogo" Source ="psuLogo.png" />
 			
 			<Grid x:Name="grid" Padding="15, 0, 15, 0" VerticalOptions="Center" HorizontalOptions="CenterAndExpand">
 				<Grid.RowDefinitions>
