@@ -5,11 +5,11 @@
 		 	<Image Source="search_icon.png"></Image>
 		 	 <StackLayout Orientation="Horizontal">
 		
-				<Frame HorizontalOptions="CenterAndExpand" VerticalOptions="Center" BackgroundColor="#BBBBBB">
+				<Frame HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
 					<Picker x:Name = "event_picker_month"/>
 				</Frame>
 
-				<Frame HorizontalOptions ="CenterAndExpand" VerticalOptions="Center" BackgroundColor="#BBBBBB">
+				<Frame HorizontalOptions ="CenterAndExpand" VerticalOptions="Center">
 					<Picker x:Name = "event_picker_year"/>
 				</Frame>
 

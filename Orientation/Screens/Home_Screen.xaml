@@ -5,7 +5,7 @@
 			 Title="Home">
 	<ContentPage.Content>
 		<!--Layout for the vertical orientation-->
-		<StackLayout x:Name="stackLayout" BackgroundColor="#EEEEEE" Padding="15, 20, 15, 0">
+		<StackLayout x:Name="stackLayout" Padding="15, 20, 15, 0">
 			<!--PSU Banner-->
 			<Image Source ="psuLogo.png" />
 			
