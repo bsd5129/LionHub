@@ -13,15 +13,14 @@ namespace Orientation
 			NavigationPage.SetHasBackButton (this, false);
 			stackLayout.Children.Add (new TabMenu(1));
 
-			if (((Orientation.App)App.Current).isDarkTheme())
-				setDarkTheme();
+			setTheme ();
 		}
 
-		public void setDarkTheme()
+		public void setTheme()
 		{
-			stackLayout.BackgroundColor = Color.FromHex ("#BBBBBB");
-			servicesList.BackgroundColor = Color.FromHex ("#BBBBBB");
-			searchBar.BackgroundColor = Color.FromHex ("#BBBBBB");
+			stackLayout.BackgroundColor = Theme.getBackgroundColor();
+			servicesList.BackgroundColor = Theme.getBackgroundColor();
+			searchBar.BackgroundColor = Theme.getBackgroundColor();
 		}
 	}
 }

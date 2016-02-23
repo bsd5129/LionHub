@@ -12,7 +12,10 @@ namespace Orientation
 		{
 			InitializeComponent ();
 
-			NavigationPage.SetHasNavigationBar (this, false);
+			//NavigationPage.SetHasNavigationBar (this, false);
+			NavigationPage.SetBackButtonTitle (this, "Back");
+
+			psuLogo.WidthRequest = (int)(0.75 * ((Orientation.App)App.Current).getScreenSize().Width);
 
 			grid.Children.Add (new HomeListItem (this, "Services", "services"), 0, 0);
 			grid.Children.Add (new HomeListItem (this, "Favorites", "favorite"), 0, 1);
@@ -22,8 +25,7 @@ namespace Orientation
 			grid.Children.Add (new HomeListItem (this, "Where Am I?", "whereAmI"), 0, 5);
 			grid.Children.Add (new HomeListItem (this, "Settings", "settings"), 0, 6);
 
-			if (((Orientation.App)App.Current).isDarkTheme())
-				setDarkTheme();
+			setTheme ();
 		}
 
 		public void pressHomeListItem(string name)
@@ -65,22 +67,17 @@ namespace Orientation
 
 		public void pressRoomHomeListItem()
 		{
-			//Uncomment the following when code is set
-			//Navigation.PushAsync (new Room_Search_Screen ());
-
+			Navigation.PushAsync (new Room_Search_Screen ());
 		}
 
 		public void pressScavengerHuntHomeListItem()
 		{
-			//Uncomment the following when code is set
-			//Navigation.PushAsync (new Scavenger_Hunt_Screen ());
-			((Orientation.App)App.Current).setDarkTheme (!((Orientation.App)App.Current).isDarkTheme ());
+			Navigation.PushAsync (new Scavenger_Hunt_Screen ());
 		}
 
 		public void pressEventsHomeListItem()
 		{
 			Navigation.PushAsync (new Event_Search_Screen ());
-			//((Orientation.App)App.Current).setDarkTheme (!((Orientation.App)App.Current).isDarkTheme ());
 		}
 
 		public void pressWhereAmIHomeListItem()
@@ -90,13 +87,16 @@ namespace Orientation
 
 		public void pressSettingsHomeListItem()
 		{
-			Navigation.PushAsync (new Service_Results_Screen());
+			Navigation.PushAsync (new Settings_Screen());
 		}
 
-		public void setDarkTheme()
+		public void setTheme()
 		{
-			stackLayout.BackgroundColor = Color.FromHex ("#303030");
-			copyright.TextColor = Color.FromHex ("#BBBBBB");
+			BackgroundColor = Theme.getBackgroundColor();
+			stackLayout.BackgroundColor = Theme.getBackgroundColor();
+			grid.BackgroundColor = Theme.getBackgroundColor();
+			copyright.TextColor = Theme.getTextColor();
+			copyright.BackgroundColor = Theme.getBackgroundColor ();
 		}
 	}
 }

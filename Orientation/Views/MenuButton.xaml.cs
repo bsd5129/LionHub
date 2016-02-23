@@ -14,7 +14,6 @@ namespace Orientation
 			InitializeComponent ();
 			imageBaseName = imageBase;
 			buttonText.Text = name;
-			image.Source = imageBaseName + ".png";
 
 			TapGestureRecognizer tap = new TapGestureRecognizer { NumberOfTapsRequired = 1 };
 
@@ -27,8 +26,7 @@ namespace Orientation
 
 			GestureRecognizers.Add (tap);
 
-			if (((Orientation.App)App.Current).isDarkTheme())
-				setDarkTheme();
+			setTheme();
 		}
 
 		public void setSelected (bool isSelected)
@@ -37,8 +35,8 @@ namespace Orientation
 				buttonText.TextColor = Color.FromHex ("#007aff");
 				image.Source = imageBaseName + "_selected.png";
 
-				if (((Orientation.App)App.Current).isDarkTheme())
-					BackgroundColor = Color.FromHex("#303030");
+				if (Theme.isDarkTheme())
+					BackgroundColor = Theme.getBackgroundColor();
 				else
 					BackgroundColor = Color.FromHex("#fafafa");
 			} else {
@@ -50,10 +48,14 @@ namespace Orientation
 			buttonSelected = isSelected;
 		}
 
-		public void setDarkTheme()
+		public void setTheme()
 		{
-			buttonText.TextColor = Color.FromHex ("#BBBBBB");
-			image.Source = imageBaseName + "_darkTheme.png";
+			buttonText.TextColor = Theme.getTextColor();
+
+			if (Theme.isDarkTheme())
+				image.Source = imageBaseName + "_darkTheme.png";
+			else
+				image.Source = imageBaseName + ".png";
 		}
 	}
 }

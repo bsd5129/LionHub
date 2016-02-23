@@ -14,20 +14,13 @@ namespace Orientation
 
 			bottomLayout.Children.Add (new TabMenu(1));
 
-			if (((Orientation.App)App.Current).isDarkTheme())
-				setDarkTheme();
+			setTheme ();
 		}
 
-		public void setDarkTheme()
+		public void setTheme()
 		{
-			//name.TextColor = Color.FromHex ("#BBBBBB");
-			//description.TextColor = Color.FromHex ("#BBBBBB");
-			//coordinates.TextColor = Color.FromHex ("#BBBBBB");
-			//phone.TextColor = Color.FromHex ("#BBBBBB");
-			//website.TextColor = Color.FromHex ("#BBBBBB");
-
-			bottomLayout.BackgroundColor = Color.FromHex ("#BBBBBB");
-			stackLayout.BackgroundColor = Color.FromHex ("#BBBBBB");
+			bottomLayout.BackgroundColor = Theme.getBackgroundColor ();
+			stackLayout.BackgroundColor = Theme.getBackgroundColor ();
 		}
 	}
 }

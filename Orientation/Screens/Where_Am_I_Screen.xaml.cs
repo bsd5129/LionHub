@@ -12,16 +12,15 @@ namespace Orientation
 			InitializeComponent ();
 			NavigationPage.SetHasNavigationBar (this, false);
 
-			if (((Orientation.App)App.Current).isDarkTheme())
-				setDarkTheme();
+			setTheme ();
 		}
 
-		public void setDarkTheme()
+		public void setTheme()
 		{
-			centerLayout.BackgroundColor = Color.FromHex ("#303030");
-			stackLayout.BackgroundColor = Color.FromHex ("#303030");
-			searchingLabel.TextColor = Color.FromHex ("#BBBBBB");
-			indicator.Color = Color.FromHex ("#BBBBBB");
+			centerLayout.BackgroundColor = Theme.getBackgroundColor();
+			stackLayout.BackgroundColor = Theme.getBackgroundColor();
+			searchingLabel.TextColor = Theme.getTextColor();
+			indicator.Color = Theme.getTextColor();
 		}
 	}
 }

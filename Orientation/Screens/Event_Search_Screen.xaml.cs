@@ -32,10 +32,10 @@ namespace Orientation
 			event_picker_year.Items.Add("2016");
 			event_picker_year.Items.Add("2017");
 
-			if (((Orientation.App)App.Current).isDarkTheme ()) {
-				BackgroundColor = Color.FromHex ("#303030");
-
-			}	
+			//if (((Orientation.App)App.Current).isDarkTheme ()) {
+			//	BackgroundColor = Color.FromHex ("#303030");
+			//
+			//}	
 		}
 			
 	}

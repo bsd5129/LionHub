@@ -1,5 +1,23 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Orientation.Settings_Screen">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Orientation.Settings_Screen" Title="Settings">
 	<ContentPage.Content>
+		<TableView x:Name="tableView">
+			<TableRoot>
+				<TableSection x:Name="tableSection">
+					<ViewCell>
+						<StackLayout Orientation="Horizontal" Padding="15, 0, 15, 0">
+							<StackLayout Orientation="Vertical">
+								<Label x:Name="darkThemeText" Text="Dark Theme"></Label>
+								<Label x:Name="darkThemeDetail" Text="Toggles the dark and light themes" FontSize="12"></Label>
+							</StackLayout>
+
+							<Switch x:Name="darkThemeSwitch" IsToggled="false" VerticalOptions="Center" HorizontalOptions="EndAndExpand"></Switch>
+						</StackLayout>
+					</ViewCell>
+					<TextCell x:Name="version" Text="Version: 0.1b" Detail="Last Update: 2/22/2016"></TextCell>
+					<TextCell x:Name="credits" Text="Credits" Detail="More about the team"></TextCell>
+				</TableSection>
+			</TableRoot>
+		</TableView>
 	</ContentPage.Content>
 </ContentPage>
