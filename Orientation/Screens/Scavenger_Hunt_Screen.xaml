@@ -4,7 +4,7 @@
 		<StackLayout>
 			<Image Source="psuLogo.png" />
 			<Label Text="{Binding Data}" FontSize="14" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" ></Label>
-			<InputView ></InputView>
+
 			<Grid>
 				<Grid.RowDefinitions>
 					<RowDefinition Height="Auto" />
