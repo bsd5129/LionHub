@@ -17,14 +17,13 @@ namespace Orientation
 
 			((MenuButton)grid.Children [selectedId]).setSelected(true);
 
-			if (((Orientation.App)App.Current).isDarkTheme())
-				setDarkTheme();
+			setTheme();
 		}
 
 		public void pressMenuButton(string name)
 		{
 			if (name.Equals ("Home")) {
-				changeVisiblePage (null);
+				changeVisiblePage (new Home_Screen());
 			}
 			else if (name.Equals ("Services")) {
 				changeVisiblePage (new Service_Search_Screen());
@@ -33,33 +32,24 @@ namespace Orientation
 				changeVisiblePage (new Favorites_Screen ());
 			}
 			else if (name.Equals ("Rooms")) {
-				//changeVisiblePage (new Rooms_Screen());
+				changeVisiblePage (new Room_Search_Screen());
 			}
 			else if (name.Equals ("Scavenger")) {
-				//changeVisiblePage (new Scavenger_Hunt_Screen());
+				changeVisiblePage (new Scavenger_Hunt_Screen());
 			}
 		}
 
 		public void changeVisiblePage(ContentPage page)
 		{
-			NavigationPage navPage = new NavigationPage(new Home_Screen ());
-
-			if (!((Orientation.App)App.Current).isDarkTheme())
-				navPage.BarBackgroundColor = Color.FromHex ("#EEEEEE");
-			else {
-				navPage.BarBackgroundColor = Color.FromHex ("#303030");
-				navPage.BarTextColor = Color.FromHex ("#BBBBBB");
-			}
-
-			if (page != null)
-				navPage.PushAsync (page);
-
+			NavigationPage navPage = new NavigationPage(page);
+			navPage.BarBackgroundColor = Theme.getBackgroundColor ();
+			navPage.BarTextColor = Theme.getTextColor();
 			App.Current.MainPage = navPage;
 		}
 
-		public void setDarkTheme()
+		public void setTheme()
 		{
-			grid.BackgroundColor = Color.FromHex ("#303030");
+			grid.BackgroundColor = Theme.getBackgroundColor();
 		}
 	}
 }
