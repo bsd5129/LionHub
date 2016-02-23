@@ -25,8 +25,9 @@
     <MtouchUseSGen>true</MtouchUseSGen>
     <MtouchFastDev>true</MtouchFastDev>
     <MtouchDebug>true</MtouchDebug>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>iPhone Developer: the_daen@live.com (3UFLSQ9VW3)</CodesignKey>
     <MtouchProfiling>true</MtouchProfiling>
+    <CodesignProvision>66d09c74-97e9-4e1e-b0d1-f404a55d4fc9</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>full</DebugType>
