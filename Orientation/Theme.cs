@@ -6,7 +6,7 @@ namespace Orientation
 {
 	public class Theme
 	{
-		private static bool isDark = true;
+		private static bool isDark = false;
 
 		private static Color lightThemeBackgroundColor = Color.FromHex("#EEEEEE");
 		private static Color lightThemeTextColor = Color.FromHex("#000000");
