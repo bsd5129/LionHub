@@ -40,7 +40,6 @@ namespace Orientation
 			event_picker_month.BackgroundColor = Theme.getBackgroundColor ();
 			if (Theme.isDarkTheme()) {
 				event_picker_year.BackgroundColor = Color.FromHex("#BBBBBB");
-				event_picker_month.
 				event_picker_month.BackgroundColor = Color.FromHex ("#BBBBBB");
 			}
 		}

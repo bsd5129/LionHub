@@ -1,20 +1,24 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Orientation.Scavenger_Hunt_Screen" Title="Scavenger Hunt">
 	<ContentPage.Content>
-		<StackLayout>
-			<Image Source="psuLogo.png" />
-			<Label Text="{Binding Data}" FontSize="14" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" ></Label>
-
-			<Grid>
+		<StackLayout x:Name="huntLayout">
+			<Image x:Name="optionalPicture" Source="psuLogo.png" />
+			<Label x:Name="clue" Text="Clue: {Binding Data}" FontSize="14" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" ></Label>
+			
+			<Entry x:Name="solution" Placeholder="Enter Solution" Keyboard="Text"></Entry>
+			<Grid VerticalOptions="CenterAndExpand" HorizontalOptions="Center" Padding="60,0,0,0">
 				<Grid.RowDefinitions>
 					<RowDefinition Height="Auto" />
 				</Grid.RowDefinitions>
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="Auto" />
 				</Grid.ColumnDefinitions>
-				<Button Text="Extra Hint" Grid.Row="0" Grid.Column="0" />
-				<Button Text="Check Solution" Grid.Row="0" Grid.Column="1" />
+				<Button Text="Extra Hint" Grid.Row="0" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"/>
+				<Button Text="Check Solution" Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"/>
 			</Grid>
+
+			<!-- FOR THE TAB MENU -->
+			<StackLayout x:Name="bottomLayout" Orientation="Horizontal" VerticalOptions="End"></StackLayout>
 		</StackLayout>
 	</ContentPage.Content>
 </ContentPage>
