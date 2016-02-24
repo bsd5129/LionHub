@@ -12,8 +12,6 @@ namespace Orientation
 			InitializeComponent ();
 			NavigationPage.SetHasNavigationBar (this, true);
 
-			//show_results.Content = results;
-			//thickness = new Thickness(10, Device.OnPlatform (20, 0, 0), 10, 5);
 			event_picker_month.Title = "Event Date";
 			event_picker_month.Items.Add("January");
 			event_picker_month.Items.Add("Febuary");
@@ -32,11 +30,21 @@ namespace Orientation
 			event_picker_year.Items.Add("2016");
 			event_picker_year.Items.Add("2017");
 
-			//if (((Orientation.App)App.Current).isDarkTheme ()) {
-			//	BackgroundColor = Color.FromHex ("#303030");
-			//
-			//}	
+			setDark ();
 		}
+
+		public void setDark()
+		{
+			BackgroundColor = Theme.getBackgroundColor();
+			event_picker_year.BackgroundColor = Theme.getBackgroundColor ();
+			event_picker_month.BackgroundColor = Theme.getBackgroundColor ();
+			if (Theme.isDarkTheme()) {
+				event_picker_year.BackgroundColor = Color.FromHex("#BBBBBB");
+				event_picker_month.
+				event_picker_month.BackgroundColor = Color.FromHex ("#BBBBBB");
+			}
+		}
+			
 			
 	}
 }
