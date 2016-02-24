@@ -11,24 +11,20 @@ namespace Orientation
 		{
 			InitializeComponent ();
 			NavigationPage.SetHasNavigationBar (this, true);
-
-			event_picker_month.Title = "Event Date";
-			event_picker_month.Items.Add("January");
-			event_picker_month.Items.Add("Febuary");
-			event_picker_month.Items.Add("March");
-			event_picker_month.Items.Add("April");
-			event_picker_month.Items.Add("May");
-			event_picker_month.Items.Add("June");
-			event_picker_month.Items.Add ("July");
-			event_picker_month.Items.Add ("August");
-			event_picker_month.Items.Add("September");
-			event_picker_month.Items.Add("October");
-			event_picker_month.Items.Add("November");
-			event_picker_month.Items.Add("December");
-
-			event_picker_year.Title = "Year";
-			event_picker_year.Items.Add("2016");
-			event_picker_year.Items.Add("2017");
+			event_picker.WidthRequest = (int)(0.8 * ((Orientation.App)App.Current).getScreenSize().Width);
+			event_picker.Title = "Event Date";
+			event_picker.Items.Add("January 2016");
+			event_picker.Items.Add("Febuary 2016");
+			event_picker.Items.Add("March 2016");
+			event_picker.Items.Add("April 2016");
+			event_picker.Items.Add("May 2016");
+			event_picker.Items.Add("June 2016");
+			event_picker.Items.Add ("July 2016");
+			event_picker.Items.Add ("August 2016");
+			event_picker.Items.Add("September 2016");
+			event_picker.Items.Add("October 2016");
+			event_picker.Items.Add("November 2016");
+			event_picker.Items.Add("December 2016");
 
 			setDark ();
 		}
@@ -36,11 +32,9 @@ namespace Orientation
 		public void setDark()
 		{
 			BackgroundColor = Theme.getBackgroundColor();
-			event_picker_year.BackgroundColor = Theme.getBackgroundColor ();
-			event_picker_month.BackgroundColor = Theme.getBackgroundColor ();
+			event_picker.BackgroundColor = Theme.getBackgroundColor ();
 			if (Theme.isDarkTheme()) {
-				event_picker_year.BackgroundColor = Color.FromHex("#BBBBBB");
-				event_picker_month.BackgroundColor = Color.FromHex ("#BBBBBB");
+				event_picker.BackgroundColor = Color.FromHex("#BBBBBB");
 			}
 		}
 			

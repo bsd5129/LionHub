@@ -2,19 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Orientation.Event_Search_Screen" Title="Event Search Screen">
 	<ContentPage.Content>
 	 <StackLayout>
-		 	<Image Source="search_icon.png"></Image>
-		 	 <StackLayout Orientation="Horizontal">
-		
-				<Frame HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
-					<Picker x:Name = "event_picker_month"/>
-				</Frame>
-
-				<Frame HorizontalOptions ="CenterAndExpand" VerticalOptions="Center">
-					<Picker x:Name = "event_picker_year"/>
-				</Frame>
-
-		</StackLayout>
-		<Button Text="Search" />
+		 	 <StackLayout Orientation="Horizontal" Padding="15, 15, 15, 0">
+					<Picker x:Name = "event_picker" HorizontalOptions="CenterAndExpand"/>
+			 </StackLayout>
 		</StackLayout>
 	</ContentPage.Content>
 </ContentPage>
