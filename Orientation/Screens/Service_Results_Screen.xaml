@@ -1,21 +1,19 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Orientation.Service_Results_Screen" Title="Service Name">
 	<ContentPage.Content>
-		<StackLayout x:Name="stackLayout">
+		<StackLayout>
 			<StackLayout VerticalOptions="Start" Padding="15, 30, 15, 0" Spacing="20">
-	            <Label Text="Name: {Binding data}" FontSize="14"></Label>
-		        <Label Text="Description: {Binding data}" FontSize="14"></Label>
-		        <Label Text="Coordinates: {Binding data}" FontSize="14"></Label>
-		        <Label Text="Phone Number: {Binding data}" FontSize="14"></Label>
-		        <Label Text="Website: {Binding data}" FontSize="14"></Label>
+	            <Label x:Name="name" Text="Name: {Binding data}" FontSize="14"></Label>
+		        <Label x:Name="description" Text="Description: {Binding data}" FontSize="14"></Label>
+		        <Label x:Name="coordinates" Text="Coordinates: {Binding data}" FontSize="14"></Label>
+		        <Label x:Name="phoneNumber" Text="Phone Number: {Binding data}" FontSize="14"></Label>
+		        <Label x:Name="website" Text="Website: {Binding data}" FontSize="14"></Label>
 		    </StackLayout>
 
             <StackLayout VerticalOptions="CenterAndExpand">
             	<Button Text="Add To Favorite"></Button>
             	<Button Text="Take Me There"></Button>
             </StackLayout>
-
-            <StackLayout x:Name="bottomLayout" Orientation="Horizontal" VerticalOptions="End"></StackLayout>
         </StackLayout>
 	
 	</ContentPage.Content>

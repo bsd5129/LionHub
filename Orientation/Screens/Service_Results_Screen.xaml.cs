@@ -10,17 +10,17 @@ namespace Orientation
 		public Service_Results_Screen ()
 		{
 			InitializeComponent ();
-			NavigationPage.SetHasBackButton (this, false);
-
-			bottomLayout.Children.Add (new TabMenu(1));
-
 			setTheme ();
 		}
 
 		public void setTheme()
 		{
-			bottomLayout.BackgroundColor = Theme.getBackgroundColor ();
-			stackLayout.BackgroundColor = Theme.getBackgroundColor ();
+			BackgroundColor = Theme.getBackgroundColor ();
+			name.TextColor = Theme.getTextColor();
+			description.TextColor = Theme.getTextColor();
+			coordinates.TextColor = Theme.getTextColor();
+			phoneNumber.TextColor = Theme.getTextColor();
+			website.TextColor = Theme.getTextColor();
 		}
 	}
 }

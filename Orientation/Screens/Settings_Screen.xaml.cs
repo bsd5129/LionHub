@@ -19,7 +19,6 @@ namespace Orientation
 
 				((NavigationPage)App.Current.MainPage).CurrentPage.ForceLayout();
 				NavigationPage page = new NavigationPage(new Home_Screen());
-				//page.PushAsync(new Settings_Screen());
 				((Orientation.App)App.Current).setMainPage(page);
 			};
 
@@ -40,6 +39,24 @@ namespace Orientation
 
 			credits.TextColor = Theme.getTextColor ();
 			credits.DetailColor = Theme.getTextColor ();
+		}
+
+		public void pressDarkThemeListItem(object sender, EventArgs args)
+		{
+			Theme.setDarkTheme(!Theme.isDarkTheme());
+			NavigationPage page = new NavigationPage(new Home_Screen());
+			page.PushAsync(new Settings_Screen());
+			((Orientation.App)App.Current).setMainPage(page);
+		}
+
+		public void pressVersionListItem(object sender, EventArgs args)
+		{
+			((NavigationPage)(App.Current.MainPage)).PushAsync(new Service_Results_Screen());
+		}
+
+		public void pressCreditsListItem(object sender, EventArgs args)
+		{
+			((NavigationPage)(App.Current.MainPage)).PushAsync(new Event_Results_Screen());
 		}
 	}
 }

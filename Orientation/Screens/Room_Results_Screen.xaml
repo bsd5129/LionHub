@@ -1,16 +1,13 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Orientation.Room_Results_Screen" Title="Room Results Screen">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Orientation.Room_Results_Screen" Title="Room Results">
 	<ContentPage.Content>
-		<StackLayout>
+		<StackLayout x:Name="stackLayout">
 			<StackLayout VerticalOptions="Start" Padding="15, 30, 15, 0" Spacing="20">
-	            <Label Text="Room Number: {Binding data}" FontSize="14"></Label>
-		        <Label Text="Building Located In: {Binding data}" FontSize="14"></Label>
-		        <Label Text="Description: {Binding data}" FontSize="14"></Label>
-		        <Label Text="General Directions: {Binding data}" FontSize="14"></Label>
-		      
+	            <Label x:Name="roomNumber" Text="Room Number: {Binding data}" FontSize="14"></Label>
+		        <Label x:Name="buildingName" Text="Building Located In: {Binding data}" FontSize="14"></Label>
+		        <Label x:Name="description" Text="Description: {Binding data}" FontSize="14"></Label>
+		        <Label x:Name="directions" Text="General Directions: {Binding data}" FontSize="14"></Label>
 		    </StackLayout>
-            <StackLayout Orientation="Horizontal" VerticalOptions="End"></StackLayout>
         </StackLayout>
-	
 	</ContentPage.Content>
 </ContentPage>

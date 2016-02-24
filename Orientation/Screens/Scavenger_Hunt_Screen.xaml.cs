@@ -12,6 +12,16 @@ namespace Orientation
 			InitializeComponent ();
 			NavigationPage.SetHasBackButton(this, false);
 			bottomLayout.Children.Add(new TabMenu(4));
+			solution.WidthRequest = (int)(0.8 * ((Orientation.App)App.Current).getScreenSize().Width);
+			setTheme();
+		}
+
+		public void setTheme()
+		{
+			BackgroundColor = Theme.getBackgroundColor();
+			clue.TextColor = Theme.getTextColor();
+			solution.BackgroundColor = Theme.getEntryColor();
+			solution.PlaceholderColor = Theme.getEntryPlaceholderColor();
 		}
 	}
 }

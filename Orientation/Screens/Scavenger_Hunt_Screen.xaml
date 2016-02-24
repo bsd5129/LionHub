@@ -5,16 +5,17 @@
 			<Image x:Name="optionalPicture" Source="psuLogo.png" />
 			<Label x:Name="clue" Text="Clue: {Binding Data}" FontSize="14" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" ></Label>
 			
-			<Entry x:Name="solution" Placeholder="Enter Solution" Keyboard="Text"></Entry>
-			<Grid VerticalOptions="CenterAndExpand" HorizontalOptions="Center" Padding="60,0,0,0">
+			<Entry x:Name="solution" Placeholder="Enter Solution" Keyboard="Text" HorizontalOptions="Center"></Entry>
+			<Grid VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
 				<Grid.RowDefinitions>
 					<RowDefinition Height="Auto" />
 				</Grid.RowDefinitions>
 				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="*" />
 				</Grid.ColumnDefinitions>
-				<Button Text="Extra Hint" Grid.Row="0" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"/>
-				<Button Text="Check Solution" Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"/>
+				<Button Text="Extra Hint" Grid.Row="0" Grid.Column="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+				<Button Text="Check Solution" Grid.Row="0" Grid.Column="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
 			</Grid>
 
 			<!-- FOR THE TAB MENU -->

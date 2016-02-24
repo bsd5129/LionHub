@@ -10,7 +10,7 @@ namespace Orientation
 		public Where_Am_I_Screen ()
 		{
 			InitializeComponent ();
-			NavigationPage.SetHasNavigationBar (this, false);
+			NavigationPage.SetHasBackButton (this, false);
 
 			setTheme ();
 		}

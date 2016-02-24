@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 using Xamarin.Forms;
@@ -26,16 +26,14 @@ namespace Orientation
 			event_picker.Items.Add("November 2016");
 			event_picker.Items.Add("December 2016");
 
-			setDark ();
+			setTheme();
 		}
 
-		public void setDark()
+		public void setTheme()
 		{
 			BackgroundColor = Theme.getBackgroundColor();
-			event_picker.BackgroundColor = Theme.getBackgroundColor ();
-			if (Theme.isDarkTheme()) {
-				event_picker.BackgroundColor = Color.FromHex("#BBBBBB");
-			}
+			event_picker.BackgroundColor = Theme.getEntryColor ();
+			
 		}
 			
 			
