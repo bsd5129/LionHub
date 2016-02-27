@@ -3,7 +3,7 @@
 	<ContentPage.Content>
 		<TableView x:Name="tableView">
 			<TableRoot>
-				<TableSection x:Name="tableSection">
+				<TableSection x:Name="tableSection" Title="Settings">
 					<ViewCell Tapped="pressDarkThemeListItem">
 						<StackLayout Orientation="Horizontal" Padding="15, 0, 15, 0">
 							<StackLayout Orientation="Vertical">
@@ -14,7 +14,7 @@
 							<Label x:Name="darkThemeStatus" VerticalOptions="Center" HorizontalOptions="EndAndExpand"></Label>
 						</StackLayout>
 					</ViewCell>
-					<TextCell x:Name="version" Text="Version: 0.1b" Detail="Last Update: 2/22/2016" Tapped="pressVersionListItem"></TextCell>
+					<TextCell x:Name="version" Text="Version: 0.2" Detail="Last Update: 2/27/2016" Tapped="pressVersionListItem"></TextCell>
 					<TextCell x:Name="credits" Text="Credits" Detail="More about the team" Tapped="pressCreditsListItem"></TextCell>
 				</TableSection>
 			</TableRoot>
