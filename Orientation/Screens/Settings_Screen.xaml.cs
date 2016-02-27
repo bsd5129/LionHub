@@ -3,61 +3,45 @@ using System.Collections.Generic;
 
 using Xamarin.Forms;
 
-namespace Orientation
-{
-	public partial class Settings_Screen : ContentPage
-	{
-		public Settings_Screen ()
-		{
-			InitializeComponent ();
-			darkThemeSwitch.IsToggled = Theme.isDarkTheme ();
+namespace Orientation {
+  public partial class Settings_Screen : ContentPage {
 
-			darkThemeSwitch.Toggled += async (object sender, ToggledEventArgs e) => {
-				Theme.setDarkTheme(darkThemeSwitch.IsToggled);
+    public Settings_Screen() {
+      InitializeComponent();
+      darkThemeStatus.Text = Theme.isDarkTheme() ? "Enabled" : "Disabled";
+      darkThemeStatus.TextColor = Theme.isDarkTheme() ? Color.Green : Color.Red;
+      setTheme();
+    }
 
-				await ((NavigationPage)App.Current.MainPage).PopAsync();
+    public void setTheme() {
+      BackgroundColor = Theme.getBackgroundColor();
+      tableView.BackgroundColor = Theme.getBackgroundColor();
 
-				((NavigationPage)App.Current.MainPage).CurrentPage.ForceLayout();
-				NavigationPage page = new NavigationPage(new Home_Screen());
-				((Orientation.App)App.Current).setMainPage(page);
-			};
+      darkThemeText.TextColor = Theme.getTextColor();
+      darkThemeDetail.TextColor = Theme.getTextColor();
+      //darkThemeSwitch.BackgroundColor = Theme.getBackgroundColor();
 
-			setTheme();
-		}
+      version.TextColor = Theme.getTextColor();
+      version.DetailColor = Theme.getTextColor();
 
-		public void setTheme()
-		{
-			BackgroundColor = Theme.getBackgroundColor ();
-			tableView.BackgroundColor = Theme.getBackgroundColor ();
+      credits.TextColor = Theme.getTextColor();
+      credits.DetailColor = Theme.getTextColor();
+    }
 
-			darkThemeText.TextColor = Theme.getTextColor ();
-			darkThemeDetail.TextColor = Theme.getTextColor ();
-			darkThemeSwitch.BackgroundColor = Theme.getBackgroundColor ();
+    public void pressDarkThemeListItem(object sender, EventArgs args) {
+      Theme.setDarkTheme(!Theme.isDarkTheme());
+      NavigationPage page = new NavigationPage(new Home_Screen());
+      page.PushAsync(new Settings_Screen());
+      ((Orientation.App)App.Current).setMainPage(page);
+    }
 
-			version.TextColor = Theme.getTextColor ();
-			version.DetailColor = Theme.getTextColor ();
+    public void pressVersionListItem(object sender, EventArgs args) {
+      ((NavigationPage)(App.Current.MainPage)).PushAsync(new Service_Results_Screen());
+    }
 
-			credits.TextColor = Theme.getTextColor ();
-			credits.DetailColor = Theme.getTextColor ();
-		}
-
-		public void pressDarkThemeListItem(object sender, EventArgs args)
-		{
-			Theme.setDarkTheme(!Theme.isDarkTheme());
-			NavigationPage page = new NavigationPage(new Home_Screen());
-			page.PushAsync(new Settings_Screen());
-			((Orientation.App)App.Current).setMainPage(page);
-		}
-
-		public void pressVersionListItem(object sender, EventArgs args)
-		{
-			((NavigationPage)(App.Current.MainPage)).PushAsync(new Service_Results_Screen());
-		}
-
-		public void pressCreditsListItem(object sender, EventArgs args)
-		{
-			((NavigationPage)(App.Current.MainPage)).PushAsync(new Event_Results_Screen());
-		}
-	}
+    public void pressCreditsListItem(object sender, EventArgs args) {
+      ((NavigationPage)(App.Current.MainPage)).PushAsync(new Event_Results_Screen());
+    }
+  }
 }
 

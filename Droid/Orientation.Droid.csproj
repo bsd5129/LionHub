@@ -99,6 +99,29 @@
     <AndroidResource Include="Resources\drawable-hdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
+    <AndroidResource Include="Resources\drawable\events.png" />
+    <AndroidResource Include="Resources\drawable\events_darkTheme.png" />
+    <AndroidResource Include="Resources\drawable\favorite.png" />
+    <AndroidResource Include="Resources\drawable\favorite_darkTheme.png" />
+    <AndroidResource Include="Resources\drawable\favorite_selected.png" />
+    <AndroidResource Include="Resources\drawable\home.png" />
+    <AndroidResource Include="Resources\drawable\home_darkTheme.png" />
+    <AndroidResource Include="Resources\drawable\home_selected.png" />
+    <AndroidResource Include="Resources\drawable\psuLogo.png" />
+    <AndroidResource Include="Resources\drawable\rooms.png" />
+    <AndroidResource Include="Resources\drawable\rooms_darkTheme.png" />
+    <AndroidResource Include="Resources\drawable\rooms_selected.png" />
+    <AndroidResource Include="Resources\drawable\scavengerHunt.png" />
+    <AndroidResource Include="Resources\drawable\scavengerHunt_darkTheme.png" />
+    <AndroidResource Include="Resources\drawable\scavengerHunt_selected.png" />
+    <AndroidResource Include="Resources\drawable\search_icon.png" />
+    <AndroidResource Include="Resources\drawable\services.png" />
+    <AndroidResource Include="Resources\drawable\services_darkTheme.png" />
+    <AndroidResource Include="Resources\drawable\services_selected.png" />
+    <AndroidResource Include="Resources\drawable\settings.png" />
+    <AndroidResource Include="Resources\drawable\settings_darkTheme.png" />
+    <AndroidResource Include="Resources\drawable\whereAmI.png" />
+    <AndroidResource Include="Resources\drawable\whereAmI_darkTheme.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.0.1.6505\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.0.1.6505\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />

@@ -11,14 +11,14 @@ namespace Orientation
 		{
 			InitializeComponent ();
 			NavigationPage.SetHasBackButton (this, false);
-			stackLayout.Children.Add (new TabMenu(1));
+      bottomLayout.Children.Add(new TabMenu(1));
 
 			setTheme ();
 		}
 
 		public void setTheme()
 		{
-			stackLayout.BackgroundColor = Theme.getBackgroundColor();
+			BackgroundColor = Theme.getBackgroundColor();
 			servicesList.BackgroundColor = Theme.getBackgroundColor();
 			searchBar.BackgroundColor = Theme.getBackgroundColor();
 		}

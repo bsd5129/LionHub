@@ -11,7 +11,7 @@
 								<Label x:Name="darkThemeDetail" Text="Toggles the dark and light themes" FontSize="12"></Label>
 							</StackLayout>
 
-							<Switch x:Name="darkThemeSwitch" IsToggled="false" VerticalOptions="Center" HorizontalOptions="EndAndExpand"></Switch>
+							<Label x:Name="darkThemeStatus" VerticalOptions="Center" HorizontalOptions="EndAndExpand"></Label>
 						</StackLayout>
 					</ViewCell>
 					<TextCell x:Name="version" Text="Version: 0.1b" Detail="Last Update: 2/22/2016" Tapped="pressVersionListItem"></TextCell>

@@ -1,14 +1,18 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Orientation.Favorites_Screen" Title="Favorites">
 	<ContentPage.Content>
-		<StackLayout x:Name="stackLayout" Orientation="Vertical" VerticalOptions="StartAndExpand" Grid.Row="0" Grid.Column="0">
-			<ListView x:Name="favoritesList" ItemsSource="{Binding Favorites}" RowHeight="40">
-				<ListView.ItemTemplate>
-					<DataTemplate>
-						<TextCell Text="{Binding ButtonText}" ></TextCell>
-					</DataTemplate>
-				</ListView.ItemTemplate>
-			</ListView>
+		<StackLayout Orientation="Vertical">
+			<StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" Grid.Row="0" Grid.Column="0">
+				<ListView x:Name="favoritesList" ItemsSource="{Binding Favorites}" RowHeight="40">
+					<ListView.ItemTemplate>
+						<DataTemplate>
+							<TextCell Text="{Binding ButtonText}" ></TextCell>
+						</DataTemplate>
+					</ListView.ItemTemplate>
+				</ListView>
+			</StackLayout>
+
+			<StackLayout x:Name="bottomLayout" Orientation="Vertical"></StackLayout>
 		</StackLayout>
 	</ContentPage.Content>
 </ContentPage>
