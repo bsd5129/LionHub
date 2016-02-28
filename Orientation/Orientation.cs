@@ -10,7 +10,7 @@ namespace Orientation
 
 		public App (Size size)
 		{
-			screenSize = size;
+			screenSize = size;// Store the screenSize the OS passed us, so it can be used for some aspect ratio calculations later
 			setMainPage(new NavigationPage (new Home_Screen ()));
 		}
 
@@ -31,13 +31,8 @@ namespace Orientation
 
 		public void setMainPage(NavigationPage page)
 		{
-			if (!Theme.isDarkTheme()) {
-				page.BarBackgroundColor = Color.FromHex ("#EEEEEE");
-			} else {
-				page.BarBackgroundColor = Color.FromHex ("#303030");
-				page.BarTextColor = Color.FromHex ("#BBBBBB");
-			}
-
+      page.BarBackgroundColor = Theme.getBackgroundColor();
+      page.BarTextColor = Theme.getTextColor();
 			MainPage = page;
 		}
 
