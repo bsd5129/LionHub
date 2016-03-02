@@ -24,7 +24,7 @@ namespace Orientation {
 
       float[] coordsLong = { -76.73974655f, -76.73974655f, -76.73974655f, -76.73974655f, -76.73974655f, -76.73974655f, -76.73974655f, -76.73974655f, -76.73974655f, -76.73974655f, -999.0f, -999.0f, -999.0f, -999.0f };
 
-      string[] phoneNumbers = { "", "", "", "", "", "", "", "", "", "", "", "", "", "" };
+      string[] phoneNumbers = { "717-948-6715", "717-948-6316", "717-948-6604", "717-948-6062", "717-948-6062", "717-948-6004", "717-948-6003", "717-948-6029", "717-948-6303", "717-948-6273", "", "", "" };
 
       string[] websites = { "https://harrisburg.psu.edu/alumni-relations", "https://harrisburg.psu.edu/philanthropy", "https://harrisburg.psu.edu/division-undergraduate-studies-advising-center",
         "https://harrisburg.psu.edu/faculty-senate", "https://harrisburg.psu.edu/honors-program", "https://harrisburg.psu.edu/human-resources", "https://harrisburg.psu.edu/international-programs",
