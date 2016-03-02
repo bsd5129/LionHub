@@ -11,7 +11,7 @@
 		    </StackLayout>
 
             <StackLayout VerticalOptions="CenterAndExpand">
-            	<Button x:Name = "FavoritesButton" Text="Add To Favorite"></Button>
+            	<Button x:Name = "FavoritesButton" Text="Add To Favorite" OnClick = "pressAddToFavoritesButton"></Button>
             	<Button x:Name = "TakeMeThereButton" Text="Take Me There"></Button>
             </StackLayout>
         </StackLayout>

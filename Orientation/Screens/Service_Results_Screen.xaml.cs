@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-
+﻿using System.Collections.Generic;
+using System;
+using SQLite.Net;
 using Xamarin.Forms;
 
 namespace Orientation
@@ -9,6 +9,9 @@ namespace Orientation
 	{
 		private Boolean favoritesFlag = false;
 
+
+		Service data ;
+		              
 		public Service_Results_Screen (string nameString, string descriptionString, 
 		                               string coordinatesString, string phoneNumberString, 
 		                               string websiteString,bool favorites)
@@ -21,7 +24,9 @@ namespace Orientation
 			coordinates.SetBinding(Entry.TextProperty, "Coordinates: " + coordinatesString);
 			phoneNumber.SetBinding(Entry.TextProperty, "Phone Number: " + phoneNumberString);
 			website.SetBinding(Entry.TextProperty,"Website: " + websiteString);
-			FavoritesButton.Clicked += pressAddToFavoritesButton;
+			data = new Service {name = nameString, description = descriptionString, phoneNumber = phoneNumberString, website = websiteString};
+
+			//FavoritesButton.Clicked += pressAddToFavoritesButton;
 		}
 
 		public void setTheme()
@@ -36,6 +41,14 @@ namespace Orientation
 
 		public void pressAddToFavoritesButton(Object sender, EventArgs e) {
 			setFavoritesFlagToTrue();
+
+			SQLiteConnection conn = DependencyService.Get<IDatabaseHandler>().getDBConnection();
+
+			conn.CreateTable<Service>();
+
+			conn.Insert(data);
+
+
 		}
 
 		public void setFavoritesFlagToTrue() {
@@ -47,6 +60,8 @@ namespace Orientation
 		}
 		public void pressYesOnPrompt() { }
 		public void pressNoOnePrompt() { }
+
+
 
 	}
 }
