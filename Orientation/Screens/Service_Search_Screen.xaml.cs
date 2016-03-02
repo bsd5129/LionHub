@@ -21,8 +21,9 @@ namespace Orientation
     public Service getServiceData(string name) {
       SQLiteConnection connection = DependencyService.Get<IDatabaseHandler>().getDBConnection();
       TableQuery<Service> query = from s in connection.Table<Service>() where s.name.Equals(name) select s;
+      Service service = query.FirstOrDefault();
       connection.Close();
-      return query.FirstOrDefault();
+      return service;
     }
 
     public void pressServiceListItem(Object sender, ItemTappedEventArgs args) {
@@ -46,8 +47,7 @@ namespace Orientation
 		public void queryListOfServices()
 		{
 			SQLiteConnection connection = DependencyService.Get<IDatabaseHandler>().getDBConnection();
-      var services = connection.Table<Service>();
-      connection.Close();
+      var services = connection.Table<Service>().OrderBy(s => s.name);
 
 			List<string> names = new List<string>();
 			
@@ -56,23 +56,29 @@ namespace Orientation
 				names.Add(service.name);
 			}
 			
+      connection.Close();
       servicesList.ItemsSource = names;
 		}
 
 		public void queryFilteredListOfServices(String filter)
 		{
+      if (filter == null) {
+        queryListOfServices();
+        return;
+      }
+
 			SQLiteConnection connection = DependencyService.Get<IDatabaseHandler>().getDBConnection();
-			var services = connection.Table<Service>();
-      connection.Close();
+      var services = connection.Table<Service>().OrderBy(s => s.name);
 
 			List<string> names = new List<string>();
 			
-      foreach (var s in services)
+      foreach (var service in services)
 			{
-        if(s.name.ToLower().Contains(filter.ToLower()))
-					names.Add(s.name);
+        if(service.name.ToLower().Contains(filter.ToLower()))
+					names.Add(service.name);
 			}
 
+      connection.Close();
 			servicesList.ItemsSource = names;
 		}
 

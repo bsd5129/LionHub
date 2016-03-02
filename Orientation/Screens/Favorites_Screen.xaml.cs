@@ -13,7 +13,8 @@ namespace Orientation
 			NavigationPage.SetHasBackButton (this, false);
 			bottomLayout.Children.Add (new TabMenu(2));
 
-			setTheme ();
+			setTheme();
+      queryFavorites();
 		}
 
 		public void setTheme()
@@ -26,7 +27,6 @@ namespace Orientation
 		{ 
 			SQLiteConnection connection = DependencyService.Get<IDatabaseHandler>().getDBConnection();
 			var services = connection.Table<Service>();
-      connection.Close();
 
       List<string> favs = new List<string>();
 			
@@ -36,7 +36,10 @@ namespace Orientation
 					favs.Add(service.name);
 			}
 
-			favoritesList.ItemsSource = favs;
+      connection.Close();
+
+      if (favs.Count > 0)
+        favoritesList.ItemsSource = favs;
 		}
 
 		public void prepareScreen() {

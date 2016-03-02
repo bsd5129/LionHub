@@ -4,13 +4,7 @@
 		<StackLayout Orientation="Vertical">
 			<StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" Grid.Row="0" Grid.Column="0">
 				<SearchBar x:Name="searchBar" Placeholder="Search" TextChanged="enterTextIntoSearchBar"></SearchBar>
-				<ListView x:Name="servicesList" ItemsSource="{Binding Services}" RowHeight="40" ItemTapped="pressServiceListItem">
-					<ListView.ItemTemplate>
-						<DataTemplate>
-							<TextCell Text="{Binding ButtonText}" ></TextCell>
-						</DataTemplate>
-					</ListView.ItemTemplate>
-				</ListView>
+				<ListView x:Name="servicesList" RowHeight="40" ItemTapped="pressServiceListItem"></ListView>
 			</StackLayout>
 
 			<StackLayout x:Name="bottomLayout" Orientation="Vertical" VerticalOptions="End"></StackLayout>

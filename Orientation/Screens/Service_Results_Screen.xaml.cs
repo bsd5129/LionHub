@@ -16,12 +16,24 @@ namespace Orientation
 			setTheme ();
 
       serviceObject = service;
-      Title = service.name;
-      name.Text = "";//"Name: " + service.name;
-      description.Text = "Description: " + service.description;
-      coordinates.Text = "Coordinates: " + service.coordinatesLatitude + ", " + service.coordinatesLongitude;
-      phoneNumber.Text = "Phone Number: " + service.phoneNumber;
-      website.Text = "Website: " + service.website;
+      //Title = service.name;
+      name.Text = service.name;
+      description.Text = service.description;
+
+      if (service.coordinatesLatitude <= -999.0)
+        coordinates.Text = "N/A";
+      else
+        coordinates.Text = service.coordinatesLatitude + ", " + service.coordinatesLongitude;
+
+      phoneNumber.Text = service.phoneNumber;
+
+      if (phoneNumber.Text.Length == 0)
+        phoneNumber.Text = "N/A";
+
+      website.Text = service.website;
+
+      if (website.Text.Length == 0)
+        website.Text = "N/A";
 
       //Disable favorites button if the service is already a favorite
       favoritesButton.IsEnabled = !service.isFavorite;
@@ -37,8 +49,8 @@ namespace Orientation
 			name.TextColor = Theme.getTextColor();
 			description.TextColor = Theme.getTextColor();
 			coordinates.TextColor = Theme.getTextColor();
-			phoneNumber.TextColor = Theme.getTextColor();
-			website.TextColor = Theme.getTextColor();
+			//phoneNumber.TextColor = Theme.getTextColor();
+			//website.TextColor = Theme.getTextColor();
 		}
 
 		public void pressAddToFavoritesButton(Object sender, EventArgs e) {
@@ -57,7 +69,7 @@ namespace Orientation
     {
       var answer = await DisplayAlert ("Add To Favorites?", "Would you like to add this Service to your Favorites?", "Yes", "No");
 
-      if (answer.Equals("Yes"))
+      if (answer)
         pressYesOnPrompt();
       else
         pressNoOnPrompt();
@@ -70,7 +82,7 @@ namespace Orientation
 
       NavigationPage page = new NavigationPage(new Home_Screen());
       page.PushAsync(new Favorites_Screen());
-      App.Current.MainPage = page;
+      ((Orientation.App)App.Current).setMainPage(page);
     }   
 
 

@@ -1,13 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Orientation.Service_Results_Screen" Title="Service Name">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Orientation.Service_Results_Screen" Title="Service Results">
 	<ContentPage.Content>
 		<StackLayout>
 			<StackLayout VerticalOptions="Start" Padding="15, 30, 15, 0" Spacing="20">
-	            <Label x:Name="name" Text="Name: {Binding data}" FontSize="14"></Label>
-		        <Label x:Name="description" Text="Description: {Binding data}" FontSize="14"></Label>
-		        <Label x:Name="coordinates" Text="Coordinates: {Binding data}" FontSize="14"></Label>
-		        <Label x:Name="phoneNumber" Text="Phone Number: {Binding data}" FontSize="14"></Label>
-		        <Label x:Name="website" Text="Website: {Binding data}" FontSize="14"></Label>
+				<Grid RowSpacing="15">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto"></RowDefinition>
+						<RowDefinition Height="Auto"></RowDefinition>
+						<RowDefinition Height="Auto"></RowDefinition>
+						<RowDefinition Height="Auto"></RowDefinition>
+						<RowDefinition Height="Auto"></RowDefinition>
+					</Grid.RowDefinitions>
+
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="Auto"></ColumnDefinition>
+						<ColumnDefinition Width="Auto"></ColumnDefinition>
+					</Grid.ColumnDefinitions>
+
+				
+					<Label Grid.Row="0" Grid.Column="0" Text="Name:" FontSize="15" FontAttributes="Bold" HorizontalOptions="StartAndExpand"></Label>
+					<Label Grid.Row="0" Grid.Column="1" x:Name="name" FontSize="14" HorizontalOptions="StartAndExpand"></Label>
+					<Label Grid.Row="1" Grid.Column="0" Text="Description:" FontSize="15" FontAttributes="Bold" HorizontalOptions="StartAndExpand"></Label>
+					<Label Grid.Row="1" Grid.Column="1" x:Name="description" FontSize="14" HorizontalOptions="StartAndExpand"></Label>
+					<Label Grid.Row="2" Grid.Column="0" Text="Coordinates:" FontSize="15" FontAttributes="Bold" HorizontalOptions="StartAndExpand"></Label>
+					<Label Grid.Row="2" Grid.Column="1" x:Name="coordinates" FontSize="14" HorizontalOptions="StartAndExpand"></Label>
+					<Label Grid.Row="3" Grid.Column="0" Text="Phone:" FontSize="15" FontAttributes="Bold" HorizontalOptions="StartAndExpand"></Label>
+					<Label Grid.Row="3" Grid.Column="1" x:Name="phoneNumber" FontSize="14" TextColor="#0000EE" HorizontalOptions="StartAndExpand"></Label>
+					<Label Grid.Row="4" Grid.Column="0" Text="Website:" FontSize="15" FontAttributes="Bold" HorizontalOptions="StartAndExpand"></Label>
+					<Label Grid.Row="4" Grid.Column="1" x:Name="website" FontSize="14" TextColor="#0000EE" HorizontalOptions="StartAndExpand"></Label>
+				</Grid>
 		    </StackLayout>
 
             <StackLayout x:Name="buttons" VerticalOptions="CenterAndExpand">
