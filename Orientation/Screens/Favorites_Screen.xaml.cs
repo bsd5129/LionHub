@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using SQLite.Net;
 using Xamarin.Forms;
 
 namespace Orientation
@@ -21,6 +21,20 @@ namespace Orientation
 			BackgroundColor = Theme.getBackgroundColor();
 			favoritesList.BackgroundColor = Theme.getBackgroundColor();
 		}
+
+		//Need to finish implementing
+		public void queryFavorites()
+		{ 
+			SQLiteConnection connection = DependencyService.Get<IDatabaseHandler>().getDBConnection();
+			var service = connection.Table<Service>();
+			List<string> fav = new List<string>();
+			foreach (var s in service)
+			{
+				//fav.Add();
+			}
+			favoritesList.ItemsSource = fav;
+		}
+
 	}
 }
 
