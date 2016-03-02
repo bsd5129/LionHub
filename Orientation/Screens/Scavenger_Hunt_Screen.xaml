@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Orientation.Scavenger_Hunt_Screen" Title="Scavenger Hunt">
 	<ContentPage.Content>
-		<StackLayout x:Name="huntLayout">
-			<Image x:Name="optionalPicture" Source="psuLogo.png" />
+		<StackLayout>
+			<Image Source="psuLogo.png" />
 			<Label x:Name="clue" Text="Clue: {Binding Data}" FontSize="14" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" ></Label>
 			
 			<Entry x:Name="solution" Placeholder="Enter Solution" Keyboard="Text" HorizontalOptions="Center"></Entry>

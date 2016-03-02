@@ -1,32 +1,34 @@
-﻿using System.Collections.Generic;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using SQLite.Net;
+
 using Xamarin.Forms;
 
 namespace Orientation
 {
 	public partial class Service_Results_Screen : ContentPage
 	{
-		private Boolean favoritesFlag = false;
+    private Service serviceObject;
 
-
-		Service data ;
-		              
-		public Service_Results_Screen (string nameString, string descriptionString, 
-		                               string coordinatesString, string phoneNumberString, 
-		                               string websiteString,bool favorites)
+		public Service_Results_Screen (Service service)
 		{
 			InitializeComponent ();
 			setTheme ();
 
-			name.SetBinding(Entry.TextProperty, "Name: " + nameString);
-			description.SetBinding(Entry.TextProperty, "Description: " + descriptionString);
-			coordinates.SetBinding(Entry.TextProperty, "Coordinates: " + coordinatesString);
-			phoneNumber.SetBinding(Entry.TextProperty, "Phone Number: " + phoneNumberString);
-			website.SetBinding(Entry.TextProperty,"Website: " + websiteString);
-			data = new Service {name = nameString, description = descriptionString, phoneNumber = phoneNumberString, website = websiteString};
+      serviceObject = service;
+      Title = service.name;
+      name.Text = "";//"Name: " + service.name;
+      description.Text = "Description: " + service.description;
+      coordinates.Text = "Coordinates: " + service.coordinatesLatitude + ", " + service.coordinatesLongitude;
+      phoneNumber.Text = "Phone Number: " + service.phoneNumber;
+      website.Text = "Website: " + service.website;
 
-			//FavoritesButton.Clicked += pressAddToFavoritesButton;
+      //Disable favorites button if the service is already a favorite
+      favoritesButton.IsEnabled = !service.isFavorite;
+
+      if (service.coordinatesLatitude <= -999.0 && service.coordinatesLongitude <= -999.0) {
+        buttons.Children.Remove(takeMeThereButton);
+      }
 		}
 
 		public void setTheme()
@@ -40,29 +42,42 @@ namespace Orientation
 		}
 
 		public void pressAddToFavoritesButton(Object sender, EventArgs e) {
-			setFavoritesFlagToTrue();
-
-			SQLiteConnection conn = DependencyService.Get<IDatabaseHandler>().getDBConnection();
-
-			conn.CreateTable<Service>();
-
-			conn.Insert(data);
-
-
-		}
+      displayPrompt();
+    }
 
 		public void setFavoritesFlagToTrue() {
-			favoritesFlag = true;
+      serviceObject.isFavorite = true;
+
+      SQLiteConnection con = DependencyService.Get<IDatabaseHandler>().getDBConnection();
+      con.Update(serviceObject);
+      con.Close();
 		}
 
-		public void displayPrompt() {
-			
-		}
-		public void pressYesOnPrompt() { }
-		public void pressNoOnePrompt() { }
+    public async void displayPrompt()
+    {
+      var answer = await DisplayAlert ("Add To Favorites?", "Would you like to add this Service to your Favorites?", "Yes", "No");
+
+      if (answer.Equals("Yes"))
+        pressYesOnPrompt();
+      else
+        pressNoOnPrompt();
+    }   
 
 
+    public void pressYesOnPrompt()
+    {
+      setFavoritesFlagToTrue();
 
+      NavigationPage page = new NavigationPage(new Home_Screen());
+      page.PushAsync(new Favorites_Screen());
+      App.Current.MainPage = page;
+    }   
+
+
+    public void pressNoOnPrompt()
+    {
+      
+    }
 	}
 }
 

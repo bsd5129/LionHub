@@ -36,11 +36,11 @@ namespace Orientation {
     }
 
     public void pressVersionListItem(object sender, EventArgs args) {
-      ((NavigationPage)(App.Current.MainPage)).PushAsync(new Service_Results_Screen("","","","","",true));
+      //NOTHING FOR NOW
     }
 
     public void pressCreditsListItem(object sender, EventArgs args) {
-      ((NavigationPage)(App.Current.MainPage)).PushAsync(new Event_Results_Screen());
+      //NOTHING FOR NOW
     }
   }
 }

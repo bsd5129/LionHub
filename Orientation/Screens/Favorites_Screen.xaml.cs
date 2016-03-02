@@ -25,18 +25,21 @@ namespace Orientation
 		public void queryFavorites()
 		{ 
 			SQLiteConnection connection = DependencyService.Get<IDatabaseHandler>().getDBConnection();
-			var service = connection.Table<Service>();
-			List<string> fav = new List<string>();
-			foreach (var s in service)
+			var services = connection.Table<Service>();
+      connection.Close();
+
+      List<string> favs = new List<string>();
+			
+      foreach (var service in services)
 			{
-				if(s.isFavorite)
-					fav.Add(s.name);
+				if(service.isFavorite)
+					favs.Add(service.name);
 			}
-			favoritesList.ItemsSource = fav;
+
+			favoritesList.ItemsSource = favs;
 		}
 
-		public void prepareScreen() 
-		{
+		public void prepareScreen() {
 			
 		}
 

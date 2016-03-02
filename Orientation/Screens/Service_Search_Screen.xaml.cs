@@ -16,22 +16,23 @@ namespace Orientation
 			setTheme();
 			if (searchBar.Text == null || searchBar.Text.Length == 0)
 				queryListOfServices();
-
-			searchBar.TextChanged += enterTextIntoTextBar;
-
-			servicesList.ItemSelected += pressServiceListItem;
 		}
 
-		public void pressServiceListItem(Object sender, SelectedItemChangedEventArgs sel) { 
-		
-			if (sel.SelectedItem != null)
+    public Service getServiceData(string name) {
+      SQLiteConnection connection = DependencyService.Get<IDatabaseHandler>().getDBConnection();
+      TableQuery<Service> query = from s in connection.Table<Service>() where s.name.Equals(name) select s;
+      connection.Close();
+      return query.FirstOrDefault();
+    }
+
+    public void pressServiceListItem(Object sender, ItemTappedEventArgs args) {
+			if (args.Item != null)
 			{
-				servicesList.SelectedItem = null;
-				Navigation.PushAsync(new Service_Results_Screen("", "", "", "", "", true));
+        Navigation.PushAsync(new Service_Results_Screen(getServiceData(args.Item.ToString())));
 			}
 		}
 
-		public void enterTextIntoTextBar(Object sender, TextChangedEventArgs e) {
+		public void enterTextIntoSearchBar(Object sender, TextChangedEventArgs e) {
 			queryFilteredListOfServices(searchBar.Text);
 		}
 
@@ -45,25 +46,33 @@ namespace Orientation
 		public void queryListOfServices()
 		{
 			SQLiteConnection connection = DependencyService.Get<IDatabaseHandler>().getDBConnection();
-			var service = connection.Table<Service>();
+      var services = connection.Table<Service>();
+      connection.Close();
+
 			List<string> names = new List<string>();
-			foreach (var s in service)
+			
+      foreach (var service in services)
 			{
-				names.Add(s.name);
+				names.Add(service.name);
 			}
-			servicesList.ItemsSource = names;
+			
+      servicesList.ItemsSource = names;
 		}
 
 		public void queryFilteredListOfServices(String filter)
 		{
 			SQLiteConnection connection = DependencyService.Get<IDatabaseHandler>().getDBConnection();
-			var service = connection.Table<Service>();
+			var services = connection.Table<Service>();
+      connection.Close();
+
 			List<string> names = new List<string>();
-			foreach (var s in service)
+			
+      foreach (var s in services)
 			{
-				if(filter.Contains(s.name))
+        if(s.name.ToLower().Contains(filter.ToLower()))
 					names.Add(s.name);
 			}
+
 			servicesList.ItemsSource = names;
 		}
 
