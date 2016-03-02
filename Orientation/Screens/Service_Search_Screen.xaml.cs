@@ -19,14 +19,16 @@ namespace Orientation
 
 			searchBar.TextChanged += enterTextIntoTextBar;
 
-			servicesList.ItemSelected += (Object sender, SelectedItemChangedEventArgs sel) =>
+			servicesList.ItemSelected += pressServiceListItem;
+		}
+
+		public void pressServiceListItem(Object sender, SelectedItemChangedEventArgs sel) { 
+		
+			if (sel.SelectedItem != null)
 			{
-				if (sel.SelectedItem != null)
-				{
-					servicesList.SelectedItem = null;
-					Navigation.PushAsync(new Service_Results_Screen("", "", "", "", "", true));
-				}
-			};
+				servicesList.SelectedItem = null;
+				Navigation.PushAsync(new Service_Results_Screen("", "", "", "", "", true));
+			}
 		}
 
 		public void enterTextIntoTextBar(Object sender, TextChangedEventArgs e) {
