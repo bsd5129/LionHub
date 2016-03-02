@@ -22,7 +22,6 @@ namespace Orientation
 			favoritesList.BackgroundColor = Theme.getBackgroundColor();
 		}
 
-		//Need to finish implementing
 		public void queryFavorites()
 		{ 
 			SQLiteConnection connection = DependencyService.Get<IDatabaseHandler>().getDBConnection();
@@ -30,9 +29,15 @@ namespace Orientation
 			List<string> fav = new List<string>();
 			foreach (var s in service)
 			{
-				//fav.Add();
+				if(s.isFavorite)
+					fav.Add(s.name);
 			}
 			favoritesList.ItemsSource = fav;
+		}
+
+		public void prepareScreen() 
+		{
+			
 		}
 
 	}

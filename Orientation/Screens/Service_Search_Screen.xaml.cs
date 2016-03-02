@@ -17,19 +17,20 @@ namespace Orientation
 			if (searchBar.Text == null || searchBar.Text.Length == 0)
 				queryListOfServices();
 
-			searchBar.TextChanged += (object sender, TextChangedEventArgs e) =>
-			{
-				queryFilteredListOfServices(searchBar.Text);
-			};
+			searchBar.TextChanged += enterTextIntoTextBar;
 
 			servicesList.ItemSelected += (Object sender, SelectedItemChangedEventArgs sel) =>
 			{
 				if (sel.SelectedItem != null)
 				{
 					servicesList.SelectedItem = null;
-					Navigation.PushAsync(new Service_Results_Screen("","","","","",true));
+					Navigation.PushAsync(new Service_Results_Screen("", "", "", "", "", true));
 				}
 			};
+		}
+
+		public void enterTextIntoTextBar(Object sender, TextChangedEventArgs e) {
+			queryFilteredListOfServices(searchBar.Text);
 		}
 
 		public void setTheme()

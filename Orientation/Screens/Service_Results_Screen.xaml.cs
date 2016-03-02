@@ -21,7 +21,7 @@ namespace Orientation
 			coordinates.SetBinding(Entry.TextProperty, "Coordinates: " + coordinatesString);
 			phoneNumber.SetBinding(Entry.TextProperty, "Phone Number: " + phoneNumberString);
 			website.SetBinding(Entry.TextProperty,"Website: " + websiteString);
-			FavoritesButton.Clicked += setFavoritesFlagToTrue;
+			FavoritesButton.Clicked += pressAddToFavoritesButton;
 		}
 
 		public void setTheme()
@@ -34,7 +34,11 @@ namespace Orientation
 			website.TextColor = Theme.getTextColor();
 		}
 
-		public void setFavoritesFlagToTrue(Object sender, EventArgs e) {
+		public void pressAddToFavoritesButton(Object sender, EventArgs e) {
+			setFavoritesFlagToTrue();
+		}
+
+		public void setFavoritesFlagToTrue() {
 			favoritesFlag = true;
 		}
 
