@@ -14,10 +14,12 @@ namespace Orientation
 			bottomLayout.Children.Add(new TabMenu(1));
 
 			setTheme();
+			if (searchBar.Text == null || searchBar.Text.Length == 0)
+				queryListOfServices();
 
 			searchBar.TextChanged += (object sender, TextChangedEventArgs e) =>
 			{
-				onClick();
+				queryFilteredListOfServices(searchBar.Text);
 			};
 
 			servicesList.ItemSelected += (Object sender, SelectedItemChangedEventArgs sel) =>
@@ -25,7 +27,7 @@ namespace Orientation
 				if (sel.SelectedItem != null)
 				{
 					servicesList.SelectedItem = null;
-					this.Navigation.PushAsync(new Service_Results_Screen());
+					Navigation.PushAsync(new Service_Results_Screen());
 				}
 			};
 		}
@@ -37,14 +39,28 @@ namespace Orientation
 			searchBar.BackgroundColor = Theme.getBackgroundColor();
 		}
 
-		public void onClick()
+		public void queryListOfServices()
 		{
 			SQLiteConnection connection = DependencyService.Get<IDatabaseHandler>().getDBConnection();
 			var service = connection.Table<Service>();
 			List<string> names = new List<string>();
 			foreach (var s in service)
+			{
 				names.Add(s.name);
+			}
+			servicesList.ItemsSource = names;
+		}
 
+		public void queryFilteredListOfServices(String filter)
+		{
+			SQLiteConnection connection = DependencyService.Get<IDatabaseHandler>().getDBConnection();
+			var service = connection.Table<Service>();
+			List<string> names = new List<string>();
+			foreach (var s in service)
+			{
+				if(filter.Contains(s.name))
+					names.Add(s.name);
+			}
 			servicesList.ItemsSource = names;
 		}
 

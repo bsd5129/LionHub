@@ -7,10 +7,21 @@ namespace Orientation
 {
 	public partial class Service_Results_Screen : ContentPage
 	{
-		public Service_Results_Screen ()
+		private Boolean isFavorite;
+
+		public Service_Results_Screen (string nameString, string descriptionString, 
+		                               string coordinatesString, string phoneNumberString, 
+		                               string websiteString, bool favorites)
 		{
 			InitializeComponent ();
 			setTheme ();
+
+			name.SetBinding(Entry.TextProperty, "Name: " + nameString);
+			description.SetBinding(Entry.TextProperty, "Description: " + descriptionString);
+			coordinates.SetBinding(Entry.TextProperty, "Coordinates: " + coordinatesString);
+			phoneNumber.SetBinding(Entry.TextProperty, "Phone Number: " + phoneNumberString);
+			website.SetBinding(Entry.TextProperty,"Website: " + websiteString);
+			isFavorite = favorites;
 		}
 
 		public void setTheme()
@@ -21,25 +32,6 @@ namespace Orientation
 			coordinates.TextColor = Theme.getTextColor();
 			phoneNumber.TextColor = Theme.getTextColor();
 			website.TextColor = Theme.getTextColor();
-		}
-
-
-		public void displayPrompt()
-		{
-			DisplayAlert ("Add To Favorites?", "Would you like to add this Service to your Favorites?", "Yes", "No");
-		}		
-
-
-		public void displayYesOnPrompt()
-		{
-			//Service.isFavorite = true;  //set flag to true  Needs reference!!
-			Navigation.PushAsync(new Favorites_Screen());
-		}		
-
-
-		public void displayNoOnPrompt()
-		{
-			//Service.isFavorite = false;  //set flag to true  Needs reference!!
 		}
 	}
 }
