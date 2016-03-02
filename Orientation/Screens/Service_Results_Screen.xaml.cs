@@ -7,7 +7,7 @@ namespace Orientation
 {
 	public partial class Service_Results_Screen : ContentPage
 	{
-		private Boolean isFavorite;
+		private Boolean favoritesFlag = false;
 
 		public Service_Results_Screen (string nameString, string descriptionString, 
 		                               string coordinatesString, string phoneNumberString, 
@@ -21,7 +21,9 @@ namespace Orientation
 			coordinates.SetBinding(Entry.TextProperty, "Coordinates: " + coordinatesString);
 			phoneNumber.SetBinding(Entry.TextProperty, "Phone Number: " + phoneNumberString);
 			website.SetBinding(Entry.TextProperty,"Website: " + websiteString);
-			isFavorite = favorites;
+
+			if(favorites)
+				setFavoritesFlagToTrue();
 		}
 
 		public void setTheme()
@@ -32,6 +34,10 @@ namespace Orientation
 			coordinates.TextColor = Theme.getTextColor();
 			phoneNumber.TextColor = Theme.getTextColor();
 			website.TextColor = Theme.getTextColor();
+		}
+
+		public void setFavoritesFlagToTrue() {
+			favoritesFlag = true;
 		}
 	}
 }
