@@ -11,7 +11,7 @@ namespace Orientation
 
 		public Service_Results_Screen (string nameString, string descriptionString, 
 		                               string coordinatesString, string phoneNumberString, 
-		                               string websiteString, bool favorites)
+		                               string websiteString,bool favorites)
 		{
 			InitializeComponent ();
 			setTheme ();
@@ -21,9 +21,7 @@ namespace Orientation
 			coordinates.SetBinding(Entry.TextProperty, "Coordinates: " + coordinatesString);
 			phoneNumber.SetBinding(Entry.TextProperty, "Phone Number: " + phoneNumberString);
 			website.SetBinding(Entry.TextProperty,"Website: " + websiteString);
-
-			if(favorites)
-				setFavoritesFlagToTrue();
+			FavoritesButton.Clicked += setFavoritesFlagToTrue;
 		}
 
 		public void setTheme()
@@ -36,9 +34,16 @@ namespace Orientation
 			website.TextColor = Theme.getTextColor();
 		}
 
-		public void setFavoritesFlagToTrue() {
+		public void setFavoritesFlagToTrue(Object sender, EventArgs e) {
 			favoritesFlag = true;
 		}
+
+		public void displayPrompt() {
+			
+		}
+		public void pressYesOnPrompt() { }
+		public void pressNoOnePrompt() { }
+
 	}
 }
 

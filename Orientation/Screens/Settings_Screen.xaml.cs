@@ -36,7 +36,7 @@ namespace Orientation {
     }
 
     public void pressVersionListItem(object sender, EventArgs args) {
-      ((NavigationPage)(App.Current.MainPage)).PushAsync(new Service_Results_Screen());
+      ((NavigationPage)(App.Current.MainPage)).PushAsync(new Service_Results_Screen("","","","","",true));
     }
 
     public void pressCreditsListItem(object sender, EventArgs args) {

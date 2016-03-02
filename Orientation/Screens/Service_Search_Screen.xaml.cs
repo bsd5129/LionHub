@@ -27,7 +27,7 @@ namespace Orientation
 				if (sel.SelectedItem != null)
 				{
 					servicesList.SelectedItem = null;
-					Navigation.PushAsync(new Service_Results_Screen());
+					Navigation.PushAsync(new Service_Results_Screen("","","","","",true));
 				}
 			};
 		}
