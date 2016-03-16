@@ -103,8 +103,11 @@ namespace Orientation
 
 		public void pressPhoneNumber()
 		{
-			displayPrompt();
+			
+				Device.OpenUri(new Uri("tel:"+ phoneNumber.Text));
 		}
+
+
 	}
 }
 
