@@ -33,7 +33,7 @@
 
             <StackLayout x:Name="buttons" VerticalOptions="CenterAndExpand">
             	<Button x:Name = "favoritesButton" Text="Add To Favorite" Clicked="pressAddToFavoritesButton"></Button>
-            	<Button x:Name = "takeMeThereButton" Text="Take Me There"></Button>
+            	<Button x:Name = "takeMeThereButton" Text="Take Me There" Clicked="pressTakeMeThere"></Button>
             </StackLayout>
         </StackLayout>
 	

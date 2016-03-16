@@ -10,7 +10,7 @@ namespace Orientation
 
 		public App (Size size)
 		{
-      DbData.initializeDatabaseData();
+            DbData.initializeDatabaseData();
 			screenSize = size;// Store the screenSize the OS passed us, so it can be used for some aspect ratio calculations later
 			setMainPage(new NavigationPage (new Home_Screen ()));
 		}

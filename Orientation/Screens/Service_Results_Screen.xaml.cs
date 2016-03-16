@@ -103,10 +103,22 @@ namespace Orientation
 
 		public void pressPhoneNumber()
 		{
-
 			Device.OpenUri(new Uri("tel:" + phoneNumber.Text));
 		}
 
+		public void pressTakeMeThere(Object sender, EventArgs e)
+		{ 
+			if (Device.OS == TargetPlatform.Android)
+			{
+				Device.OpenUri(new Uri("geo:"+serviceObject.coordinatesLatitude+","+serviceObject.coordinatesLongitude));
+
+			}
+			else if (Device.OS == TargetPlatform.iOS)
+			{
+				Device.OpenUri(new Uri("http://maps.apple.com/?daddr=" + serviceObject.coordinatesLatitude+"," + serviceObject.coordinatesLongitude+",&saddr=Current%20Location"));
+
+			}
+		}
 
 	}
 }
