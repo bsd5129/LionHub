@@ -27,8 +27,16 @@ namespace Orientation
 
 			phoneNumber.Text = service.phoneNumber;
 
-			if (phoneNumber.Text.Length == 0)
-				phoneNumber.Text = "N/A";
+      if (phoneNumber.Text.Length == 0) {
+        phoneNumber.Text = "N/A";
+      } else {
+        //Make the phoneNumber label clickable
+        var phoneNumber_tap = new TapGestureRecognizer();
+        phoneNumber_tap.Tapped += (sender, eventArgs) => {
+          pressPhoneNumber();
+        };
+        phoneNumber.GestureRecognizers.Add(phoneNumber_tap);
+      }
 
 			website.Text = service.website;
 
@@ -42,13 +50,6 @@ namespace Orientation
 			{
 				buttons.Children.Remove(takeMeThereButton);
 			}
-
-			//Make the phoneNumber label clickable
-			var phoneNumber_tap = new TapGestureRecognizer();
-			phoneNumber_tap.Tapped += (sender, eventArgs) => {
-				pressPhoneNumber();
-      };
-      phoneNumber.GestureRecognizers.Add(phoneNumber_tap);
 		}
 
 		public void setTheme()
@@ -101,12 +102,8 @@ namespace Orientation
 
 		public async void pressPhoneNumber()
 		{
-<<<<<<< HEAD
-			Device.OpenUri(new Uri("tel:" + phoneNumber.Text));
-=======
       if (await DisplayAlert("Call Number?", "Would you like to dial this number?", "Yes", "No"))
         Device.OpenUri(new Uri("tel://" + phoneNumber.Text.Replace("-", "")));
->>>>>>> 98fb865... -Fixed issue with Database handler choosing wrong location on some Android devices -Fixed Dialog not popping up when phone number is clicked -Fixed phone number formatting for URI
 		}
 
 		public void pressTakeMeThere(Object sender, EventArgs e)
@@ -119,7 +116,6 @@ namespace Orientation
 			else if (Device.OS == TargetPlatform.iOS)
 			{
 				Device.OpenUri(new Uri("http://maps.apple.com/?daddr=" + serviceObject.coordinatesLatitude+"," + serviceObject.coordinatesLongitude+",&saddr=Current%20Location"));
-
 			}
 		}
 
