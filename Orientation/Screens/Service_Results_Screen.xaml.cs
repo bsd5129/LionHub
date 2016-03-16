@@ -8,44 +8,54 @@ namespace Orientation
 {
 	public partial class Service_Results_Screen : ContentPage
 	{
-    private Service serviceObject;
+		private Service serviceObject;
 
-		public Service_Results_Screen (Service service)
+		public Service_Results_Screen(Service service)
 		{
-			InitializeComponent ();
-			setTheme ();
+			InitializeComponent();
+			setTheme();
 
-      serviceObject = service;
-      //Title = service.name;
-      name.Text = service.name;
-      description.Text = service.description;
+			serviceObject = service;
+			//Title = service.name;
+			name.Text = service.name;
+			description.Text = service.description;
 
-      if (service.coordinatesLatitude <= -999.0)
-        coordinates.Text = "N/A";
-      else
-        coordinates.Text = service.coordinatesLatitude + ", " + service.coordinatesLongitude;
+			if (service.coordinatesLatitude <= -999.0)
+				coordinates.Text = "N/A";
+			else
+				coordinates.Text = service.coordinatesLatitude + ", " + service.coordinatesLongitude;
 
-      phoneNumber.Text = service.phoneNumber;
+			phoneNumber.Text = service.phoneNumber;
 
-      if (phoneNumber.Text.Length == 0)
-        phoneNumber.Text = "N/A";
+			if (phoneNumber.Text.Length == 0)
+				phoneNumber.Text = "N/A";
 
-      website.Text = service.website;
+			website.Text = service.website;
 
-      if (website.Text.Length == 0)
-        website.Text = "N/A";
+			if (website.Text.Length == 0)
+				website.Text = "N/A";
 
-      //Disable favorites button if the service is already a favorite
-      favoritesButton.IsEnabled = !service.isFavorite;
+			//Disable favorites button if the service is already a favorite
+			favoritesButton.IsEnabled = !service.isFavorite;
 
-      if (service.coordinatesLatitude <= -999.0 && service.coordinatesLongitude <= -999.0) {
-        buttons.Children.Remove(takeMeThereButton);
-      }
+			if (service.coordinatesLatitude <= -999.0 && service.coordinatesLongitude <= -999.0)
+			{
+				buttons.Children.Remove(takeMeThereButton);
+			}
+
+			//make the phoneNumber label clickable
+			// Your label tap event
+			var phoneNumber_tap = new TapGestureRecognizer();
+			phoneNumber_tap.Tapped += (s, e) =>
+			{
+				pressPhoneNumber();
+		    };
+			phoneNumber.GestureRecognizers.Add(phoneNumber_tap);
 		}
 
 		public void setTheme()
 		{
-			BackgroundColor = Theme.getBackgroundColor ();
+			BackgroundColor = Theme.getBackgroundColor();
 			name.TextColor = Theme.getTextColor();
 			description.TextColor = Theme.getTextColor();
 			coordinates.TextColor = Theme.getTextColor();
@@ -53,43 +63,48 @@ namespace Orientation
 			//website.TextColor = Theme.getTextColor();
 		}
 
-		public void pressAddToFavoritesButton(Object sender, EventArgs e) {
-      displayPrompt();
-    }
-
-		public void setFavoritesFlagToTrue() {
-      serviceObject.isFavorite = true;
-
-      SQLiteConnection con = DependencyService.Get<IDatabaseHandler>().getDBConnection();
-      con.Update(serviceObject);
-      con.Close();
+		public void pressAddToFavoritesButton(Object sender, EventArgs e)
+		{
+			displayPrompt();
 		}
 
-    public async void displayPrompt()
-    {
-      var answer = await DisplayAlert ("Add To Favorites?", "Would you like to add this Service to your Favorites?", "Yes", "No");
+		public void setFavoritesFlagToTrue()
+		{
+			serviceObject.isFavorite = true;
 
-      if (answer)
-        pressYesOnPrompt();
-      else
-        pressNoOnPrompt();
-    }   
+			SQLiteConnection con = DependencyService.Get<IDatabaseHandler>().getDBConnection();
+			con.Update(serviceObject);
+			con.Close();
+		}
 
+		public async void displayPrompt()
+		{
+			var answer = await DisplayAlert("Add To Favorites?", "Would you like to add this Service to your Favorites?", "Yes", "No");
 
-    public void pressYesOnPrompt()
-    {
-      setFavoritesFlagToTrue();
+			if (answer)
+				pressYesOnPrompt();
+			else
+				pressNoOnPrompt();
+		}
 
-      NavigationPage page = new NavigationPage(new Home_Screen());
-      page.PushAsync(new Favorites_Screen());
-      ((Orientation.App)App.Current).setMainPage(page);
-    }   
+		public void pressNoOnPrompt()
+		{
+			
+		}
 
+		public void pressYesOnPrompt()
+		{
+			setFavoritesFlagToTrue();
 
-    public void pressNoOnPrompt()
-    {
-      
-    }
+			NavigationPage page = new NavigationPage(new Home_Screen());
+			page.PushAsync(new Favorites_Screen());
+			((Orientation.App)App.Current).setMainPage(page);
+		}
+
+		public void pressPhoneNumber()
+		{
+			displayPrompt();
+		}
 	}
 }
 

@@ -25,7 +25,7 @@
 					<Label Grid.Row="2" Grid.Column="0" Text="Coordinates:" FontSize="15" FontAttributes="Bold" HorizontalOptions="StartAndExpand"></Label>
 					<Label Grid.Row="2" Grid.Column="1" x:Name="coordinates" FontSize="14" HorizontalOptions="StartAndExpand"></Label>
 					<Label Grid.Row="3" Grid.Column="0" Text="Phone:" FontSize="15" FontAttributes="Bold" HorizontalOptions="StartAndExpand"></Label>
-					<Label Grid.Row="3" Grid.Column="1" x:Name="phoneNumber" FontSize="14" TextColor="#0000EE" HorizontalOptions="StartAndExpand"></Label>
+					<Label Grid.Row="3" Grid.Column="1" x:Name="phoneNumber" FontSize="14" TextColor="#0000EE" HorizontalOptions="StartAndExpand" ></Label>
 					<Label Grid.Row="4" Grid.Column="0" Text="Website:" FontSize="15" FontAttributes="Bold" HorizontalOptions="StartAndExpand"></Label>
 					<Label Grid.Row="4" Grid.Column="1" x:Name="website" FontSize="14" TextColor="#0000EE" HorizontalOptions="StartAndExpand"></Label>
 				</Grid>
