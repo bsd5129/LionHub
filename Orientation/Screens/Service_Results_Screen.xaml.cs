@@ -50,6 +50,26 @@ namespace Orientation
 			{
 				buttons.Children.Remove(takeMeThereButton);
 			}
+<<<<<<< HEAD
+=======
+
+			//make the phoneNumber label clickable
+			// Your label tap event
+			var phoneNumber_tap = new TapGestureRecognizer();
+			phoneNumber_tap.Tapped += (s, e) =>
+			{
+				pressPhoneNumber();
+		    };
+			phoneNumber.GestureRecognizers.Add(phoneNumber_tap);
+
+
+			var website_tap = new TapGestureRecognizer();
+			website_tap.Tapped += (sender, e) =>
+			{
+				pressWebsite();
+			};
+			website.GestureRecognizers.Add(website_tap);
+>>>>>>> f0267e1... Added websit connect functionality
 		}
 
 		public void setTheme()
@@ -117,6 +137,12 @@ namespace Orientation
 			{
 				Device.OpenUri(new Uri("http://maps.apple.com/?daddr=" + serviceObject.coordinatesLatitude+"," + serviceObject.coordinatesLongitude+",&saddr=Current%20Location"));
 			}
+		}
+
+		public void pressWebsite()
+		{
+			if (website.Text != "N/A")
+				Device.OpenUri(new Uri(website.Text));
 		}
 
 	}
