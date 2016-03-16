@@ -1,6 +1,7 @@
 ﻿using System;
 using Android.App;
 using SQLite.Net;
+using System.IO;
 
 [assembly: Xamarin.Forms.Dependency (typeof (Orientation.Droid.DatabaseHandler))]
 namespace Orientation.Droid {
@@ -9,7 +10,8 @@ namespace Orientation.Droid {
     }
 
     public SQLiteConnection getDBConnection() {
-      string dbPath = Application.Context.GetDatabasePath("LionHub.db").Path;
+      //string dbPath = Application.Context.GetDatabasePath("LionHub.db").Path;
+      string dbPath = Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.Personal), "LionHub.db");
       return new SQLiteConnection(new SQLite.Net.Platform.XamarinAndroid.SQLitePlatformAndroid(), dbPath);
     }
   }

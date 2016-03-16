@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using SQLite.Net;
 
@@ -43,14 +43,12 @@ namespace Orientation
 				buttons.Children.Remove(takeMeThereButton);
 			}
 
-			//make the phoneNumber label clickable
-			// Your label tap event
+			//Make the phoneNumber label clickable
 			var phoneNumber_tap = new TapGestureRecognizer();
-			phoneNumber_tap.Tapped += (s, e) =>
-			{
+			phoneNumber_tap.Tapped += (sender, eventArgs) => {
 				pressPhoneNumber();
-		    };
-			phoneNumber.GestureRecognizers.Add(phoneNumber_tap);
+      };
+      phoneNumber.GestureRecognizers.Add(phoneNumber_tap);
 		}
 
 		public void setTheme()
@@ -101,9 +99,14 @@ namespace Orientation
 			((Orientation.App)App.Current).setMainPage(page);
 		}
 
-		public void pressPhoneNumber()
+		public async void pressPhoneNumber()
 		{
+<<<<<<< HEAD
 			Device.OpenUri(new Uri("tel:" + phoneNumber.Text));
+=======
+      if (await DisplayAlert("Call Number?", "Would you like to dial this number?", "Yes", "No"))
+        Device.OpenUri(new Uri("tel://" + phoneNumber.Text.Replace("-", "")));
+>>>>>>> 98fb865... -Fixed issue with Database handler choosing wrong location on some Android devices -Fixed Dialog not popping up when phone number is clicked -Fixed phone number formatting for URI
 		}
 
 		public void pressTakeMeThere(Object sender, EventArgs e)
