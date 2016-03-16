@@ -50,8 +50,7 @@ namespace Orientation
 			{
 				buttons.Children.Remove(takeMeThereButton);
 			}
-<<<<<<< HEAD
-=======
+
 
 			//make the phoneNumber label clickable
 			// Your label tap event
@@ -69,7 +68,7 @@ namespace Orientation
 				pressWebsite();
 			};
 			website.GestureRecognizers.Add(website_tap);
->>>>>>> f0267e1... Added websit connect functionality
+
 		}
 
 		public void setTheme()
