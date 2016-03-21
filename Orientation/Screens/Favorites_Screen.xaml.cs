@@ -6,15 +6,18 @@ using Xamarin.Forms;
 namespace Orientation
 {
 	public partial class Favorites_Screen : ContentPage
+
 	{
-		public Favorites_Screen ()
+		List<string> favs = new List<string>();
+		public Favorites_Screen()
 		{
-			InitializeComponent ();
-			NavigationPage.SetHasBackButton (this, false);
-			bottomLayout.Children.Add (new TabMenu(2));
+			InitializeComponent();
+			NavigationPage.SetHasBackButton(this, false);
+			bottomLayout.Children.Add(new TabMenu(2));
 
 			setTheme();
-      queryFavorites();
+			queryFavorites();
+			deleteFavorite();
 		}
 
 		public void setTheme()
@@ -24,28 +27,42 @@ namespace Orientation
 		}
 
 		public void queryFavorites()
-		{ 
+		{
 			SQLiteConnection connection = DependencyService.Get<IDatabaseHandler>().getDBConnection();
 			var services = connection.Table<Service>();
 
-      List<string> favs = new List<string>();
-			
-      foreach (var service in services)
+
+
+			foreach (var service in services)
 			{
-				if(service.isFavorite)
+				if (service.isFavorite)
 					favs.Add(service.name);
 			}
 
-      connection.Close();
+			connection.Close();
 
-      if (favs.Count > 0)
-        favoritesList.ItemsSource = favs;
+			if (favs.Count > 0)
+				favoritesList.ItemsSource = favs;
 		}
 
-		public void prepareScreen() {
-			
-		}
+		public void prepareScreen()
+		{
 
+		}
+		public void deleteFavorite()
+		{
+
+			var deleteAction = new MenuItem { Text = "Delete", IsDestructive = true }; // red background
+			deleteAction.SetBinding(MenuItem.CommandParameterProperty, new Binding("."));
+			deleteAction.Clicked += async (sender, e) =>
+			{
+				var mi = ((MenuItem)sender);
+				favs.Remove(mi.Text);
+			};
+			// add to the ViewCell's ContextActions property
+			ListView.Add(deleteAction);
+
+		}
 	}
 }
 

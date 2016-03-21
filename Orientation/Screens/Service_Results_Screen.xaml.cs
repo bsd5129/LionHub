@@ -50,30 +50,11 @@ namespace Orientation
 			{
 				buttons.Children.Remove(takeMeThereButton);
 			}
-
-
-			//make the phoneNumber label clickable
-			// Your label tap event
-			var phoneNumber_tap = new TapGestureRecognizer();
-			phoneNumber_tap.Tapped += (s, e) =>
-			{
-				pressPhoneNumber();
-		    };
-			phoneNumber.GestureRecognizers.Add(phoneNumber_tap);
-
-
-			var website_tap = new TapGestureRecognizer();
-			website_tap.Tapped += (sender, e) =>
-			{
-				pressWebsite();
-			};
-			website.GestureRecognizers.Add(website_tap);
-
 		}
 
 		public void setTheme()
 		{
-			BackgroundColor = Theme.getBackgroundColor();
+			//BackgroundColor = Theme.getBackgroundColor();
 			name.TextColor = Theme.getTextColor();
 			description.TextColor = Theme.getTextColor();
 			coordinates.TextColor = Theme.getTextColor();
@@ -136,12 +117,6 @@ namespace Orientation
 			{
 				Device.OpenUri(new Uri("http://maps.apple.com/?daddr=" + serviceObject.coordinatesLatitude+"," + serviceObject.coordinatesLongitude+",&saddr=Current%20Location"));
 			}
-		}
-
-		public void pressWebsite()
-		{
-			if (website.Text != "N/A")
-				Device.OpenUri(new Uri(website.Text));
 		}
 
 	}
