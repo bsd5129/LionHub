@@ -60,7 +60,7 @@ namespace Orientation
 				favs.Remove(mi.Text);
 			};
 			// add to the ViewCell's ContextActions property
-			ListView.Add(deleteAction);
+			//ListView.Add(deleteAction);need to fix or doing the xaml way
 
 		}
 	}
