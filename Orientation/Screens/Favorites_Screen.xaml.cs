@@ -42,8 +42,10 @@ namespace Orientation
 
 			connection.Close();
 
-			if (favs.Count > 0)
-				favoritesList.ItemsSource = favs;
+
+			//if (favs.Count > 0)
+			//	favoritesList.ItemsSource = favs; causes to get System.NullReferenceException error, need to be fixed, not sure how
+
 		}
 
 		public void prepareScreen()
@@ -53,14 +55,14 @@ namespace Orientation
 		public void OnDelete(object sender, EventArgs e)
 		{
 			var mi = ((MenuItem)sender);
+
+
 			itemSelected = ListView.SelectedItemProperty.PropertyName.ToString();
-			var answer = await DisplayAlert("Delete Selected Item", "Do you want to delete?", "Yes", "No");
+
+			var answer =  DisplayAlert("Delete Selected Item", "Do you want to delete?", "Yes", "No");
 
 
-			if (answer)
-				pressYesOnPrompt();
-			else
-				pressNoOnPrompt();
+
 		}
 
 		public void pressNoOnPrompt()
