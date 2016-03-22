@@ -3,7 +3,23 @@
 	<ContentPage.Content>
 		<StackLayout Orientation="Vertical">
 			<StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" Grid.Row="0" Grid.Column="0">
-				<ListView x:Name="favoritesList" RowHeight="40"></ListView>
+				<ListView x:Name="favoritesList" RowHeight="40">
+
+
+                       <ViewCell>
+                           <ViewCell.ContextActions>
+                                
+                                <MenuItem Clicked="OnDelete" CommandParameter="{Binding .}"
+                                Text="Delete" IsDestructive="True" />
+                          </ViewCell.ContextActions>
+                            
+                        </ViewCell>
+
+                </ListView>
+
+
+
+				
 			</StackLayout>
 
 			<StackLayout x:Name="bottomLayout" Orientation="Vertical"></StackLayout>

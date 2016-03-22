@@ -9,6 +9,7 @@ namespace Orientation
 
 	{
 		List<string> favs = new List<string>();
+		String itemSelected;
 		public Favorites_Screen()
 		{
 			InitializeComponent();
@@ -17,7 +18,7 @@ namespace Orientation
 
 			setTheme();
 			queryFavorites();
-			deleteFavorite();
+
 		}
 
 		public void setTheme()
@@ -49,20 +50,33 @@ namespace Orientation
 		{
 
 		}
-		public void deleteFavorite()
+		public void OnDelete(object sender, EventArgs e)
+		{
+			var mi = ((MenuItem)sender);
+			itemSelected = ListView.SelectedItemProperty.PropertyName.ToString();
+			var answer = await DisplayAlert("Delete Selected Item", "Do you want to delete?", "Yes", "No");
+
+
+			if (answer)
+				pressYesOnPrompt();
+			else
+				pressNoOnPrompt();
+		}
+
+		public void pressNoOnPrompt()
 		{
 
-			var deleteAction = new MenuItem { Text = "Delete", IsDestructive = true }; // red background
-			deleteAction.SetBinding(MenuItem.CommandParameterProperty, new Binding("."));
-			deleteAction.Clicked += async (sender, e) =>
-			{
-				var mi = ((MenuItem)sender);
-				favs.Remove(mi.Text);
-			};
-			// add to the ViewCell's ContextActions property
-			//ListView.Add(deleteAction);need to fix or doing the xaml way
-
 		}
-	}
+
+		public void pressYesOnPrompt()
+		{
+			favs.Remove(itemSelected);//remove the selected one
+		}
+
+
+
+	}//
+
+
 }
 
