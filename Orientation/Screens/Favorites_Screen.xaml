@@ -8,12 +8,12 @@
 				        <ListView.ItemTemplate>
                               <DataTemplate>
                                  <ViewCell >
-                                   <ViewCell.ContextActions>
+                                   
+                                    <ViewCell.ContextActions>
                                      
                                        <MenuItem Clicked="OnDelete" CommandParameter="{Binding .}"
                                         Text="Delete" IsDestructive="True" />
                                    </ViewCell.ContextActions>
-         
           
                                 </ViewCell>
                              </DataTemplate>

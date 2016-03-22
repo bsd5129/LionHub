@@ -44,7 +44,7 @@ namespace Orientation
 
 
 			//if (favs.Count > 0)
-			//	favoritesList.ItemsSource = favs; causes to get System.NullReferenceException error, need to be fixed, not sure how
+			//	favoritesList.ItemsSource = favs; causes to get the System.NullReferenceException error, need to be fixed, not sure how
 
 		}
 
