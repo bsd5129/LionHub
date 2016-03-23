@@ -50,23 +50,12 @@ namespace Orientation
 
 		}
 
-		public void pressFavoriteListItem(Object sender, ItemTappedEventArgs args)
-		{
-			if (args.Item != null)
-			{
-				Navigation.PushAsync(new Service_Results_Screen(queryServiceData(args.Item.ToString())));
-			}
-		}
-
-
-		public Service queryServiceData(string name)
-		{
-			SQLiteConnection connection = DependencyService.Get<IDatabaseHandler>().getDBConnection();
-			TableQuery<Service> query = from s in connection.Table<Service>() where s.name.Equals(name) select s;
-			Service service = query.FirstOrDefault();
-			connection.Close();
-			return service;
-		}
+    public void pressFavoriteListItem(Object sender, ItemTappedEventArgs args) {
+      if (args.Item != null) {
+        favoritesList.SelectedItem = null;
+        Navigation.PushAsync(new Service_Results_Screen(((FavoriteCell)args.Item).service));
+      }
+    }
 
     public async void OnDelete(object sender, EventArgs e) {
       MenuItem button = (MenuItem)sender;
