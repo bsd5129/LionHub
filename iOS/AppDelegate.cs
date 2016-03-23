@@ -20,8 +20,6 @@ namespace Orientation.iOS
 
 			LoadApplication (new App (new Xamarin.Forms.Size(UIScreen.MainScreen.Bounds.Width, UIScreen.MainScreen.Bounds.Height)));
 
-			DependencyService.Register<IGeolocator, Geolocator>();
-
 			return base.FinishedLaunching (app, options);
 		}
 	}
