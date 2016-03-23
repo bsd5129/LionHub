@@ -8,7 +8,7 @@ namespace Orientation.iOS {
     }
 
     public void dial(string number) {
-      Device.OpenUrl(new Uri("tel:" + number));
+      Device.OpenUri(new Uri("tel:" + number));
     }
   }
 }
