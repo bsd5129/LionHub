@@ -98,15 +98,14 @@ namespace Orientation
 		public async void pressPhoneNumber()
 		{
       		if (await DisplayAlert("Call Number?", "Would you like to dial this number?", "Yes", "No"))
-        		Device.OpenUri(new Uri("tel://" + phoneNumber.Text.Replace("-", "")));
+            DependencyService.Get<IDialer>().dial(phoneNumber.Text.Replace("-", ""));
 		}
 
 		public void pressTakeMeThere(Object sender, EventArgs e)
 		{ 
 			if (Device.OS == TargetPlatform.Android)
 			{
-				Device.OpenUri(new Uri("google.navigation:q="+serviceObject.coordinatesLatitude+","+serviceObject.coordinatesLongitude));
-
+        Device.OpenUri(new Uri("google.navigation:q=" + serviceObject.coordinatesLatitude + "," + serviceObject.coordinatesLongitude));
 			}
 			else if (Device.OS == TargetPlatform.iOS)
 			{

@@ -131,6 +131,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DatabaseHandler.cs" />
     <Compile Include="MainApplication.cs" />
+    <Compile Include="Dialer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

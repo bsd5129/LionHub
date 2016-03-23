@@ -33,7 +33,7 @@ namespace Orientation
 		public async void getCurrentLocation()
 		{
 			var locator = CrossGeolocator.Current;
-			locator.DesiredAccuracy = 50;
+			locator.DesiredAccuracy = 5;
 			var position = await locator.GetPositionAsync(timeoutMilliseconds: (1000 * 60 * 2));
 			float curLat = (float)position.Latitude;
 			float curLon = (float)position.Longitude;
