@@ -47,38 +47,38 @@ namespace Orientation
 		public void queryListOfServices()
 		{
 			SQLiteConnection connection = DependencyService.Get<IDatabaseHandler>().getDBConnection();
-      var services = connection.Table<Service>().OrderBy(s => s.name);
+      		var services = connection.Table<Service>().OrderBy(s => s.name);
 
 			List<string> names = new List<string>();
 			
-      foreach (var service in services)
+      		foreach (var service in services)
 			{
 				names.Add(service.name);
 			}
 			
-      connection.Close();
-      servicesList.ItemsSource = names;
+      		connection.Close();
+      		servicesList.ItemsSource = names;
 		}
 
 		public void queryFilteredListOfServices(String filter)
 		{
-      if (filter == null) {
-        queryListOfServices();
-        return;
-      }
+     		 if (filter == null) {
+        		queryListOfServices();
+        	 	return;
+      		}
 
 			SQLiteConnection connection = DependencyService.Get<IDatabaseHandler>().getDBConnection();
-      var services = connection.Table<Service>().OrderBy(s => s.name);
+     		 var services = connection.Table<Service>().OrderBy(s => s.name);
 
 			List<string> names = new List<string>();
 			
-      foreach (var service in services)
+      		foreach (var service in services)
 			{
-        if(service.name.ToLower().Contains(filter.ToLower()))
+        		if(service.name.ToLower().Contains(filter.ToLower()))
 					names.Add(service.name);
 			}
 
-      connection.Close();
+      		connection.Close();
 			servicesList.ItemsSource = names;
 		}
 

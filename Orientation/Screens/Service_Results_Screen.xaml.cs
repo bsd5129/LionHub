@@ -97,8 +97,8 @@ namespace Orientation
 
 		public async void pressPhoneNumber()
 		{
-      if (await DisplayAlert("Call Number?", "Would you like to dial this number?", "Yes", "No"))
-        Device.OpenUri(new Uri("tel://" + phoneNumber.Text.Replace("-", "")));
+      		if (await DisplayAlert("Call Number?", "Would you like to dial this number?", "Yes", "No"))
+        		Device.OpenUri(new Uri("tel://" + phoneNumber.Text.Replace("-", "")));
 		}
 
 		public void pressTakeMeThere(Object sender, EventArgs e)
