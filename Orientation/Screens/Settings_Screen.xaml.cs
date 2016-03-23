@@ -35,12 +35,12 @@ namespace Orientation {
       ((Orientation.App)App.Current).setMainPage(page);
     }
 
-    public void pressVersionListItem(object sender, EventArgs args) {
-      //NOTHING FOR NOW
+    public void pressCreditsListItem(object sender, EventArgs args) {
+      displayCredits();
     }
 
-    public void pressCreditsListItem(object sender, EventArgs args) {
-      //NOTHING FOR NOW
+    public async void displayCredits() {
+      await DisplayAlert("LionHub", "Developed by:\n\nBrandon Davis\nJohn Deebel\nClarence LaShier\nNgan Nguyen", "Close");
     }
   }
 }

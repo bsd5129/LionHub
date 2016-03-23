@@ -40,8 +40,16 @@ namespace Orientation
 
 			website.Text = service.website;
 
-			if (website.Text.Length == 0)
-				website.Text = "N/A";
+      if (website.Text.Length == 0) {
+        website.Text = "N/A";
+      } else {
+        //Make the website label clickable
+        var website_tap = new TapGestureRecognizer();
+        website_tap.Tapped += (sender, eventArgs) => {
+          pressWebsite();
+        };
+        website.GestureRecognizers.Add(website_tap);
+      }
 
 			//Disable favorites button if the service is already a favorite
 			favoritesButton.IsEnabled = !service.isFavorite;
@@ -71,6 +79,7 @@ namespace Orientation
 		{
 			serviceObject.isFavorite = true;
 
+      //UPDATE Services SET favoriteFlag=true WHERE _id=##;
 			SQLiteConnection con = DependencyService.Get<IDatabaseHandler>().getDBConnection();
 			con.Update(serviceObject);
 			con.Close();
@@ -82,13 +91,6 @@ namespace Orientation
 
 			if (answer)
 				pressYesOnPrompt();
-			else
-				pressNoOnPrompt();
-		}
-
-		public void pressNoOnPrompt()
-		{
-			
 		}
 
 		public void pressYesOnPrompt()
@@ -110,7 +112,7 @@ namespace Orientation
 		{ 
 			if (Device.OS == TargetPlatform.Android)
 			{
-				Device.OpenUri(new Uri("geo:"+serviceObject.coordinatesLatitude+","+serviceObject.coordinatesLongitude));
+				Device.OpenUri(new Uri("google.navigation:q="+serviceObject.coordinatesLatitude+","+serviceObject.coordinatesLongitude));
 
 			}
 			else if (Device.OS == TargetPlatform.iOS)
@@ -119,6 +121,14 @@ namespace Orientation
 			}
 		}
 
+<<<<<<< HEAD
+=======
+		public void pressWebsite()
+		{
+			Device.OpenUri(new Uri(website.Text));
+		}
+
+>>>>>>> 19748ea... Updated Xamarin.Forms & Added XLabs-Forms
 	}
 }
 
