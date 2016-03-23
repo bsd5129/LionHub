@@ -29,7 +29,7 @@ namespace Orientation
       favorites = new List<FavoriteCell>();
 
 			SQLiteConnection connection = DependencyService.Get<IDatabaseHandler>().getDBConnection();
-      var services = connection.Table<Service>();
+			var services = connection.Table<Service>().OrderBy(s => s.name);
 
 			foreach (var service in services)
 			{
@@ -38,6 +38,8 @@ namespace Orientation
 			}
 
       connection.Close();
+
+			//	favorites.Sort();
 
       favoritesList.ItemsSource = favorites;
 		}//end query favorites

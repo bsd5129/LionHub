@@ -3,7 +3,7 @@
 	<ContentPage.Content>
 		<StackLayout Orientation="Vertical">
 			<StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" Grid.Row="0" Grid.Column="0">
-				<ListView x:Name="favoritesList" ItemTapped="pressFavoriteListItem" RowHeight="40">
+				<ListView x:Name="favoritesList" ItemTapped="pressFavoriteListItem" RowHeight="40" >
 					<ListView.ItemTemplate>
                     	<DataTemplate>
                         	<ViewCell>
