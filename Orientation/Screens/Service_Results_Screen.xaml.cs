@@ -70,9 +70,10 @@ namespace Orientation
 			//website.TextColor = Theme.getTextColor();
 		}
 
-		public void pressAddToFavoritesButton(Object sender, EventArgs e)
+		public async void pressAddToFavoritesButton(Object sender, EventArgs e)
 		{
-			displayPrompt();
+      if (await DisplayAlert("Add To Favorites?", "Would you like to add this Service to your Favorites?", "Yes", "No"))
+        pressYesOnPrompt();
 		}
 
 		public void setFavoritesFlagToTrue()
@@ -83,14 +84,6 @@ namespace Orientation
 			SQLiteConnection con = DependencyService.Get<IDatabaseHandler>().getDBConnection();
 			con.Update(serviceObject);
 			con.Close();
-		}
-
-		public async void displayPrompt()
-		{
-			var answer = await DisplayAlert("Add To Favorites?", "Would you like to add this Service to your Favorites?", "Yes", "No");
-
-			if (answer)
-				pressYesOnPrompt();
 		}
 
 		public void pressYesOnPrompt()
@@ -121,14 +114,9 @@ namespace Orientation
 			}
 		}
 
-<<<<<<< HEAD
-=======
-		public void pressWebsite()
-		{
-			Device.OpenUri(new Uri(website.Text));
-		}
-
->>>>>>> 19748ea... Updated Xamarin.Forms & Added XLabs-Forms
+    public void pressWebsite() {
+      Device.OpenUri(new Uri(website.Text));
+    }
 	}
 }
 

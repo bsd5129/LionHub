@@ -6,19 +6,16 @@ using Xamarin.Forms;
 namespace Orientation
 {
 	public partial class Favorites_Screen : ContentPage
-
 	{
-		List<string> favs = new List<string>();
-		String itemSelected;
-		public Favorites_Screen()
+    List<FavoriteCell> favorites;
+
+    public Favorites_Screen()
 		{
 			InitializeComponent();
 			NavigationPage.SetHasBackButton(this, false);
 			bottomLayout.Children.Add(new TabMenu(2));
-
 			setTheme();
-			queryFavorites();
-
+      queryFavorites();
 		}
 
 		public void setTheme()
@@ -29,56 +26,46 @@ namespace Orientation
 
 		public void queryFavorites()
 		{
+      favorites = new List<FavoriteCell>();
+
 			SQLiteConnection connection = DependencyService.Get<IDatabaseHandler>().getDBConnection();
-			var services = connection.Table<Service>();
-
-
+      var services = connection.Table<Service>();
 
 			foreach (var service in services)
 			{
 				if (service.isFavorite)
-					favs.Add(service.name);
+          favorites.Add(new FavoriteCell(service));
 			}
 
-			connection.Close();
+      connection.Close();
 
-
-			//if (favs.Count > 0)
-			//	favoritesList.ItemsSource = favs; causes to get the System.NullReferenceException error, need to be fixed, not sure how
-
+      favoritesList.ItemsSource = favorites;
 		}
 
 		public void prepareScreen()
 		{
 
 		}
-		public void OnDelete(object sender, EventArgs e)
-		{
-			var mi = ((MenuItem)sender);
 
+    public async void OnDelete(object sender, EventArgs e) {
+      MenuItem button = (MenuItem)sender;
+      FavoriteCell favorite = null;
 
-			itemSelected = ListView.SelectedItemProperty.PropertyName.ToString();
+      foreach (FavoriteCell cell in favorites)
+        if (cell.Title.Equals(button.CommandParameter))
+          favorite = cell;
 
-			var answer =  DisplayAlert("Delete Selected Item", "Do you want to delete?", "Yes", "No");
+      if (await DisplayAlert("Delete Favorite", "Do you want to delete this favorite?", "Yes", "No")) {
+        Service service = favorite.service;
+        service.isFavorite = false;
 
+        SQLiteConnection connection = DependencyService.Get<IDatabaseHandler>().getDBConnection();
+        connection.Update(service);
+        connection.Close();
 
-
-		}
-
-		public void pressNoOnPrompt()
-		{
-
-		}
-
-		public void pressYesOnPrompt()
-		{
-			favs.Remove(itemSelected);//remove the selected one
-		}
-
-
-
-	}//
-
-
+        queryFavorites();
+      }
+    }
+	}
 }
 

@@ -2,27 +2,24 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Orientation.Favorites_Screen" Title="Favorites">
 	<ContentPage.Content>
 		<StackLayout Orientation="Vertical">
-			<StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" Grid.Row="0" Grid.Column="0">
-				
-				    <ListView x:Name="favoritesList" RowHeight="40">
-				        <ListView.ItemTemplate>
-                              <DataTemplate>
-                                 <ViewCell >
-                                   
-                                    <ViewCell.ContextActions>
-                                     
-                                       <MenuItem Clicked="OnDelete" CommandParameter="{Binding .}"
-                                        Text="Delete" IsDestructive="True" />
-                                   </ViewCell.ContextActions>
-          
-                                </ViewCell>
-                             </DataTemplate>
-                        </ListView.ItemTemplate>
-					</ListView>
-                   
-           
-			 </StackLayout>
-
+			<StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" Grid.Row="0" Grid.Column="0">
+				<ListView x:Name="favoritesList" RowHeight="40">
+					<ListView.ItemTemplate>
+                    	<DataTemplate>
+                        	<ViewCell>
+                            	<ViewCell.ContextActions>
+                                	<MenuItem Clicked="OnDelete" Text="Delete" IsDestructive="True" CommandParameter="{Binding Title}" />
+                             	</ViewCell.ContextActions>
+								<StackLayout Padding="15, 0">
+									<StackLayout Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="CenterAndExpand">
+										<Label VerticalOptions="Center" Text="{Binding Title}" LineBreakMode="TailTruncation" />
+									</StackLayout>
+								</StackLayout>
+             				</ViewCell>
+          				</DataTemplate>
+					</ListView.ItemTemplate>
+				</ListView>
+			</StackLayout>
 			<StackLayout x:Name="bottomLayout" Orientation="Vertical"></StackLayout>
 		</StackLayout>
 	</ContentPage.Content>
