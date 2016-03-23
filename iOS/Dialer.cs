@@ -1,12 +1,14 @@
 ﻿using System;
+using Xamarin.Forms;
 
+[assembly: Xamarin.Forms.Dependency (typeof (Orientation.iOS.Dialer))]
 namespace Orientation.iOS {
   public class Dialer : IDialer {
     public Dialer() {
     }
 
     public void dial(string number) {
-      UIKit.UIApplication.SharedApplication.OpenUrl(new Foundation.NSUrl("tel: " + number));
+      Device.OpenUrl(new Uri("tel:" + number));
     }
   }
 }
