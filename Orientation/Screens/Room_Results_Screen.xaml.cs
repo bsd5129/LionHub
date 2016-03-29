@@ -7,10 +7,16 @@ namespace Orientation
 {
 	public partial class Room_Results_Screen : ContentPage
 	{
-		public Room_Results_Screen ()
+		public Room roomObj;
+		public Room_Results_Screen (Room room)
 		{
 			InitializeComponent ();
 			setTheme();
+			roomObj = room;
+			roomNumber.Text = roomObj.roomNumber;
+			buildingName.Text = roomObj.buildingName;
+			description.Text = roomObj.description;
+			directions.Text = roomObj.directions;
 		}
 
 		public void setTheme()

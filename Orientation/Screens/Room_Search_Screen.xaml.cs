@@ -28,9 +28,28 @@ namespace Orientation
 			buildingName.BackgroundColor = Theme.getEntryColor();
 		}
 
-		public void pressSearchButton(object sender, EventArgs args)
+		public pressSearchButton(object sender, EventArgs args)
+
 		{
-			((NavigationPage)App.Current.MainPage).PushAsync(new Room_Results_Screen());
+			String building;
+			buildingName.SelectedIndexChanged += (sender, args) =>
+			{
+				if (buildingName.SelectedIndex != -1)
+				{
+					building = buildingName.Items[picker.SelectedIndex];
+
+				}
+
+			};
+			String room = roomNumber.Text;
+		
+			SQLiteConnection con = DependencyService.Get<IDatabaseHandler>().getDBConnection();
+			TableQuery<Room> query = from s in con.Table<Room>() where s.buildingName.Equals(building) and s.roomNumber.Equals(room) select s;
+			Room roomObj = query.FirstOrDefault();
+			con.Close();
+
+
+			((NavigationPage)App.Current.MainPage).PushAsync(new Room_Results_Screen(roomObj));
 		}
 	}
 }
