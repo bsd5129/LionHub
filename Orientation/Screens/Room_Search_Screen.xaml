@@ -4,20 +4,7 @@
 		<StackLayout x:Name="stackLayout" Orientation="Vertical">
 			<StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
             	<Entry x:Name="roomNumber" Placeholder="Enter Room Number" Keyboard="Text"></Entry>
-            	<Picker x:Name="buildingName" SelectedIndex="{Binding Industry}">
-        			<Picker.Items>
-           				 <x:String>EAB South Building</x:String>
-           				 <x:String>EAB North Building</x:String> 
-            			 <x:String>CUB Building</x:String>
-            			 <x:String>TL Building</x:String> 
-            			 <x:String>Olmsted Building</x:String>
-            			 <x:String>SSE Building</x:String>
-            			 <x:String>Library</x:String> 
-            			 <x:String>Church Hall</x:String>
-            			 <x:String>Student Housing</x:String>
-            			 <x:String>Child Care Center</x:String>
-        			</Picker.Items>
-   				</Picker> 
+            	<Picker x:Name="buildingName" Title="Choose a Building"></Picker> 
    				<Button Text="Search" HorizontalOptions="Center" Clicked="pressSearchButton" />
    			</StackLayout>
    			<StackLayout x:Name="bottomLayout" Orientation="Horizontal" VerticalOptions="End"></StackLayout>

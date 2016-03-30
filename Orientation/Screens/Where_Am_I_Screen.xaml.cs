@@ -61,8 +61,6 @@ namespace Orientation
 
 			float dist = coordToMeters(curLat, curLon, nearestBuildingInfo.coordinatesLatitude, nearestBuildingInfo.coordinatesLongitude);
 
-			await DisplayAlert("DEBUG", "You are: " + dist, "Ok");
-
 			if (dist > 1600) {
 				await DisplayAlert("Too Far Away", "You are too far away from the PSU Harrisburg Campus", "Ok");
 				await ((NavigationPage)App.Current.MainPage).PopAsync();

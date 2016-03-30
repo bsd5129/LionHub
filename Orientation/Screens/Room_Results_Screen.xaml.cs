@@ -7,22 +7,19 @@ namespace Orientation
 {
 	public partial class Room_Results_Screen : ContentPage
 	{
-		public Room roomObj;
 		public Room_Results_Screen (Room room)
 		{
 			InitializeComponent ();
 			setTheme();
-			roomObj = room;
-			roomNumber.Text = roomObj.roomNumber;
-			buildingName.Text = roomObj.buildingName;
-			description.Text = roomObj.description;
-			directions.Text = roomObj.directions;
+      roomNumber.Text = room.roomNumber;
+			buildingName.Text = room.buildingName;
+			description.Text = room.description;
+			directions.Text = room.directions;
 		}
 
 		public void setTheme()
 		{
 			stackLayout.BackgroundColor = Theme.getBackgroundColor();
-			roomNumber.TextColor = Theme.getTextColor();
 			buildingName.TextColor = Theme.getTextColor();
 			description.TextColor = Theme.getTextColor();
 			directions.TextColor = Theme.getTextColor();

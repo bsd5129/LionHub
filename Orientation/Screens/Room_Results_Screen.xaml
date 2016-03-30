@@ -3,10 +3,29 @@
 	<ContentPage.Content>
 		<StackLayout x:Name="stackLayout">
 			<StackLayout VerticalOptions="Start" Padding="15, 30, 15, 0" Spacing="20">
-	            <Label x:Name="roomNumber" Text="Room Number: {Binding data}" FontSize="14"></Label>
-		        <Label x:Name="buildingName" Text="Building Located In: {Binding data}" FontSize="14"></Label>
-		        <Label x:Name="description" Text="Description: {Binding data}" FontSize="14"></Label>
-		        <Label x:Name="directions" Text="General Directions: {Binding data}" FontSize="14"></Label>
+				<Grid RowSpacing="30">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto"></RowDefinition>
+						<RowDefinition Height="Auto"></RowDefinition>
+						<RowDefinition Height="Auto"></RowDefinition>
+						<RowDefinition Height="Auto"></RowDefinition>
+					</Grid.RowDefinitions>
+
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="Auto"></ColumnDefinition>
+						<ColumnDefinition Width="Auto"></ColumnDefinition>
+					</Grid.ColumnDefinitions>
+
+
+					<Label Grid.Row="0" Grid.Column="0" Text="Room:" FontSize="15" FontAttributes="Bold" HorizontalOptions="StartAndExpand"></Label>
+					<Label Grid.Row="0" Grid.Column="1" x:Name="roomNumber" FontSize="14" HorizontalOptions="StartAndExpand"></Label>
+					<Label Grid.Row="1" Grid.Column="0" Text="Building:" FontSize="15" FontAttributes="Bold" HorizontalOptions="StartAndExpand"></Label>
+					<Label Grid.Row="1" Grid.Column="1" x:Name="buildingName" FontSize="14" HorizontalOptions="StartAndExpand"></Label>
+					<Label Grid.Row="2" Grid.Column="0" Text="Description:" FontSize="15" FontAttributes="Bold" HorizontalOptions="StartAndExpand"></Label>
+					<Label Grid.Row="2" Grid.Column="1" x:Name="description" FontSize="14" HorizontalOptions="StartAndExpand"></Label>
+					<Label Grid.Row="3" Grid.Column="0" Text="Location:" FontSize="15" FontAttributes="Bold" HorizontalOptions="StartAndExpand"></Label>
+					<Label Grid.Row="3" Grid.Column="1" x:Name="directions" FontSize="14" HorizontalOptions="StartAndExpand"></Label>
+				</Grid>
 		    </StackLayout>
         </StackLayout>
 	</ContentPage.Content>

@@ -78,6 +78,23 @@ namespace Orientation {
 				con.Insert(ev);
 			}
 
+      con.DropTable<Room>();
+      con.CreateTable<Room>();
+
+      Room room1 = new Room();
+      room1.roomNumber = "W255";
+      room1.buildingName = "Olmsted";
+      room1.description = "Department of Computer Science and Mathematical Sciences";
+      room1.directions = "1. Head to the second floor of the Olmstead building.\n\n2. Make your way to the west half of the building. Hint: If you see other room numbers starting with a 'W', then you're in the right area.\n\n3. The west half is a long main hallway with a short hallway stemming off of it. W255 is located in the shorter hallway.";
+      con.Insert(room1);
+
+      Room room2 = new Room();
+      room2.roomNumber = "103";
+      room2.buildingName = "EAB";
+      room2.description = "Auditorium Classroom";
+      room2.directions = "Located on the first floor of the EAB Building.";
+      con.Insert(room2);
+
       con.Close();
     }
 
