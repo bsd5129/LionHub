@@ -43,6 +43,41 @@ namespace Orientation {
         con.Insert(serv);
       }
 
+			con.DropTable<Event>();
+			con.CreateTable<Event>();
+
+			string[] event_names = { "Innovation Café","2016 Job and Franchise Fair","Career Connections with Deloitte","Deadline to Declare Minor","Dueling Pianos","Kenneth L. Marcus",
+									"Bubble Soccer","Classes End"};
+
+			string[] event_descriptions = { "Spring Forum & Networking Event","Sponsored by the Army Community Service Employment Readiness Program","A Day in the Life Career Panel","",
+											"Presented by PAC","The Definition of Anti-Semitism","Presented by PAC","Spring 2016"};
+
+			string[] event_date = {"3/30/16","3/30/16","3/31/16","4/8/16","4/9/16","4/12/16","4/16/16","4/29/16" };
+
+			string[] event_time = { "5:00 pm - 7:00 pm","10:00 am - 2:00 pm","11:15 am - 12:45 pm","All Day","7:00 pm - 9:00 pm","7:00 pm - 9:00 pm","8:00 pm - 11:59 pm","All Day" };
+
+			string[] event_location = { "Morrison Gallery","Carlisle Expo Center","C211, Olmsted Building","","Stacks Market Stage","Morrison Gallery","Gymnasium, Capital Union Building","" };
+
+			string[] event_coor = {"","","Dr. Roderick Lee","","","","",""};
+
+			string[] event_coor_phone = { "", "", "", "", "", "", "", "" };
+
+			string[] event_misc_info = { "", "", "", "", "", "", "", "" };
+
+			for (int i = 0; i < event_names.Length; i++)
+			{
+				Event ev = new Event();
+				ev.name = event_names[i];
+				ev.description = event_descriptions[i];
+				ev.date = event_date[i];
+				ev.time = event_time[i];
+				ev.location = event_location[i];
+				ev.coordinatorName = event_coor[i];
+				ev.coordinatorPhoneNumber = event_coor_phone[i];
+				ev.miscInfo = event_misc_info[i];
+				con.Insert(ev);
+			}
+
       con.Close();
     }
 
