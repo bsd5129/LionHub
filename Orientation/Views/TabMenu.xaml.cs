@@ -20,21 +20,25 @@ namespace Orientation
 			setTheme();
 		}
 
-		public void pressMenuButton(string name)
+		public void pressMenuButton(string name, bool selected)
 		{
-			if (name.Equals ("Home")) {
+			if (!selected && name.Equals ("Home")) {
 				changeVisiblePage (new Home_Screen());
 			}
-			else if (name.Equals ("Services")) {
-				changeVisiblePage (new Service_Search_Screen());
+			else if (!selected && name.Equals ("Services")) {
+				changeVisiblePage (new Service_Search_Screen(null));
 			}
-			else if (name.Equals ("Favorites")) {
+      else if (selected && name.Equals("Services")) {
+        if (((Service_Search_Screen)Navigation.NavigationStack[Navigation.NavigationStack.Count-1]).getCategory() != null)
+          Navigation.PopAsync();
+      }
+			else if (!selected && name.Equals ("Favorites")) {
 				changeVisiblePage (new Favorites_Screen ());
 			}
-			else if (name.Equals ("Rooms")) {
+			else if (!selected && name.Equals ("Rooms")) {
 				changeVisiblePage (new Room_Search_Screen());
 			}
-			else if (name.Equals ("Scavenger")) {
+			else if (!selected && name.Equals ("Scavenger")) {
 				changeVisiblePage (new Scavenger_Hunt_Screen());
 			}
 		}

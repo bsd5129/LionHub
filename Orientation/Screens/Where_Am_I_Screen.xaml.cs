@@ -61,12 +61,13 @@ namespace Orientation
 
 			float dist = coordToMeters(curLat, curLon, nearestBuildingInfo.coordinatesLatitude, nearestBuildingInfo.coordinatesLongitude);
 
-			if (dist > 1600) {
+			if (dist > 400) {
 				await DisplayAlert("Too Far Away", "You are too far away from the PSU Harrisburg Campus", "Ok");
 				await ((NavigationPage)App.Current.MainPage).PopAsync();
 			} else {
 				await ((NavigationPage)App.Current.MainPage).PopAsync();
-				await ((NavigationPage)App.Current.MainPage).PushAsync(new Service_Search_Screen());
+				await ((NavigationPage)App.Current.MainPage).PushAsync(new Service_Search_Screen(null));
+        await ((NavigationPage)App.Current.MainPage).PushAsync(new Service_Search_Screen(nearestBuildingInfo.category));
 				await ((NavigationPage)App.Current.MainPage).PushAsync(new Service_Results_Screen(nearestBuildingInfo));
 			}
 		}

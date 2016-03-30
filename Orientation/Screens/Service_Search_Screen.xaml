@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Orientation.Service_Search_Screen" Title="Services">
 	<ContentPage.Content>
 		<StackLayout Orientation="Vertical">
-			<StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" Grid.Row="0" Grid.Column="0">
+			<StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" Grid.Row="0" Grid.Column="0">
 				<SearchBar x:Name="searchBar" Placeholder="Search" TextChanged="enterTextIntoSearchBar"></SearchBar>
 				<ListView x:Name="servicesList" RowHeight="40" ItemTapped="pressServiceListItem"></ListView>
 			</StackLayout>

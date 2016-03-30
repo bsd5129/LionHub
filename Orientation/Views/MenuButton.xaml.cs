@@ -17,12 +17,7 @@ namespace Orientation
 
 			TapGestureRecognizer tap = new TapGestureRecognizer { NumberOfTapsRequired = 1 };
 
-			tap.Tapped += (object sender, EventArgs e) => {
-				if (!buttonSelected)
-				{
-					parentMenu.pressMenuButton(name);
-				}
-			};
+			tap.Tapped += (object sender, EventArgs e) => { parentMenu.pressMenuButton(name, buttonSelected); };
 
 			GestureRecognizers.Add (tap);
 

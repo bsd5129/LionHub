@@ -7,16 +7,28 @@ namespace Orientation
 {
 	public partial class Service_Search_Screen : ContentPage
 	{
-		public Service_Search_Screen()
+    private string category;
+
+		public Service_Search_Screen(string category)
 		{
 			InitializeComponent();
 			NavigationPage.SetHasBackButton(this, false);
 			bottomLayout.Children.Add(new TabMenu(1));
 
+      this.category = category;
+
 			setTheme();
-			if (searchBar.Text == null || searchBar.Text.Length == 0)
-				queryListOfServices();
+
+      if (category == null) {
+        queryListOfCategories();
+      } else {
+        queryListOfServices();
+      }
 		}
+
+    public string getCategory() {
+      return category;
+    }
 
     public Service getServiceData(string name) {
       SQLiteConnection connection = DependencyService.Get<IDatabaseHandler>().getDBConnection();
@@ -29,7 +41,10 @@ namespace Orientation
     public void pressServiceListItem(Object sender, ItemTappedEventArgs args) {
 			if (args.Item != null)
 			{
-        Navigation.PushAsync(new Service_Results_Screen(getServiceData(args.Item.ToString())));
+        if (category != null || (searchBar.Text != null && searchBar.Text.Length > 0))
+          Navigation.PushAsync(new Service_Results_Screen(getServiceData(args.Item.ToString())));
+        else
+          Navigation.PushAsync(new Service_Search_Screen(args.Item.ToString()));
 			}
 		}
 
@@ -47,38 +62,54 @@ namespace Orientation
 		public void queryListOfServices()
 		{
 			SQLiteConnection connection = DependencyService.Get<IDatabaseHandler>().getDBConnection();
-      		var services = connection.Table<Service>().OrderBy(s => s.name);
+      var services = connection.Table<Service>().OrderBy(s => s.name);
 
 			List<string> names = new List<string>();
 			
-      		foreach (var service in services)
+      foreach (var service in services)
 			{
-				names.Add(service.name);
+        if (service.category.Equals(category))
+				  names.Add(service.name);
 			}
 			
-      		connection.Close();
-      		servicesList.ItemsSource = names;
+      connection.Close();
+      servicesList.ItemsSource = names;
 		}
+
+    public void queryListOfCategories() {
+      SQLiteConnection connection = DependencyService.Get<IDatabaseHandler>().getDBConnection();
+      var services = connection.Table<Service>().OrderBy(s => s.category);
+
+      List<string> categories = new List<string>();
+
+      foreach (var service in services) {
+        if (!categories.Contains(service.category))
+          categories.Add(service.category);
+      }
+
+      connection.Close();
+      servicesList.ItemsSource = categories;
+    }
 
 		public void queryFilteredListOfServices(String filter)
 		{
-     		 if (filter == null) {
-        		queryListOfServices();
-        	 	return;
-      		}
+      if (filter == null || filter.Length == 0) {
+        queryListOfServices();
+        return;
+      }
 
 			SQLiteConnection connection = DependencyService.Get<IDatabaseHandler>().getDBConnection();
-     		 var services = connection.Table<Service>().OrderBy(s => s.name);
+     	var services = connection.Table<Service>().OrderBy(s => s.name);
 
 			List<string> names = new List<string>();
 			
-      		foreach (var service in services)
+      foreach (var service in services)
 			{
-        		if(service.name.ToLower().Contains(filter.ToLower()))
+        if(service.name.ToLower().Contains(filter.ToLower()))
 					names.Add(service.name);
 			}
 
-      		connection.Close();
+      connection.Close();
 			servicesList.ItemsSource = names;
 		}
 

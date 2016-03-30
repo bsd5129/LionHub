@@ -31,6 +31,9 @@ namespace Orientation {
         "https://harrisburg.psu.edu/marketing-research-and-communications", "https://harrisburg.psu.edu/research", "https://harrisburg.psu.edu/campus-life-and-intercultural-affairs",
         "https://cms.psu.edu", "https://canvas.psu.edu", "https://lynda.com", "https://elion.psu.edu", "", "" };
 
+      string[] categories = { "Olmsted", "Olmsted", "Olmsted", "Olmsted", "Olmsted", "Olmsted", "Olmsted", "Olmsted",
+                              "Olmsted", "Olmsted", "Online", "Online", "Online", "Online", "Buildings", "Buildings"};
+
       for (int i = 0; i < names.Length; i++) {
         Service serv = new Service();
         serv.name = names[i];
@@ -40,6 +43,7 @@ namespace Orientation {
         serv.phoneNumber = phoneNumbers[i];
         serv.website = websites[i];
         serv.isFavorite = false;
+        serv.category = categories[i];
         con.Insert(serv);
       }
 

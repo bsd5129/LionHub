@@ -23,6 +23,9 @@ namespace Orientation {
     public string website { get; set; }
 
     public bool isFavorite { get; set; }
+
+    [MaxLength(32)]
+    public string category { get; set; }
   }
 }
 

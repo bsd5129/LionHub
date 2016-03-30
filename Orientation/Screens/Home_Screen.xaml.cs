@@ -55,7 +55,7 @@ namespace Orientation
 
 		public void pressServicesHomeListItem()
 		{
-			Navigation.PushAsync (new Service_Search_Screen());
+			Navigation.PushAsync (new Service_Search_Screen(null));
 		}
 
 		public void pressFavoritesHomeListItem()
