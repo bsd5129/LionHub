@@ -29,6 +29,8 @@ namespace Orientation {
 
     [MaxLength(4096)]
     public string miscInfo { get; set; }
+
+	public int month { get; set; }
   }
 }
 

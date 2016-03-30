@@ -68,6 +68,7 @@ namespace Orientation {
 
 			string[] event_misc_info = { "", "", "", "", "", "", "", "" };
 
+			int[] event_months = { 3, 3, 3, 4, 4, 4, 4, 4 };
 			for (int i = 0; i < event_names.Length; i++)
 			{
 				Event ev = new Event();
@@ -79,6 +80,7 @@ namespace Orientation {
 				ev.coordinatorName = event_coor[i];
 				ev.coordinatorPhoneNumber = event_coor_phone[i];
 				ev.miscInfo = event_misc_info[i];
+				ev.month = event_months[i];
 				con.Insert(ev);
 			}
 

@@ -28,6 +28,8 @@ namespace Orientation
 			event_picker.Items.Add("December 2016");
 
 			setTheme();
+
+			event_picker.SelectedIndexChanged += (sender, e) => queryListOfEvents(event_picker.SelectedIndex);
 		}
 
 		public void setTheme()
@@ -37,13 +39,15 @@ namespace Orientation
 			
 		}
 
+
+
 		public void prepareScreen()
 		{ }
 
 		public void selectMonth()
 		{ }
 
-		public void queryListOfEvents() 
+		public void queryListOfEvents(int month) 
 		{
 			SQLiteConnection connection = DependencyService.Get<IDatabaseHandler>().getDBConnection();
 			var events = connection.Table<Event>().OrderBy(e => e.name);
@@ -52,7 +56,8 @@ namespace Orientation
 
 			foreach (var evnt in events)
 			{
-				names.Add(evnt.name);
+				if(evnt.month == month)
+					names.Add(evnt.name);
 			}
 
 			connection.Close();
