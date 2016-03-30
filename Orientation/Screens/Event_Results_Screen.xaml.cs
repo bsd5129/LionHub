@@ -7,10 +7,21 @@ namespace Orientation
 {
 	public partial class Event_Results_Screen : ContentPage
 	{
-		public Event_Results_Screen ()
+		private Event eventObject;
+		public Event_Results_Screen (Event ev)
 		{
 			InitializeComponent ();
 			setTheme();
+
+			name.Text = ev.name;
+			description.Text = ev.description;
+			date.Text = ev.date;
+			time.Text = ev.time;
+			location.Text = ev.location;
+			coordinatorName.Text = ev.coordinatorName;
+			coordinatorPhone.Text = ev.coordinatorPhoneNumber;
+			miscInfo.Text = ev.miscInfo;
+
 		}
 
 		public void setTheme()
