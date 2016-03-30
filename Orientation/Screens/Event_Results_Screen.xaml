@@ -3,15 +3,38 @@
 	<ContentPage.Content>
 		<StackLayout >
 			<StackLayout VerticalOptions="Start" Padding="15, 30, 15, 0" Spacing="20">
-	            <Label x:Name="name" Text="Event Name: {Binding data}" FontSize="14"></Label>
-		        <Label x:Name="description" Text="Description: {Binding data}" FontSize="14"></Label>
-		        <Label x:Name="date" Text="Date: {Binding data}" FontSize="14"></Label>
-		        <Label x:Name="time" Text="Time: {Binding data}" FontSize="14"></Label>
-		        <Label x:Name="location" Text="Location: {Binding data}" FontSize="14"></Label>
-		        <Label x:Name="coordinatorName" Text="Coordinator Name: {Binding data}" FontSize="14"></Label>
-		        <Label x:Name="coordinatorPhone" Text="Coordinator Phone: {Binding data}" FontSize="14"></Label>
-		        <Label x:Name="miscInfo" Text="Misc. Info: {Binding data}" FontSize="14"></Label>
-		      
+	            <Grid RowSpacing="30" ColumnSpacing="15">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto"></RowDefinition>
+						<RowDefinition Height="Auto"></RowDefinition>
+						<RowDefinition Height="Auto"></RowDefinition>
+						<RowDefinition Height="Auto"></RowDefinition>
+						<RowDefinition Height="Auto"></RowDefinition>
+						<RowDefinition Height="Auto"></RowDefinition>
+						<RowDefinition Height="Auto"></RowDefinition>
+					</Grid.RowDefinitions>
+
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="Auto"></ColumnDefinition>
+						<ColumnDefinition Width="Auto"></ColumnDefinition>
+					</Grid.ColumnDefinitions>
+
+
+					<Label Grid.Row="0" Grid.Column="0" Text="Name:" FontSize="15" FontAttributes="Bold" HorizontalOptions="StartAndExpand"></Label>
+					<Label Grid.Row="0" Grid.Column="1" x:Name="name" FontSize="14" HorizontalOptions="StartAndExpand"></Label>
+					<Label Grid.Row="1" Grid.Column="0" Text="Description:" FontSize="15" FontAttributes="Bold" HorizontalOptions="StartAndExpand"></Label>
+					<Label Grid.Row="1" Grid.Column="1" x:Name="description" FontSize="14" HorizontalOptions="StartAndExpand"></Label>
+					<Label Grid.Row="2" Grid.Column="0" Text="Date:" FontSize="15" FontAttributes="Bold" HorizontalOptions="StartAndExpand"></Label>
+					<Label Grid.Row="2" Grid.Column="1" x:Name="date" FontSize="14" HorizontalOptions="StartAndExpand"></Label>
+					<Label Grid.Row="3" Grid.Column="0" Text="Time:" FontSize="15" FontAttributes="Bold" HorizontalOptions="StartAndExpand"></Label>
+					<Label Grid.Row="3" Grid.Column="1" x:Name="time" FontSize="14" HorizontalOptions="StartAndExpand"></Label>
+					<Label Grid.Row="4" Grid.Column="0" Text="Location:" FontSize="15" FontAttributes="Bold" HorizontalOptions="StartAndExpand"></Label>
+					<Label Grid.Row="4" Grid.Column="1" x:Name="location" FontSize="14" HorizontalOptions="StartAndExpand"></Label>
+					<Label Grid.Row="5" Grid.Column="0" x:Name="coordNameLabel" FontSize="15" FontAttributes="Bold" HorizontalOptions="StartAndExpand"></Label>
+					<Label Grid.Row="5" Grid.Column="1" x:Name="coordinatorName" FontSize="14" HorizontalOptions="StartAndExpand"></Label>
+					<Label Grid.Row="6" Grid.Column="0" x:Name="coordPhoneLabel" FontSize="15" FontAttributes="Bold" HorizontalOptions="StartAndExpand"></Label>
+					<Label Grid.Row="6" Grid.Column="1" x:Name="coordinatorPhone" FontSize="14" HorizontalOptions="StartAndExpand"></Label>
+				</Grid>
 		    </StackLayout>
             <StackLayout Orientation="Horizontal" VerticalOptions="End"></StackLayout>
         </StackLayout>

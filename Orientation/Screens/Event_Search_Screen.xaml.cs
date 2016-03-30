@@ -13,55 +13,93 @@ namespace Orientation
 			InitializeComponent ();
 			NavigationPage.SetHasNavigationBar (this, true);
 			event_picker.WidthRequest = (int)(0.8 * ((Orientation.App)App.Current).getScreenSize().Width);
-			event_picker.Title = "Choose Month";
-			event_picker.Items.Add("January 2016");
-			event_picker.Items.Add("Febuary 2016");
-			event_picker.Items.Add("March 2016");
-			event_picker.Items.Add("April 2016");
-			event_picker.Items.Add("May 2016");
-			event_picker.Items.Add("June 2016");
-			event_picker.Items.Add ("July 2016");
-			event_picker.Items.Add ("August 2016");
-			event_picker.Items.Add("September 2016");
-			event_picker.Items.Add("October 2016");
-			event_picker.Items.Add("November 2016");
-			event_picker.Items.Add("December 2016");
+
+      queryMonths();
 
 			setTheme();
 
-			event_picker.SelectedIndexChanged += (sender, e) => queryListOfEvents(event_picker.SelectedIndex);
+			event_picker.SelectedIndexChanged += (sender, e) => queryListOfEvents();
 		}
 
 		public void setTheme()
 		{
 			BackgroundColor = Theme.getBackgroundColor();
-			event_picker.BackgroundColor = Theme.getEntryColor ();
-			
+      event_picker.BackgroundColor = Theme.getEntryColor();
+      eventsList.BackgroundColor = Theme.getBackgroundColor();
 		}
 
+    public void queryMonths() {
+      SQLiteConnection connection = DependencyService.Get<IDatabaseHandler>().getDBConnection();
+      var events = connection.Table<Event>().OrderBy(e => e.name);
 
+      foreach (var e in events) {
+        string month = numberToMonth(int.Parse(e.date.Substring(0, 2))) + " " + e.date.Substring(6);
+
+        if (!event_picker.Items.Contains(month))
+          event_picker.Items.Add(month);
+      }
+
+      connection.Close();
+    }
+
+    public string numberToMonth(int month) {
+      switch (month) {
+        case 1:
+          return "January";
+        case 2:
+          return "February";
+        case 3:
+          return "March";
+        case 4:
+          return "April";
+        case 5:
+          return "May";
+        case 6:
+          return "June";
+        case 7:
+          return "July";
+        case 8:
+          return "August";
+        case 9:
+          return "September";
+        case 10:
+          return "October";
+        case 11:
+          return "November";
+        case 12:
+          return "December";
+      }
+
+      return "UNKNOWN";
+    }
 
 		public void prepareScreen()
-		{ }
+		{
+      
+    }
 
 		public void selectMonth()
-		{ }
+		{
+      
+    }
 
-		public void queryListOfEvents(int month) 
+		public void queryListOfEvents() 
 		{
 			SQLiteConnection connection = DependencyService.Get<IDatabaseHandler>().getDBConnection();
 			var events = connection.Table<Event>().OrderBy(e => e.name);
 
-			List<string> names = new List<string>();
+			List<string> eventNames = new List<string>();
 
-			foreach (var evnt in events)
+			foreach (var e in events)
 			{
-				if(evnt.month == month)
-					names.Add(evnt.name);
+        string month = numberToMonth(int.Parse(e.date.Substring(0, 2))) + " " + e.date.Substring(6);
+
+        if (event_picker.Items[event_picker.SelectedIndex].ToString().Equals(month))
+				  eventNames.Add(e.name);
 			}
 
 			connection.Close();
-			eventsList.ItemsSource = names;			
+			eventsList.ItemsSource = eventNames;			
 		}
 
 		public void pressEventListItem(Object sender, ItemTappedEventArgs args)

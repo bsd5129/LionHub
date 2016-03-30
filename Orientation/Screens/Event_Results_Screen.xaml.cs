@@ -7,7 +7,6 @@ namespace Orientation
 {
 	public partial class Event_Results_Screen : ContentPage
 	{
-		private Event eventObject;
 		public Event_Results_Screen (Event ev)
 		{
 			InitializeComponent ();
@@ -18,10 +17,12 @@ namespace Orientation
 			date.Text = ev.date;
 			time.Text = ev.time;
 			location.Text = ev.location;
+
+      coordNameLabel.Text = "Coordinator\nName:";
+      coordPhoneLabel.Text = "Coordinator\nPhone:";
+
 			coordinatorName.Text = ev.coordinatorName;
 			coordinatorPhone.Text = ev.coordinatorPhoneNumber;
-			miscInfo.Text = ev.miscInfo;
-
 		}
 
 		public void setTheme()
@@ -34,7 +35,6 @@ namespace Orientation
 			location.TextColor = Theme.getTextColor();
 			coordinatorName.TextColor = Theme.getTextColor();
 			coordinatorPhone.TextColor = Theme.getTextColor();
-			miscInfo.TextColor = Theme.getTextColor();
 		}
 	}
 }

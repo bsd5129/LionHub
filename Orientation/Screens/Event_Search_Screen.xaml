@@ -3,9 +3,9 @@
 	<ContentPage.Content>
 	 <StackLayout>
 		 	 <StackLayout Orientation="Horizontal" Padding="15, 15, 15, 0">
-					<Picker x:Name = "event_picker" HorizontalOptions="CenterAndExpand"/>
+					<Picker x:Name = "event_picker" Title="Choose a Month" HorizontalOptions="CenterAndExpand"/>
 			 </StackLayout>
-			<StackLayout Orientation="Horizontal" Padding="15, 15, 15, 0">
+			<StackLayout Orientation="Vertical" Padding="15, 15, 15, 0">
 				<ListView x:Name="eventsList" RowHeight="40" ItemTapped="pressEventListItem"></ListView>
 			</StackLayout>
 		</StackLayout>

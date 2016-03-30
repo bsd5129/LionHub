@@ -26,11 +26,6 @@ namespace Orientation {
 
     [MaxLength(16)]
     public string coordinatorPhoneNumber { get; set; }
-
-    [MaxLength(4096)]
-    public string miscInfo { get; set; }
-
-	public int month { get; set; }
   }
 }
 

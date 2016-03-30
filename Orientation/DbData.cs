@@ -56,19 +56,16 @@ namespace Orientation {
 			string[] event_descriptions = { "Spring Forum & Networking Event","Sponsored by the Army Community Service Employment Readiness Program","A Day in the Life Career Panel","",
 											"Presented by PAC","The Definition of Anti-Semitism","Presented by PAC","Spring 2016"};
 
-			string[] event_date = {"3/30/16","3/30/16","3/31/16","4/8/16","4/9/16","4/12/16","4/16/16","4/29/16" };
+			string[] event_date = {"03/30/2016","03/30/2016","03/31/2016","04/08/2016","04/09/2016","04/12/2016","04/16/2016","04/29/2016" };
 
 			string[] event_time = { "5:00 pm - 7:00 pm","10:00 am - 2:00 pm","11:15 am - 12:45 pm","All Day","7:00 pm - 9:00 pm","7:00 pm - 9:00 pm","8:00 pm - 11:59 pm","All Day" };
 
 			string[] event_location = { "Morrison Gallery","Carlisle Expo Center","C211, Olmsted Building","","Stacks Market Stage","Morrison Gallery","Gymnasium, Capital Union Building","" };
 
-			string[] event_coor = {"","","Dr. Roderick Lee","","","","",""};
+			string[] event_coor = {"N/A","N/A","Dr. Roderick Lee","N/A","N/A","N/A","N/A","N/A"};
 
-			string[] event_coor_phone = { "", "", "", "", "", "", "", "" };
+			string[] event_coor_phone = { "N/A", "N/A", "N/A", "N/A", "N/A", "N/A", "N/A", "N/A" };
 
-			string[] event_misc_info = { "", "", "", "", "", "", "", "" };
-
-			int[] event_months = { 3, 3, 3, 4, 4, 4, 4, 4 };
 			for (int i = 0; i < event_names.Length; i++)
 			{
 				Event ev = new Event();
@@ -79,8 +76,6 @@ namespace Orientation {
 				ev.location = event_location[i];
 				ev.coordinatorName = event_coor[i];
 				ev.coordinatorPhoneNumber = event_coor_phone[i];
-				ev.miscInfo = event_misc_info[i];
-				ev.month = event_months[i];
 				con.Insert(ev);
 			}
 
