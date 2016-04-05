@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using SQLite.Net;
-
+using Xamarin.Forms;
 namespace Orientation
 {
 	public partial class Scavenger_Hunt_Screen : ContentPage
@@ -22,7 +22,7 @@ namespace Orientation
 		public void setTheme()
 		{
 			BackgroundColor = Theme.getBackgroundColor();
-			clue.TextColor = Theme.getTextColor();
+			hint.TextColor = Theme.getTextColor();
 			solution.BackgroundColor = Theme.getEntryColor();
 			solution.PlaceholderColor = Theme.getEntryPlaceholderColor();
 		}

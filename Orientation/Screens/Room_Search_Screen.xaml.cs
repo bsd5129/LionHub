@@ -6,19 +6,20 @@ using Xamarin.Forms;
 
 namespace Orientation {
   public partial class Room_Search_Screen : ContentPage {
-    public Room_Search_Screen() {
-      InitializeComponent();
-      NavigationPage.SetHasBackButton(this, false);
-      NavigationPage.SetBackButtonTitle(this, "Search");
-      bottomLayout.Children.Add(new TabMenu(3));
+		public Room_Search_Screen()
+		{
+			InitializeComponent();
+			NavigationPage.SetHasBackButton(this, false);
+			NavigationPage.SetBackButtonTitle(this, "Search");
+			bottomLayout.Children.Add(new TabMenu(3));
 
-      roomNumber.WidthRequest = (int)(0.8 * ((Orientation.App)App.Current).getScreenSize().Width);
-      buildingName.WidthRequest = (int)(0.8 * ((Orientation.App)App.Current).getScreenSize().Width);
+			roomNumber.WidthRequest = (int)(0.8 * ((Orientation.App)App.Current).getScreenSize().Width);
+			buildingName.WidthRequest = (int)(0.8 * ((Orientation.App)App.Current).getScreenSize().Width);
 
-      queryBuildings();
+			queryBuildings();
 
-      setTheme();
-    }
+			setTheme();
+		}
 
     public void setTheme() {
       stackLayout.BackgroundColor = Theme.getBackgroundColor();
@@ -44,7 +45,9 @@ namespace Orientation {
       var rooms = con.Table<Room>();
 
       String building = buildingName.Items[buildingName.SelectedIndex];
-      String number = roomNumber.Text.ToUpper().Replace("-", "").Replace(" ", "");
+ 	  String number = roomNumber.Text;
+	  if(number != null)
+		number.ToUpper().Replace("-", "").Replace(" ", "");
       Room room = null;
 
       foreach (Room r in rooms) {
