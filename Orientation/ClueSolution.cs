@@ -7,8 +7,9 @@ namespace Orientation {
   public class ClueSolution {
     [PrimaryKey, AutoIncrement, Column("_id")]
     public int id { get; set; }
-
-    [MaxLength(16)]
+	public bool solved { get; set;}
+    
+	[MaxLength(16)]
     public string solutionType { get; set; }
 
     [MaxLength(64)]

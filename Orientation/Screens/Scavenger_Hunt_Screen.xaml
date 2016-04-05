@@ -3,7 +3,7 @@
 	<ContentPage.Content>
 		<StackLayout>
 			<Image Source="psuLogo.png" />
-			<Label x:Name="clue" Text="Clue: {Binding Data}" FontSize="14" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" ></Label>
+			<Label x:Name="hint" FontSize="14" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" ></Label>
 			
 			<Entry x:Name="solution" Placeholder="Enter Solution" Keyboard="Text" HorizontalOptions="Center"></Entry>
 			<Grid VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
@@ -14,8 +14,8 @@
 					<ColumnDefinition Width="*" />
 					<ColumnDefinition Width="*" />
 				</Grid.ColumnDefinitions>
-				<Button Text="Extra Hint" Grid.Row="0" Grid.Column="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-				<Button Text="Check Solution" Grid.Row="0" Grid.Column="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+				<Button x:Name="hintButton" Text="Extra Hint" Grid.Row="0" Grid.Column="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+				<Button x:Name="checkSolutionButton" Text="Check Solution" Grid.Row="0" Grid.Column="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Clicked="checkSolutionTapped"/>
 			</Grid>
 
 			<!-- FOR THE TAB MENU -->
