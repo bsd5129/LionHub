@@ -43,12 +43,16 @@ namespace Orientation {
     public void pressSearchButton(object sender, EventArgs args) {
       SQLiteConnection con = DependencyService.Get<IDatabaseHandler>().getDBConnection();
       var rooms = con.Table<Room>();
-
-      String building = buildingName.Items[buildingName.SelectedIndex];
- 	  String number = roomNumber.Text;
+	  String building = "";
+	  
+	  if(buildingName.SelectedIndex > -1)
+	  	building = buildingName.Items[buildingName.SelectedIndex];
+ 	  
+	  String number = roomNumber.Text;
 	  if(number != null)
 		number.ToUpper().Replace("-", "").Replace(" ", "");
-      Room room = null;
+      
+	  Room room = null;
 
       foreach (Room r in rooms) {
         if (r.buildingName.Equals(building) && r.roomNumber.Equals(number)) {
