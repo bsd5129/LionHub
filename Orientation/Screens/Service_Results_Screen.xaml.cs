@@ -62,7 +62,7 @@ namespace Orientation
 
 		public void setTheme()
 		{
-			//BackgroundColor = Theme.getBackgroundColor();
+			BackgroundColor = Theme.getBackgroundColor();
 			name.TextColor = Theme.getTextColor();
 			description.TextColor = Theme.getTextColor();
 			coordinates.TextColor = Theme.getTextColor();
