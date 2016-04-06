@@ -6,8 +6,8 @@ namespace Orientation
 {
 	public partial class Scavenger_Hunt_Screen : ContentPage
 	{
-		private ClueSolution currentClue;
-		private ClueDescription lastDescription;
+		private Solution currentClue;
+		private Hint lastDescription;
 
 		public Scavenger_Hunt_Screen()
 		{
@@ -27,45 +27,42 @@ namespace Orientation
 			solution.PlaceholderColor = Theme.getEntryPlaceholderColor();
 		}
 
-		public Service getServiceData(string name)
-		{
-			SQLiteConnection connection = DependencyService.Get<IDatabaseHandler>().getDBConnection();
-			TableQuery<Service> query = from s in connection.Table<Service>() where s.name.Equals(name) select s;
-			Service service = query.FirstOrDefault();
-			connection.Close();
-			return service;
-		}
-
 		public void queryClues()
 		{
 			SQLiteConnection connection = DependencyService.Get<IDatabaseHandler>().getDBConnection();
-			var clues = connection.Table<ClueSolution>().OrderBy(s => (s.solved == false));
+			var clues = connection.Table<Solution>().OrderBy(s => s.solved).Where(s => s.solved == false);
+		
 			currentClue = clues.First();
 			if (currentClue.solved == false)
 			{
 				resetClues();
 			}
-
+			
 			connection.Close();
 		}
 
-		public void checkSolutionTapped()
+		public void checkSolutionTapped(object sender, EventArgs args)
 		{
 			String sol = solution.Text;
 			if (sol.Equals(currentClue))
 			{
-
+				hint.Text = "Wrong Answer";
 			}
 			else
 			{
-
+				SQLiteConnection connection = DependencyService.Get<IDatabaseHandler>().getDBConnection();
+				var put = connection.Table<Solution>().Where(s => (s.id == currentClue.id));
+				hint.Text = "Correct Answer";
+				var changeSolved = put.First();
+				changeSolved.solved = true;
+				connection.Close();
 			}
 		}
 
-		public void showHint()
+		public void showHint(object sender, EventArgs args)
 		{
 			SQLiteConnection connection = DependencyService.Get<IDatabaseHandler>().getDBConnection();
-			var descs = connection.Table<ClueDescription>();
+			var descs = connection.Table<Hint>();
 
 			foreach (var desc in descs)
 			{
@@ -77,14 +74,14 @@ namespace Orientation
 			}
 
 			connection.Close();
-			hint.Text = lastDescription.description;
+			hint.Text = lastDescription.description.ToString();
 		}
 
 
 		public void resetClues()
 		{
 			SQLiteConnection connection = DependencyService.Get<IDatabaseHandler>().getDBConnection();
-			var reset = connection.Table<ClueSolution>();
+			var reset = connection.Table<Solution>();
 			foreach (var r in reset)
 			{
 				r.solved = false;
