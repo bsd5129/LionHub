@@ -95,7 +95,7 @@ namespace Orientation
 			((Orientation.App)App.Current).setMainPage(page);
 		}
 
-		public async void pressPhoneNumber()
+		public async void pressOnServicePhoneNumber()
 		{
       		if (await DisplayAlert("Call Number?", "Would you like to dial this number?", "Yes", "No"))
             DependencyService.Get<IDialer>().dial(phoneNumber.Text.Replace("-", ""));
@@ -113,7 +113,7 @@ namespace Orientation
 			}
 		}
 
-    public void pressWebsite() {
+    public void pressOnServiceWebsiteURL() {
       Device.OpenUri(new Uri(website.Text));
     }
 	}
