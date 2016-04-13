@@ -7,7 +7,7 @@ namespace Orientation
 {
 	public partial class Favorites_Screen : ContentPage
 	{
-    List<ServiceCell> favorites;
+    List<FavoriteCell> favorites;
 
     public Favorites_Screen()
 		{
@@ -26,7 +26,7 @@ namespace Orientation
 
 		public void queryFavorites()
 		{
-      favorites = new List<ServiceCell>();
+      favorites = new List<FavoriteCell>();
 
 			SQLiteConnection connection = DependencyService.Get<IDatabaseHandler>().getDBConnection();
 			var services = connection.Table<Service>().OrderBy(s => s.name);
@@ -34,7 +34,7 @@ namespace Orientation
 			foreach (var service in services)
 			{
 				if (service.isFavorite)
-          favorites.Add(new ServiceCell(service));
+          favorites.Add(new FavoriteCell(service));
 			}
 
       connection.Close();
@@ -53,15 +53,15 @@ namespace Orientation
     public void pressFavoriteListItem(Object sender, ItemTappedEventArgs args) {
       if (args.Item != null) {
         favoritesList.SelectedItem = null;
-        Navigation.PushAsync(new Service_Results_Screen(((ServiceCell)args.Item).service));
+        Navigation.PushAsync(new Service_Results_Screen(((FavoriteCell)args.Item).service));
       }
     }
 
-    public async void OnDelete(object sender, EventArgs e) {
+    public async void pressDelete(object sender, EventArgs e) {
       MenuItem button = (MenuItem)sender;
-      ServiceCell favorite = null;
+      FavoriteCell favorite = null;
 
-      foreach (ServiceCell cell in favorites)
+      foreach (FavoriteCell cell in favorites)
         if (cell.Title.Equals(button.CommandParameter))
           favorite = cell;
 
