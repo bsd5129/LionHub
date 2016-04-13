@@ -164,13 +164,10 @@ namespace Orientation
 
 		public void pressEventListItem(Object sender, ItemTappedEventArgs args)
 		{
-      //DisplayAlert("ALERT", ((EventCell)args.Item).evnt.link, "Close");
-      
-			if (args.Item != null)
+      if (args.Item != null)
 			{
-        Navigation.PushAsync(new Event_Web_Screen(((EventCell)args.Item).evnt.name, ((EventCell)args.Item).evnt.link));
-        //Device.OpenUri(new Uri(((EventCell)args.Item).evnt.link));
-			}
+        Navigation.PushAsync(new Web_Screen(((EventCell)args.Item).evnt.name, ((EventCell)args.Item).evnt.link));
+      }
 		}
 
 		public void showErrorMessage()

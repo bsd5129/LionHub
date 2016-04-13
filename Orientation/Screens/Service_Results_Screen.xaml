@@ -2,14 +2,13 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Orientation.Service_Results_Screen" Title="Service Results">
 	<ContentPage.Content>
 		<StackLayout>
-			<StackLayout VerticalOptions="Start" Padding="15, 30, 15, 0" Spacing="20">
-				<Grid RowSpacing="15">
+			<StackLayout VerticalOptions="StartAndExpand" Padding="15, 30, 15, 0">
+				<Grid RowSpacing="15" VerticalOptions="FillAndExpand">
 					<Grid.RowDefinitions>
-						<RowDefinition Height="Auto"></RowDefinition>
-						<RowDefinition Height="Auto"></RowDefinition>
-						<RowDefinition Height="Auto"></RowDefinition>
-						<RowDefinition Height="Auto"></RowDefinition>
-						<RowDefinition Height="Auto"></RowDefinition>
+						<RowDefinition Height="2*"></RowDefinition>
+						<RowDefinition Height="2*"></RowDefinition>
+						<RowDefinition Height="2*"></RowDefinition>
+						<RowDefinition Height="19*"></RowDefinition>
 					</Grid.RowDefinitions>
 
 					<Grid.ColumnDefinitions>
@@ -17,23 +16,20 @@
 						<ColumnDefinition Width="Auto"></ColumnDefinition>
 					</Grid.ColumnDefinitions>
 
-				
 					<Label Grid.Row="0" Grid.Column="0" Text="Name:" FontSize="15" FontAttributes="Bold" HorizontalOptions="StartAndExpand"></Label>
 					<Label Grid.Row="0" Grid.Column="1" x:Name="name" FontSize="14" HorizontalOptions="StartAndExpand"></Label>
-					<Label Grid.Row="1" Grid.Column="0" Text="Description:" FontSize="15" FontAttributes="Bold" HorizontalOptions="StartAndExpand"></Label>
-					<Label Grid.Row="1" Grid.Column="1" x:Name="description" FontSize="14" HorizontalOptions="StartAndExpand"></Label>
-					<Label Grid.Row="2" Grid.Column="0" Text="Coordinates:" FontSize="15" FontAttributes="Bold" HorizontalOptions="StartAndExpand"></Label>
-					<Label Grid.Row="2" Grid.Column="1" x:Name="coordinates" FontSize="14" HorizontalOptions="StartAndExpand"></Label>
-					<Label Grid.Row="3" Grid.Column="0" Text="Phone:" FontSize="15" FontAttributes="Bold" HorizontalOptions="StartAndExpand"></Label>
-					<Label Grid.Row="3" Grid.Column="1" x:Name="phoneNumber" FontSize="14" TextColor="#0000EE" HorizontalOptions="StartAndExpand"></Label>
-					<Label Grid.Row="4" Grid.Column="0" Text="Website:" FontSize="15" FontAttributes="Bold" HorizontalOptions="StartAndExpand"></Label>
-					<Label Grid.Row="4" Grid.Column="1" x:Name="website" FontSize="14" TextColor="#0000EE" HorizontalOptions="StartAndExpand"></Label>
+					<Label Grid.Row="1" Grid.Column="0" Text="Phone:" FontSize="15" FontAttributes="Bold" HorizontalOptions="StartAndExpand"></Label>
+					<Label Grid.Row="1" Grid.Column="1" x:Name="phoneNumber" FontSize="14" TextColor="#0000EE" HorizontalOptions="StartAndExpand"></Label>
+					<Label Grid.Row="2" Grid.Column="0" Text="Website:" FontSize="15" FontAttributes="Bold" HorizontalOptions="StartAndExpand"></Label>
+					<Label Grid.Row="2" Grid.Column="1" x:Name="website" FontSize="14" TextColor="#0000EE" HorizontalOptions="StartAndExpand"></Label>
+					<Label Grid.Row="3" Grid.Column="0" Text="Description:" FontSize="15" FontAttributes="Bold" HorizontalOptions="StartAndExpand"></Label>
+					<ScrollView Grid.Row="3" Grid.Column="1" VerticalOptions="FillAndExpand"><Label x:Name="description" FontSize="14" HorizontalOptions="StartAndExpand"></Label></ScrollView>
 				</Grid>
 		    </StackLayout>
 
-            <StackLayout x:Name="buttons" VerticalOptions="CenterAndExpand">
-            	<Button x:Name = "favoritesButton" Text="Add To Favorite" Clicked="pressAddToFavoritesButton"></Button>
-            	<Button x:Name = "takeMeThereButton" Text="Take Me There" Clicked="pressTakeMeThere"></Button>
+            <StackLayout x:Name="buttons" VerticalOptions="End" Padding="0,20,0,20" Spacing="0">
+            	<Button x:Name="favoritesButton" Text="Add To Favorite" Clicked="pressAddToFavoritesButton"></Button>
+            	<Button x:Name="takeMeThereButton" Text="Take Me There" Clicked="pressTakeMeThere"></Button>
             </StackLayout>
         </StackLayout>
 	
