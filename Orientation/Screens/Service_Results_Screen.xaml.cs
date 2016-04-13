@@ -33,7 +33,7 @@ namespace Orientation
         //Make the phoneNumber label clickable
         var phoneNumber_tap = new TapGestureRecognizer();
         phoneNumber_tap.Tapped += (sender, eventArgs) => {
-          pressPhoneNumber();
+          pressOnServicePhoneNumber();
         };
         phoneNumber.GestureRecognizers.Add(phoneNumber_tap);
       }
@@ -46,7 +46,7 @@ namespace Orientation
         //Make the website label clickable
         var website_tap = new TapGestureRecognizer();
         website_tap.Tapped += (sender, eventArgs) => {
-          pressWebsite();
+          pressOnServiceWebsiteURL();
         };
         website.GestureRecognizers.Add(website_tap);
       }
