@@ -2,7 +2,10 @@ using System;
 using System.Collections.Generic;
 using SQLite.Net;
 using Xamarin.Forms;
-
+using HtmlAgilityPack;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using System.Net.Http;
 
 namespace Orientation
 {
@@ -12,13 +15,26 @@ namespace Orientation
 		{
 			InitializeComponent ();
 			NavigationPage.SetHasNavigationBar (this, true);
+      NavigationPage.SetBackButtonTitle(this, "Back");
 			event_picker.WidthRequest = (int)(0.8 * ((Orientation.App)App.Current).getScreenSize().Width);
 
-      queryMonths();
+      updateData();
 
 			setTheme();
 
 			event_picker.SelectedIndexChanged += (sender, e) => queryListOfEvents();
+
+      string now = numberToMonth(DateTime.Now.Month) + " " + DateTime.Now.Year;
+
+      for (int i = 0; i < event_picker.Items.Count; i++) {
+        if (event_picker.Items[i].Equals(now)) {
+          event_picker.SelectedIndex = i;
+          break;
+        }
+      }
+
+      if (event_picker.SelectedIndex == -1 && event_picker.Items.Count > 0)
+        event_picker.SelectedIndex = 0;
 		}
 
 		public void setTheme()
@@ -28,46 +44,92 @@ namespace Orientation
       eventsList.BackgroundColor = Theme.getBackgroundColor();
 		}
 
-    public void queryMonths() {
+    public void updateData() {
       SQLiteConnection connection = DependencyService.Get<IDatabaseHandler>().getDBConnection();
-      var events = connection.Table<Event>().OrderBy(e => e.name);
+      Info cacheInfo = connection.Table<Info>().Where(i => i.key.Equals("eventCacheTime")).FirstOrDefault();
+      long lastCacheTime = cacheInfo.value;
+      long currentTime = (long)(DateTime.Now - new DateTime(1970, 1, 1)).TotalMilliseconds;
 
-      foreach (var e in events) {
-        string month = numberToMonth(int.Parse(e.date.Substring(0, 2))) + " " + e.date.Substring(6);
+      if (currentTime - lastCacheTime > 1000 * 60 * 60 * 24) {
 
-        if (!event_picker.Items.Contains(month))
-          event_picker.Items.Add(month);
+        string html;
+
+        Task<string> task = new HttpClient().GetStringAsync(new Uri("http://harrisburg.psu.edu/calendar"));
+        task.Wait();
+        html = task.Result;
+
+        for (int i = 1; i < 9; i++) {
+          Task<string> task2 = new HttpClient().GetStringAsync(new Uri("http://harrisburg.psu.edu/calendar?page=" + i));
+          task2.Wait();
+          html += task2.Result;
+        }
+
+        string regex = @"views-row-\d.*?<span class=""date-display-start""><span>(\w{3})\s(\d{4}).*?<\/time>\s*(<span class=""separator"">.*?<div class=""clr""><\/div>|<div class=""clr""><\/div>)<\/span>.*?<span class=""field-content""><a href=""([\/\w\d\-]*)"">(.*?)<\/a><\/span>";
+
+        List<Event> events = new List<Event>();
+        MatchCollection matches = Regex.Matches(html, regex, RegexOptions.Singleline);
+
+        foreach (Match m in matches) {
+          Event e = new Event(System.Net.WebUtility.HtmlDecode(m.Groups[5].Value), m.Groups[1].Value, m.Groups[2].Value, "http://harrisburg.psu.edu" + m.Groups[4].Value);
+
+          if (!events.Contains(e))
+            events.Add(e);
+        }
+
+        connection.BeginTransaction();
+        connection.DeleteAll<Event>();
+
+        foreach (Event e in events) {
+          connection.Insert(e);
+        }
+
+        cacheInfo.value = currentTime; //Not entirely accurate, but will work alright
+        connection.Update(cacheInfo);
+        connection.Commit();
+        connection.Close();
+        updateData();
+
+      } else {
+
+        var eventEntries = connection.Table<Event>();
+
+        foreach (var e in eventEntries) {
+          string month = e.month + " " + e.year;
+
+          if (!event_picker.Items.Contains(month))
+            event_picker.Items.Add(month);
+        }
+
+        connection.Close();
       }
-
-      connection.Close();
     }
 
     public string numberToMonth(int month) {
       switch (month) {
         case 1:
-          return "January";
+          return "Jan";
         case 2:
-          return "February";
+          return "Feb";
         case 3:
-          return "March";
+          return "Mar";
         case 4:
-          return "April";
+          return "Apr";
         case 5:
           return "May";
         case 6:
-          return "June";
+          return "Jun";
         case 7:
-          return "July";
+          return "Jul";
         case 8:
-          return "August";
+          return "Aug";
         case 9:
-          return "September";
+          return "Sep";
         case 10:
-          return "October";
+          return "Oct";
         case 11:
-          return "November";
+          return "Nov";
         case 12:
-          return "December";
+          return "Dec";
       }
 
       return "UNKNOWN";
@@ -86,16 +148,14 @@ namespace Orientation
 		public void queryListOfEvents() 
 		{
 			SQLiteConnection connection = DependencyService.Get<IDatabaseHandler>().getDBConnection();
-			var events = connection.Table<Event>().OrderBy(e => e.name);
+      var events = connection.Table<Event>().OrderBy(e => e.name);
 
-			List<string> eventNames = new List<string>();
+			List<EventCell> eventNames = new List<EventCell>();
 
 			foreach (var e in events)
 			{
-        string month = numberToMonth(int.Parse(e.date.Substring(0, 2))) + " " + e.date.Substring(6);
-
-        if (event_picker.Items[event_picker.SelectedIndex].ToString().Equals(month))
-				  eventNames.Add(e.name);
+        if (event_picker.Items[event_picker.SelectedIndex].Equals(e.month + " " + e.year))
+          eventNames.Add(new EventCell(e));
 			}
 
 			connection.Close();
@@ -104,19 +164,13 @@ namespace Orientation
 
 		public void pressEventListItem(Object sender, ItemTappedEventArgs args)
 		{
+      //DisplayAlert("ALERT", ((EventCell)args.Item).evnt.link, "Close");
+      
 			if (args.Item != null)
 			{
-				Navigation.PushAsync(new Event_Results_Screen(queryEventData(args.Item.ToString())));
+        Navigation.PushAsync(new Event_Web_Screen(((EventCell)args.Item).evnt.name, ((EventCell)args.Item).evnt.link));
+        //Device.OpenUri(new Uri(((EventCell)args.Item).evnt.link));
 			}
-		}
-
-		public Event queryEventData(String name)
-		{
-			SQLiteConnection connection = DependencyService.Get<IDatabaseHandler>().getDBConnection();
-			TableQuery<Event> query = from e in connection.Table<Event>() where e.name.Equals(name) select e;
-			Event ev = query.FirstOrDefault();
-			connection.Close();
-			return ev;
 		}
 
 		public void showErrorMessage()

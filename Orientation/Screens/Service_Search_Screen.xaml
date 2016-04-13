@@ -4,7 +4,24 @@
 		<StackLayout Orientation="Vertical">
 			<StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" Grid.Row="0" Grid.Column="0">
 				<SearchBar x:Name="searchBar" Placeholder="Search" TextChanged="enterTextIntoSearchBar"></SearchBar>
-				<ListView x:Name="servicesList" RowHeight="40" ItemTapped="pressServiceListItem"></ListView>
+				<ListView x:Name="servicesList" ItemTapped="pressServiceListItem" HasUnevenRows="true">
+					<ListView.ItemTemplate>
+                    	<DataTemplate>
+                        	<ViewCell>
+								<Grid Padding="15,8,0,8" MinimumHeightRequest="40">
+									<Grid.RowDefinitions><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="18*"/>
+										<ColumnDefinition Width="2*"/>
+									</Grid.ColumnDefinitions>
+
+									<Label Grid.Row="0" Grid.Column="0" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Text="{Binding Title}" LineBreakMode="WordWrap" />
+									<Label Grid.Row="0" Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="End" FontSize="24" Text=">" />
+								</Grid>
+             				</ViewCell>
+          				</DataTemplate>
+					</ListView.ItemTemplate>
+				</ListView>
 			</StackLayout>
 
 			<StackLayout x:Name="bottomLayout" Orientation="Vertical" VerticalOptions="End"></StackLayout>

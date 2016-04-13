@@ -5,8 +5,25 @@
 		 	 <StackLayout Orientation="Horizontal" Padding="15, 15, 15, 0">
 					<Picker x:Name = "event_picker" Title="Choose a Month" HorizontalOptions="CenterAndExpand"/>
 			 </StackLayout>
-			<StackLayout Orientation="Vertical" Padding="15, 15, 15, 0">
-				<ListView x:Name="eventsList" RowHeight="40" ItemTapped="pressEventListItem"></ListView>
+			<StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" Padding="15, 15, 15, 0">
+				<ListView x:Name="eventsList" ItemTapped="pressEventListItem" HasUnevenRows="true">
+					<ListView.ItemTemplate>
+                    	<DataTemplate>
+                        	<ViewCell>
+								<Grid Padding="15,8,0,8" MinimumHeightRequest="40">
+									<Grid.RowDefinitions><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="18*"/>
+										<ColumnDefinition Width="2*"/>
+									</Grid.ColumnDefinitions>
+
+									<Label Grid.Row="0" Grid.Column="0" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Text="{Binding Title}" LineBreakMode="WordWrap" />
+									<Label Grid.Row="0" Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="End" FontSize="24" Text=">" />
+								</Grid>
+             				</ViewCell>
+          				</DataTemplate>
+					</ListView.ItemTemplate>
+				</ListView>
 			</StackLayout>
 		</StackLayout>
 	</ContentPage.Content>

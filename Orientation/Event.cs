@@ -5,27 +5,60 @@ namespace Orientation {
   public class Event {
     [PrimaryKey, AutoIncrement, Column("_id")]
     public int id { get; set; }
-
-    [MaxLength(128)]
     public string name { get; set; }
+    public string link { get; set; }
+    public string month { get; set; }
+    public string year { get; set; }
 
-    [MaxLength(4096)]
-    public string description { get; set; }
+    public Event() {
 
-    [MaxLength(128)]
-    public string date { get; set; }
+    }
 
-    [MaxLength(128)]
-    public string time { get; set; }
+    public Event(string name, string month, string year, string link) {
+      this.name = name;
+      this.link = link;
+      this.month = month;
+      this.year = year;
+    }
 
-    [MaxLength(128)]
-    public string location { get; set; }
+    public bool occursIn(int month) {
+      return month == monthToNumber(this.month);
+    }
 
-    [MaxLength(64)]
-    public string coordinatorName { get; set; }
+    private int monthToNumber(string month) {
+      switch (month.ToLower()) {
+        case "jan":
+          return 1;
+        case "feb":
+          return 2;
+        case "mar":
+          return 3;
+        case "apr":
+          return 4;
+        case "may":
+          return 5;
+        case "jun":
+          return 6;
+        case "jul":
+          return 7;
+        case "aug":
+          return 8;
+        case "sep":
+          return 9;
+        case "oct":
+          return 10;
+        case "nov":
+          return 11;
+        case "dec":
+          return 12;
+      }
 
-    [MaxLength(16)]
-    public string coordinatorPhoneNumber { get; set; }
+      return -1;
+    }
+
+    public override bool Equals(object obj) {
+      return obj is Event && ((Event)obj).name.Equals(name);
+    }
   }
 }
 

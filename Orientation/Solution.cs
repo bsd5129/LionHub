@@ -3,14 +3,15 @@ using System.IO;
 using Xamarin.Forms;
 using SQLite.Net.Attributes;
 namespace Orientation {
-  [Table("ClueSolutions")]
-  public class ClueSolution {
+  [Table("Solutions")]
+  public class Solution {
     [PrimaryKey, AutoIncrement, Column("_id")]
     public int id { get; set; }
-	public bool solved { get; set;}
+	  
+    public bool solved { get; set;}
     
-	[MaxLength(16)]
-    public string solutionType { get; set; }
+	  [MaxLength(16)]
+    public string type { get; set; }
 
     [MaxLength(64)]
     public string solution { get; set; }

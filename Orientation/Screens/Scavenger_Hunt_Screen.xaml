@@ -5,7 +5,7 @@
 			<Image Source="psuLogo.png" />
 			<Label x:Name="hint" FontSize="14" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" ></Label>
 			
-			<Entry x:Name="solution" Placeholder="Enter Solution" Keyboard="Text" HorizontalOptions="Center"></Entry>
+			<Entry x:Name="solution" Placeholder="Enter Solution" Keyboard="Text" HorizontalOptions="Center" VerticalOptions="StartAndExpand"></Entry>
 			<Grid VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
 				<Grid.RowDefinitions>
 					<RowDefinition Height="Auto" />
@@ -14,7 +14,7 @@
 					<ColumnDefinition Width="*" />
 					<ColumnDefinition Width="*" />
 				</Grid.ColumnDefinitions>
-				<Button x:Name="hintButton" Text="Extra Hint" Grid.Row="0" Grid.Column="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+				<Button x:Name="hintButton" Text="Extra Hint" Grid.Row="0" Grid.Column="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Clicked="showHint"/>
 				<Button x:Name="checkSolutionButton" Text="Check Solution" Grid.Row="0" Grid.Column="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Clicked="checkSolutionTapped"/>
 			</Grid>
 
