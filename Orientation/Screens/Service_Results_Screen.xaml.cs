@@ -15,17 +15,14 @@ namespace Orientation
 			InitializeComponent();
 			setTheme();
 
+      NavigationPage.SetBackButtonTitle(this, "Back");
+
 			serviceObject = service;
-			//Title = service.name;
+			Title = service.name;
 			name.Text = service.name;
 			description.Text = service.description;
-
-			if (service.coordinatesLatitude <= -999.0)
-				coordinates.Text = "N/A";
-			else
-				coordinates.Text = service.coordinatesLatitude + ", " + service.coordinatesLongitude;
-
 			phoneNumber.Text = service.phoneNumber;
+      website.Text = service.website;
 
       if (phoneNumber.Text.Length == 0) {
         phoneNumber.Text = "N/A";
@@ -37,8 +34,6 @@ namespace Orientation
         };
         phoneNumber.GestureRecognizers.Add(phoneNumber_tap);
       }
-
-			website.Text = service.website;
 
       if (website.Text.Length == 0) {
         website.Text = "N/A";
@@ -65,9 +60,6 @@ namespace Orientation
 			BackgroundColor = Theme.getBackgroundColor();
 			name.TextColor = Theme.getTextColor();
 			description.TextColor = Theme.getTextColor();
-			coordinates.TextColor = Theme.getTextColor();
-			//phoneNumber.TextColor = Theme.getTextColor();
-			//website.TextColor = Theme.getTextColor();
 		}
 
 		public async void pressAddToFavoritesButton(Object sender, EventArgs e)
@@ -114,7 +106,7 @@ namespace Orientation
 		}
 
     public void pressOnServiceWebsiteURL() {
-      Device.OpenUri(new Uri(website.Text));
+      Navigation.PushAsync(new Web_Screen(serviceObject.name, serviceObject.website));
     }
 	}
 }

@@ -83,7 +83,7 @@
     <Compile Include="Info.cs" />
     <Compile Include="Event.cs" />
     <Compile Include="Screens\Event_Web_Screen.xaml.cs">
-      <DependentUpon>Event_Web_Screen.xaml</DependentUpon>
+      <DependentUpon>Web_Screen.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\EventCell.cs" />
   </ItemGroup>
@@ -130,7 +130,7 @@
     <EmbeddedResource Include="Screens\Scavenger_Hunt_Screen.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="Screens\Event_Web_Screen.xaml">
+    <EmbeddedResource Include="Screens\Web_Screen.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
