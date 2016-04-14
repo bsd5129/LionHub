@@ -18,7 +18,7 @@ namespace Orientation
       NavigationPage.SetBackButtonTitle(this, "Back");
 
 			serviceObject = service;
-			Title = service.name;
+			//Title = service.name;
 			name.Text = service.name;
 			description.Text = service.description;
 			phoneNumber.Text = service.phoneNumber;
@@ -46,13 +46,11 @@ namespace Orientation
         website.GestureRecognizers.Add(website_tap);
       }
 
-			//Disable favorites button if the service is already a favorite
-			favoritesButton.IsEnabled = !service.isFavorite;
+      if (service.isFavorite)
+        buttons.Children.Remove(favoritesButton);
 
 			if (service.coordinatesLatitude <= -999.0 && service.coordinatesLongitude <= -999.0)
-			{
 				buttons.Children.Remove(takeMeThereButton);
-			}
 		}
 
 		public void setTheme()

@@ -5,6 +5,7 @@ namespace Orientation
 	public interface IDatabaseHandler
 	{
 		SQLiteConnection getDBConnection();
+    void saveDatabase(long version, byte[] dbData);
 	}
 }
 

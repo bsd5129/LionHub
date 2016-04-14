@@ -14,6 +14,13 @@ namespace Orientation.Droid {
       string dbPath = Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.Personal), "LionHub.db");
       return new SQLiteConnection(new SQLite.Net.Platform.XamarinAndroid.SQLitePlatformAndroid(), dbPath);
     }
+
+    public void saveDatabase(long version, byte[] dbData) {
+      string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "LionHub.db");
+      File.Delete(dbPath);
+      File.WriteAllBytes(dbPath, dbData);
+      DbData.initializeDatabaseData(version);
+    }
   }
 }
 

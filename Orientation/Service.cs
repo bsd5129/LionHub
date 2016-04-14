@@ -3,7 +3,7 @@ using SQLite.Net.Attributes;
 namespace Orientation {
   [Table("Services")]
   public class Service {
-    [PrimaryKey, AutoIncrement, Column("_id")]
+    [PrimaryKey, AutoIncrement]
     public int id { get; set; }
 
     [MaxLength(64)]

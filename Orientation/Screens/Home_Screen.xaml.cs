@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 
 using Xamarin.Forms;
+using SQLite.Net;
+using System.Net.Http;
 
 namespace Orientation
 {
@@ -24,6 +26,12 @@ namespace Orientation
 			grid.Children.Add (new HomeListItem (this, "Settings", "settings"), 0, 6);
 
 			setTheme ();
+
+      SQLiteConnection con = DependencyService.Get<IDatabaseHandler>().getDBConnection();
+      long dbVersion = con.Table<Info>().Where(i => i.key.Equals("dbVersion")).FirstOrDefault().value;
+      con.Close();
+
+      checkForDbUpdate(dbVersion);
 		}
 
 		public void pressHomeListItem(string name)
@@ -96,6 +104,27 @@ namespace Orientation
 			copyright.TextColor = Theme.getTextColor();
 			copyright.BackgroundColor = Theme.getBackgroundColor ();
 		}
+
+    public async void checkForDbUpdate(long version)
+    {
+      long latestVersion = version;
+
+      try {
+        latestVersion = long.Parse(await new HttpClient().GetStringAsync(new Uri("http://www.draekoon.com/lionhub")));
+      } catch (Exception ex) {
+        await DisplayAlert("Error", ex.Message, "Close");
+      }
+
+      if (latestVersion != version)
+      {
+        if (await DisplayAlert("Update Available", "The information database has an update available. Would you like to update?", "Update", "Cancel"))
+        {
+          byte[] db = await new HttpClient().GetByteArrayAsync(new Uri("http://www.draekoon.com/lionhub/LionHub.db"));
+          DependencyService.Get<IDatabaseHandler>().saveDatabase(latestVersion, db);
+          await DisplayAlert("Update Complete!", "", "Close");
+        }
+      }
+    }
 	}
 }
 

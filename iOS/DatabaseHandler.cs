@@ -12,6 +12,14 @@ namespace Orientation.iOS {
       string dbPath = Path.Combine (libraryPath, "LionHub.db");
       return new SQLiteConnection(new SQLite.Net.Platform.XamarinIOS.SQLitePlatformIOS(), dbPath);
     }
+
+    public void saveDatabase(long version, byte[] dbData) {
+      string libraryPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "../Library/");
+      string dbPath = Path.Combine(libraryPath, "LionHub.db");
+      File.Delete(dbPath);
+      File.WriteAllBytes(dbPath, dbData);
+      DbData.initializeDatabaseData(version);
+    }
   }
 }
 

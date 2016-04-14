@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using SQLite.Net;
 using Xamarin.Forms;
-using HtmlAgilityPack;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Net.Http;

@@ -14,7 +14,7 @@
 							<Label x:Name="darkThemeStatus" VerticalOptions="Center" HorizontalOptions="EndAndExpand"></Label>
 						</StackLayout>
 					</ViewCell>
-					<TextCell x:Name="version" Text="Version: 0.3b" Detail="Last Update: 3/2/2016"></TextCell>
+					<TextCell x:Name="version"></TextCell>
 					<TextCell x:Name="credits" Text="Credits" Detail="More about the team" Tapped="pressCreditsListItem"></TextCell>
 				</TableSection>
 			</TableRoot>

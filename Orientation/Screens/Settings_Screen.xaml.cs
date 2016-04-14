@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 using Xamarin.Forms;
+using SQLite.Net;
 
 namespace Orientation {
   public partial class Settings_Screen : ContentPage {
@@ -10,6 +11,13 @@ namespace Orientation {
       InitializeComponent();
       darkThemeStatus.Text = Theme.isDarkTheme() ? "Enabled" : "Disabled";
       darkThemeStatus.TextColor = Theme.isDarkTheme() ? Color.Green : Color.Red;
+
+      SQLiteConnection con = DependencyService.Get<IDatabaseHandler>().getDBConnection();
+      version.Text = "Database Version: " + con.Table<Info>().Where(i => i.key.Equals("dbVersion")).FirstOrDefault().value;
+      long downloadTimestamp = con.Table<Info>().Where(i => i.key.Equals("dbTimestamp")).FirstOrDefault().value;
+      version.Detail = "Last Update: " + (new DateTime(1970, 1, 1)).AddMilliseconds((double)downloadTimestamp).ToLocalTime().ToString();
+      con.Close();
+
       setTheme();
     }
 

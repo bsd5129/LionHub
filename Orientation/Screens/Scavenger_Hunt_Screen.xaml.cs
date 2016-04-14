@@ -40,7 +40,7 @@ namespace Orientation
         currentClue = clues.First();
         connection.Close();
 
-        if (currentClue.type.ToLower().Equals("string"))
+        if (currentClue.type == 0)
           solution.IsEnabled = true;
         else
           solution.IsEnabled = false;
@@ -52,9 +52,8 @@ namespace Orientation
 
 		public async void checkSolutionTapped(object sender, EventArgs args)
 		{
-      if (currentClue.type.ToLower().Equals("string")) {
-        String sol = solution.Text.ToLower().Trim();
-        if (!sol.Equals(currentClue.solution.ToLower().Trim())) {
+      if (currentClue.type == 0) {
+        if (solution.Text == null || !solution.Text.ToLower().Trim().Equals(currentClue.solution.ToLower().Trim())) {
           await DisplayAlert("Incorrect", "", "OK");
         } else {
           SQLiteConnection connection = DependencyService.Get<IDatabaseHandler>().getDBConnection();
