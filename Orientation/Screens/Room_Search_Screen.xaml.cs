@@ -16,7 +16,7 @@ namespace Orientation {
 			roomNumber.WidthRequest = (int)(0.8 * ((Orientation.App)App.Current).getScreenSize().Width);
 			buildingName.WidthRequest = (int)(0.8 * ((Orientation.App)App.Current).getScreenSize().Width);
 
-			queryBuildings();
+			queryForRoomData();
 
 			setTheme();
 		}
@@ -28,7 +28,7 @@ namespace Orientation {
       buildingName.BackgroundColor = Theme.getEntryColor();
     }
 
-    public void queryBuildings() {
+    public void queryForRoomData() {
       SQLiteConnection con = DependencyService.Get<IDatabaseHandler>().getDBConnection();
       var rooms = con.Table<Room>().OrderBy(r => r.buildingName);
 
@@ -40,7 +40,7 @@ namespace Orientation {
       con.Close();
     }
 
-    public void pressSearchButton(object sender, EventArgs args) {
+    public void pressSearch(object sender, EventArgs args) {
       SQLiteConnection con = DependencyService.Get<IDatabaseHandler>().getDBConnection();
       var rooms = con.Table<Room>();
 	  String building = "";
@@ -66,10 +66,10 @@ namespace Orientation {
       if (room != null)
         ((NavigationPage)App.Current.MainPage).PushAsync(new Room_Results_Screen(room));
       else
-        displayError();
+        showErrorMessage();
     }
 
-    public async void displayError() {
+    public async void showErrorMessage() {
       await DisplayAlert("Sorry", "That room could not be found", "OK");
     }
   }
