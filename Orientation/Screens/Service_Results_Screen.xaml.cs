@@ -8,9 +8,9 @@ namespace Orientation
 {
 	public partial class Service_Results_Screen : ContentPage
 	{
-		private Service serviceObject;
+		private ServiceData serviceObject;
 
-		public Service_Results_Screen(Service service)
+		public Service_Results_Screen(ServiceData service)
 		{
 			InitializeComponent();
 			setTheme();

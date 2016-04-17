@@ -29,7 +29,7 @@ namespace Orientation
       favorites = new List<ServiceCell>();
 
 			SQLiteConnection connection = DependencyService.Get<IDatabaseHandler>().getDBConnection();
-			var services = connection.Table<Service>().OrderBy(s => s.name);
+			var services = connection.Table<ServiceData>().OrderBy(s => s.name);
 
 			foreach (var service in services)
 			{
@@ -66,7 +66,7 @@ namespace Orientation
           favorite = cell;
 
       if (await DisplayAlert("Delete Favorite", "Do you want to delete this favorite?", "Yes", "No")) {
-        Service service = favorite.service;
+        ServiceData service = favorite.service;
         service.isFavorite = false;
 
         SQLiteConnection connection = DependencyService.Get<IDatabaseHandler>().getDBConnection();

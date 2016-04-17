@@ -55,7 +55,7 @@ namespace Orientation
 		public void queryListOfServices()
 		{
 			SQLiteConnection connection = DependencyService.Get<IDatabaseHandler>().getDBConnection();
-      var services = connection.Table<Service>().OrderBy(s => s.name);
+      var services = connection.Table<ServiceData>().OrderBy(s => s.name);
 
       List<ServiceCell> names = new List<ServiceCell>();
 			
@@ -71,7 +71,7 @@ namespace Orientation
 
     public void queryListOfCategories() {
       SQLiteConnection connection = DependencyService.Get<IDatabaseHandler>().getDBConnection();
-      var services = connection.Table<Service>().OrderBy(s => s.category);
+      var services = connection.Table<ServiceData>().OrderBy(s => s.category);
 
       List<ServiceCell> categories = new List<ServiceCell>();
 
@@ -92,7 +92,7 @@ namespace Orientation
       }
 
 			SQLiteConnection connection = DependencyService.Get<IDatabaseHandler>().getDBConnection();
-     	var services = connection.Table<Service>().OrderBy(s => s.name);
+     	var services = connection.Table<ServiceData>().OrderBy(s => s.name);
 
 			List<ServiceCell> names = new List<ServiceCell>();
 			
