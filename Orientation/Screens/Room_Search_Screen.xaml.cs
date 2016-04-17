@@ -30,9 +30,9 @@ namespace Orientation {
 
     public void queryForRoomData() {
       SQLiteConnection con = DependencyService.Get<IDatabaseHandler>().getDBConnection();
-      var rooms = con.Table<Room>().OrderBy(r => r.buildingName);
+      var rooms = con.Table<RoomData>().OrderBy(r => r.buildingName);
 
-      foreach (Room r in rooms) {
+      foreach (RoomData r in rooms) {
         if (!buildingName.Items.Contains(r.buildingName))
           buildingName.Items.Add(r.buildingName);
       }
@@ -42,7 +42,7 @@ namespace Orientation {
 
     public void pressSearch(object sender, EventArgs args) {
       SQLiteConnection con = DependencyService.Get<IDatabaseHandler>().getDBConnection();
-      var rooms = con.Table<Room>();
+      var rooms = con.Table<RoomData>();
 	  String building = "";
 	  
 	  if(buildingName.SelectedIndex > -1)
@@ -52,9 +52,9 @@ namespace Orientation {
 	  if(number != null)
 		number.ToUpper().Replace("-", "").Replace(" ", "");
       
-	  Room room = null;
+	  RoomData room = null;
 
-      foreach (Room r in rooms) {
+      foreach (RoomData r in rooms) {
         if (r.buildingName.Equals(building) && r.roomNumber.Equals(number)) {
           room = r;
           break;

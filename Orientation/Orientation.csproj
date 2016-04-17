@@ -73,7 +73,7 @@
     </Compile>
     <Compile Include="Theme.cs" />
     <Compile Include="Service.cs" />
-    <Compile Include="Room.cs" />
+    <Compile Include="RoomData.cs" />
     <Compile Include="Hint.cs" />
     <Compile Include="Solution.cs" />
     <Compile Include="Interfaces\IDatabaseHandler.cs" />
