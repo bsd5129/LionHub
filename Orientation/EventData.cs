@@ -2,7 +2,7 @@
 using SQLite.Net.Attributes;
 namespace Orientation {
   [Table("Events")]
-  public class Event {
+  public class EventData {
     [PrimaryKey, AutoIncrement]
     public int id { get; set; }
     public string name { get; set; }
@@ -10,11 +10,11 @@ namespace Orientation {
     public string month { get; set; }
     public string year { get; set; }
 
-    public Event() {
+    public EventData() {
 
     }
 
-    public Event(string name, string month, string year, string link) {
+    public EventData(string name, string month, string year, string link) {
       this.name = name;
       this.link = link;
       this.month = month;
@@ -57,7 +57,7 @@ namespace Orientation {
     }
 
     public override bool Equals(object obj) {
-      return obj is Event && ((Event)obj).name.Equals(name);
+      return obj is EventData && ((EventData)obj).name.Equals(name);
     }
   }
 }

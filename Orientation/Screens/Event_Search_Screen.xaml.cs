@@ -65,20 +65,20 @@ namespace Orientation
 
         string regex = @"views-row-\d.*?<span class=""date-display-start""><span>(\w{3})\s(\d{4}).*?<\/time>\s*(<span class=""separator"">.*?<div class=""clr""><\/div>|<div class=""clr""><\/div>)<\/span>.*?<span class=""field-content""><a href=""([\/\w\d\-]*)"">(.*?)<\/a><\/span>";
 
-        List<Event> events = new List<Event>();
+        List<EventData> events = new List<EventData>();
         MatchCollection matches = Regex.Matches(html, regex, RegexOptions.Singleline);
 
         foreach (Match m in matches) {
-          Event e = new Event(System.Net.WebUtility.HtmlDecode(m.Groups[5].Value), m.Groups[1].Value, m.Groups[2].Value, "http://harrisburg.psu.edu" + m.Groups[4].Value);
+          EventData e = new EventData(System.Net.WebUtility.HtmlDecode(m.Groups[5].Value), m.Groups[1].Value, m.Groups[2].Value, "http://harrisburg.psu.edu" + m.Groups[4].Value);
 
           if (!events.Contains(e))
             events.Add(e);
         }
 
         connection.BeginTransaction();
-        connection.DeleteAll<Event>();
+        connection.DeleteAll<EventData>();
 
-        foreach (Event e in events) {
+        foreach (EventData e in events) {
           connection.Insert(e);
         }
 
@@ -90,7 +90,7 @@ namespace Orientation
 
       } else {
 
-        var eventEntries = connection.Table<Event>();
+        var eventEntries = connection.Table<EventData>();
 
         foreach (var e in eventEntries) {
           string month = e.month + " " + e.year;
@@ -147,7 +147,7 @@ namespace Orientation
 		public void queryListOfEvents() 
 		{
 			SQLiteConnection connection = DependencyService.Get<IDatabaseHandler>().getDBConnection();
-      var events = connection.Table<Event>().OrderBy(e => e.name);
+      var events = connection.Table<EventData>().OrderBy(e => e.name);
 
 			List<EventCell> eventNames = new List<EventCell>();
 

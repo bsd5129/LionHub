@@ -72,7 +72,7 @@
       <DependentUpon>Scavenger_Hunt_Screen.xaml</DependentUpon>
     </Compile>
     <Compile Include="Theme.cs" />
-    <Compile Include="Service.cs" />
+    <Compile Include="ServiceData.cs" />
     <Compile Include="RoomData.cs" />
     <Compile Include="Hint.cs" />
     <Compile Include="Solution.cs" />

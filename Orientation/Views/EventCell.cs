@@ -3,10 +3,10 @@ using Xamarin.Forms;
 namespace Orientation {
   public class EventCell : TextCell {
 
-    public Event evnt { get; set; }
+    public EventData evnt { get; set; }
     public string Title { get; set; }
 
-    public EventCell(Event evnt){
+    public EventCell(EventData evnt){
       this.evnt = evnt;
       Title = evnt.name;
     }
