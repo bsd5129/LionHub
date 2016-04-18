@@ -4,7 +4,7 @@
 		<TableView x:Name="tableView">
 			<TableRoot>
 				<TableSection Title="Settings">
-					<ViewCell Tapped="pressDarkThemeListItem">
+					<ViewCell Tapped="pressDarkThemeButton">
 						<StackLayout Orientation="Horizontal" Padding="15, 0, 15, 0">
 							<StackLayout Orientation="Vertical">
 								<Label x:Name="darkThemeText" Text="Dark Theme"></Label>
@@ -14,8 +14,8 @@
 							<Label x:Name="darkThemeStatus" VerticalOptions="Center" HorizontalOptions="EndAndExpand"></Label>
 						</StackLayout>
 					</ViewCell>
-					<TextCell x:Name="version"></TextCell>
-					<TextCell x:Name="credits" Text="Credits" Detail="More about the team" Tapped="pressCreditsListItem"></TextCell>
+					<TextCell x:Name="version" Text="Version: 0.3b" Detail="Last Update: 3/2/2016"></TextCell>
+					<TextCell x:Name="credits" Text="Credits" Detail="More about the team" Tapped="pressCreditsButton"></TextCell>
 				</TableSection>
 			</TableRoot>
 		</TableView>
