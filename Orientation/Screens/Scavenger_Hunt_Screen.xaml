@@ -14,8 +14,8 @@
 					<ColumnDefinition Width="*" />
 					<ColumnDefinition Width="*" />
 				</Grid.ColumnDefinitions>
-				<Button x:Name="hintButton" Text="Extra Hint" Grid.Row="0" Grid.Column="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Clicked="showHint"/>
-				<Button x:Name="checkSolutionButton" Text="Check Solution" Grid.Row="0" Grid.Column="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Clicked="checkSolutionTapped"/>
+				<Button Text="Extra Hint" Grid.Row="0" Grid.Column="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Clicked="showHint"/>
+				<Button Text="Check Solution" Grid.Row="0" Grid.Column="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Clicked="checkSolutionTapped"/>
 			</Grid>
 
 			<!-- FOR THE TAB MENU -->

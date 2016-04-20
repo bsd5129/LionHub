@@ -17,13 +17,13 @@
 					</Grid.ColumnDefinitions>
 
 
-					<Label Grid.Row="0" Grid.Column="0" Text="Room:" FontSize="15" FontAttributes="Bold" HorizontalOptions="StartAndExpand"></Label>
+					<Label Grid.Row="0" Grid.Column="0" x:Name="roomNumberLabel" Text="Room:" FontSize="15" FontAttributes="Bold" HorizontalOptions="StartAndExpand"></Label>
 					<Label Grid.Row="0" Grid.Column="1" x:Name="roomNumber" FontSize="14" HorizontalOptions="StartAndExpand"></Label>
-					<Label Grid.Row="1" Grid.Column="0" Text="Building:" FontSize="15" FontAttributes="Bold" HorizontalOptions="StartAndExpand"></Label>
+					<Label Grid.Row="1" Grid.Column="0" x:Name="buildingNameLabel" Text="Building:" FontSize="15" FontAttributes="Bold" HorizontalOptions="StartAndExpand"></Label>
 					<Label Grid.Row="1" Grid.Column="1" x:Name="buildingName" FontSize="14" HorizontalOptions="StartAndExpand"></Label>
-					<Label Grid.Row="2" Grid.Column="0" Text="Description:" FontSize="15" FontAttributes="Bold" HorizontalOptions="StartAndExpand"></Label>
+					<Label Grid.Row="2" Grid.Column="0" x:Name="descriptionLabel" Text="Description:" FontSize="15" FontAttributes="Bold" HorizontalOptions="StartAndExpand"></Label>
 					<Label Grid.Row="2" Grid.Column="1" x:Name="description" FontSize="14" HorizontalOptions="StartAndExpand"></Label>
-					<Label Grid.Row="3" Grid.Column="0" Text="Location:" FontSize="15" FontAttributes="Bold" HorizontalOptions="StartAndExpand"></Label>
+					<Label Grid.Row="3" Grid.Column="0" x:Name="directionsLabel" Text="Location:" FontSize="15" FontAttributes="Bold" HorizontalOptions="StartAndExpand"></Label>
 					<Label Grid.Row="3" Grid.Column="1" x:Name="directions" FontSize="14" HorizontalOptions="StartAndExpand"></Label>
 				</Grid>
 		    </StackLayout>

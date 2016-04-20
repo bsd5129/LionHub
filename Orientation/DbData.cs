@@ -9,7 +9,7 @@ namespace Orientation {
 
       try {
         con.CreateTable<Event>();
-      } catch (Exception ex) {
+      } catch (Exception) {
 
       }
 
@@ -19,7 +19,7 @@ namespace Orientation {
         long nowInMillis = (long)DateTime.Now.ToUniversalTime().Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds;
         con.Insert(new Info("dbTimestamp", nowInMillis));
         con.Insert(new Info("eventCacheTime", 0));
-      } catch (Exception ex) {
+      } catch (Exception) {
 
       }
 

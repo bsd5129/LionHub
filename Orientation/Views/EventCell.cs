@@ -5,10 +5,12 @@ namespace Orientation {
 
     public Event evnt { get; set; }
     public string Title { get; set; }
+    public Color Color { get; set; }
 
     public EventCell(Event evnt){
       this.evnt = evnt;
       Title = evnt.name;
+      Color = Theme.getTextColor();
     }
 
     public override string ToString() {

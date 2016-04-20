@@ -5,6 +5,7 @@ namespace Orientation {
 
     public Service service { get; set; }
     public string Title { get; set; }
+    public Color Color { get; set; }
 
     public ServiceCell(Service service) : this(service, false) {
     }
@@ -16,6 +17,8 @@ namespace Orientation {
         Title = service.category;
       else
         Title = service.name;
+
+      Color = Theme.getTextColor();
     }
 
     public override string ToString() {

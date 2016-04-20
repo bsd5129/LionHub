@@ -4,19 +4,22 @@ using System.Collections.Generic;
 using Xamarin.Forms;
 using SQLite.Net;
 using System.Net.Http;
+using System.Threading;
 
 namespace Orientation
 {
 	public partial class Home_Screen : ContentPage
 	{
 		
-		public Home_Screen ()
+		public Home_Screen()
 		{
-			InitializeComponent ();
-			NavigationPage.SetBackButtonTitle (this, "Back");
+			InitializeComponent();
+			NavigationPage.SetBackButtonTitle(this, "Back");
 
+      //Adjust the psu logo ratio based on a fraction on the screen width
 			psuLogo.WidthRequest = (int)(0.75 * ((Orientation.App)App.Current).getScreenSize().Width);
 
+      //Add the home screen main buttons
 			grid.Children.Add (new HomeListItem (this, "Services", "services"), 0, 0);
 			grid.Children.Add (new HomeListItem (this, "Favorites", "favorite"), 0, 1);
 			grid.Children.Add (new HomeListItem (this, "Rooms", "rooms"), 0, 2);
@@ -25,38 +28,40 @@ namespace Orientation
 			grid.Children.Add (new HomeListItem (this, "Where Am I?", "whereAmI"), 0, 5);
 			grid.Children.Add (new HomeListItem (this, "Settings", "settings"), 0, 6);
 
-			setTheme ();
+			setTheme();
 
+      //Query the database for the last update timestamp and the current database version
       SQLiteConnection con = DependencyService.Get<IDatabaseHandler>().getDBConnection();
       long dbVersion = con.Table<Info>().Where(i => i.key.Equals("dbVersion")).FirstOrDefault().value;
       con.Close();
 
-      checkForDbUpdate(dbVersion);
+      //Check for a db update
+      checkForDbUpdate(dbVersion, false);
 		}
 
 		public void pressHomeListItem(string name)
 		{
 			switch (name) {
 			case "Services":
-				pressServicesHomeListItem ();
+				pressServicesHomeListItem();
 				break;
 			case "Favorites":
-				pressFavoritesHomeListItem ();
+				pressFavoritesHomeListItem();
 				break;
 			case "Rooms":
-				pressRoomHomeListItem ();
+				pressRoomHomeListItem();
 				break;
 			case "Scavenger Hunt":
-				pressScavengerHuntHomeListItem ();
+				pressScavengerHuntHomeListItem();
 				break;
 			case "Events":
-				pressEventsHomeListItem ();
+				pressEventsHomeListItem();
 				break;
 			case "Where Am I?":
-				pressWhereAmIHomeListItem ();
+				pressWhereAmIHomeListItem();
 				break;
 			case "Settings":
-				pressSettingsHomeListItem ();
+				pressSettingsHomeListItem();
 				break;
 			}
 		}
@@ -105,24 +110,30 @@ namespace Orientation
 			copyright.BackgroundColor = Theme.getBackgroundColor ();
 		}
 
-    public async void checkForDbUpdate(long version)
+    public async void checkForDbUpdate(long version, bool displayResult)
     {
       long latestVersion = version;
 
       try {
         string str = await new HttpClient().GetStringAsync(new Uri("https://drive.google.com/uc?export=download&id=0BxEFbSUhqF_6Wk1XX1plWjQ2cDQ"));
         latestVersion = long.Parse(str);
-      } catch (Exception ex) {
+      } catch (Exception) {
+        if (displayResult)
+          await DisplayAlert("Failed to Update", "There was an issue determining the latest version from the server. Please try again later.", "OK");
       }
 
-      if (latestVersion != version)
-      {
-        if (await DisplayAlert("Update Available", "The information database has an update available. Would you like to update?", "Update", "Cancel"))
-        {
-          byte[] db = await new HttpClient().GetByteArrayAsync(new Uri("https://drive.google.com/uc?export=download&id=0BxEFbSUhqF_6X2ZVQWhybVlkLXc"));
-          DependencyService.Get<IDatabaseHandler>().saveDatabase(latestVersion, db);
-          await DisplayAlert("Update Complete!", "", "Close");
+      if (latestVersion != version) {
+        if (await DisplayAlert("Update Available", "The information database has an update available. Would you like to update?", "Update", "Cancel")) {
+          try {
+            byte[] db = await new HttpClient().GetByteArrayAsync(new Uri("https://drive.google.com/uc?export=download&id=0BxEFbSUhqF_6X2ZVQWhybVlkLXc"));
+            DependencyService.Get<IDatabaseHandler>().saveDatabase(latestVersion, db);
+            await DisplayAlert("Update Complete!", "", "Close");
+          } catch (Exception) {
+            await DisplayAlert("Failed to Update", "There was an issue downloading the update from the server. Please try again later.", "OK");
+          }
         }
+      } else if (displayResult) {
+        await DisplayAlert("No Update Available", "You have the latest version of the database.", "Close");
       }
     }
 	}

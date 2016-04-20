@@ -58,6 +58,12 @@ namespace Orientation
 			BackgroundColor = Theme.getBackgroundColor();
 			name.TextColor = Theme.getTextColor();
 			description.TextColor = Theme.getTextColor();
+      phoneNumber.TextColor = Theme.getLinkColor();
+      website.TextColor = Theme.getLinkColor();
+      nameLabel.TextColor = Theme.getTextColor();
+      phoneLabel.TextColor = Theme.getTextColor();
+      websiteLabel.TextColor = Theme.getTextColor();
+      descriptionLabel.TextColor = Theme.getTextColor();
 		}
 
 		public async void pressAddToFavoritesButton(Object sender, EventArgs e)

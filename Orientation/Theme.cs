@@ -12,12 +12,13 @@ namespace Orientation
 		private static Color lightThemeTextColor = Color.FromHex("#000000");
 		private static Color lightThemeEntryColor = Color.FromHex("#FFFFFF");
 		private static Color lightThemeEntryPlaceholderColor = Color.FromHex("#BBBBBB");
-
+    private static Color lightThemeLinkColor = Color.FromHex("#0000EE");
 
 		private static Color darkThemeBackgroundColor = Color.FromHex("#303030");
 		private static Color darkThemeTextColor = Color.FromHex("#BBBBBB");
 		private static Color darkThemeEntryColor = Color.FromHex("#BBBBBB");
 		private static Color darkThemeEntryPlaceholderColor = Color.FromHex("#303030");
+    private static Color darkThemeLinkColor = Color.FromHex("#007AFF");
 
 		public static Color getBackgroundColor() {
 			if (isDark)
@@ -46,6 +47,13 @@ namespace Orientation
 			else
 				return lightThemeEntryPlaceholderColor;
 		}
+
+    public static Color getLinkColor() {
+      if (isDark)
+        return darkThemeLinkColor;
+      else
+        return lightThemeLinkColor;
+    }
 
 		public static void setDarkTheme(bool darkTheme) {
 			isDark = darkTheme;

@@ -8,6 +8,7 @@ using System.Net.Http;
 
 namespace Orientation
 {
+  
 	public partial class Event_Search_Screen : ContentPage
 	{
 		public Event_Search_Screen ()
@@ -15,25 +16,10 @@ namespace Orientation
 			InitializeComponent ();
 			NavigationPage.SetHasNavigationBar (this, true);
       NavigationPage.SetBackButtonTitle(this, "Back");
-			event_picker.WidthRequest = (int)(0.8 * ((Orientation.App)App.Current).getScreenSize().Width);
-
-      updateData();
-
-			setTheme();
-
-			event_picker.SelectedIndexChanged += (sender, e) => queryListOfEvents();
-
-      string now = numberToMonth(DateTime.Now.Month) + " " + DateTime.Now.Year;
-
-      for (int i = 0; i < event_picker.Items.Count; i++) {
-        if (event_picker.Items[i].Equals(now)) {
-          event_picker.SelectedIndex = i;
-          break;
-        }
-      }
-
-      if (event_picker.SelectedIndex == -1 && event_picker.Items.Count > 0)
-        event_picker.SelectedIndex = 0;
+      event_picker.WidthRequest = (int)(0.8 * ((Orientation.App)App.Current).getScreenSize().Width);
+      event_picker.SelectedIndexChanged += (sender, e) => queryListOfEvents();
+      Device.StartTimer(TimeSpan.FromMilliseconds(250), updateData);
+      setTheme();
 		}
 
 		public void setTheme()
@@ -43,14 +29,13 @@ namespace Orientation
       eventsList.BackgroundColor = Theme.getBackgroundColor();
 		}
 
-    public void updateData() {
+    public bool updateData() {
       SQLiteConnection connection = DependencyService.Get<IDatabaseHandler>().getDBConnection();
       Info cacheInfo = connection.Table<Info>().Where(i => i.key.Equals("eventCacheTime")).FirstOrDefault();
       long lastCacheTime = cacheInfo.value;
       long currentTime = (long)(DateTime.Now - new DateTime(1970, 1, 1)).TotalMilliseconds;
 
-      if (currentTime - lastCacheTime > 1000 * 60 * 60 * 24) {
-
+      if (currentTime - lastCacheTime > 1000 * 60 * 60 * 6) {
         string html;
 
         Task<string> task = new HttpClient().GetStringAsync(new Uri("http://harrisburg.psu.edu/calendar"));
@@ -88,9 +73,11 @@ namespace Orientation
         connection.Close();
         updateData();
 
-      } else {
+      } else if (event_picker.Items.Count == 0) {
 
         var eventEntries = connection.Table<Event>();
+
+        event_picker.Items.Clear();
 
         foreach (var e in eventEntries) {
           string month = e.month + " " + e.year;
@@ -100,7 +87,21 @@ namespace Orientation
         }
 
         connection.Close();
+
+        string now = numberToMonth(DateTime.Now.Month) + " " + DateTime.Now.Year;
+
+        for (int i = 0; i < event_picker.Items.Count; i++) {
+          if (event_picker.Items[i].Equals(now)) {
+            event_picker.SelectedIndex = i;
+            break;
+          }
+        }
+
+        if (event_picker.SelectedIndex == -1 && event_picker.Items.Count > 0)
+          event_picker.SelectedIndex = 0;
       }
+
+      return false;
     }
 
     public string numberToMonth(int month) {
@@ -134,16 +135,6 @@ namespace Orientation
       return "UNKNOWN";
     }
 
-		public void prepareScreen()
-		{
-      
-    }
-
-		public void selectMonth()
-		{
-      
-    }
-
 		public void queryListOfEvents() 
 		{
 			SQLiteConnection connection = DependencyService.Get<IDatabaseHandler>().getDBConnection();
@@ -158,7 +149,10 @@ namespace Orientation
 			}
 
 			connection.Close();
-			eventsList.ItemsSource = eventNames;			
+			eventsList.ItemsSource = eventNames;
+
+      if (eventNames.Count == 0)
+        showErrorMessage();
 		}
 
 		public void pressEventListItem(Object sender, ItemTappedEventArgs args)
@@ -170,12 +164,15 @@ namespace Orientation
 		}
 
 		public void showErrorMessage()
-		{ }
+		{
+      DisplayAlert("No Events", "We could not find any events from the PSU calendar. Please try again later.", "OK");
+      pressOkOnErrorMessage();
+    }
 
 		public void pressOkOnErrorMessage()
-		{ }
-
-			
+		{
+      Navigation.PopAsync();
+    }
 			
 	}
 }

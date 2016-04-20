@@ -3,7 +3,7 @@
 	<ContentPage.Content>
 	 <StackLayout>
 		 	 <StackLayout Orientation="Horizontal" Padding="15, 15, 15, 0">
-					<Picker x:Name = "event_picker" Title="Choose a Month" HorizontalOptions="CenterAndExpand"/>
+					<Picker x:Name = "event_picker" Title="Loading Events..." HorizontalOptions="CenterAndExpand"/>
 			 </StackLayout>
 			<StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" Padding="15, 15, 15, 0">
 				<ListView x:Name="eventsList" ItemTapped="pressEventListItem" HasUnevenRows="true">
@@ -17,8 +17,8 @@
 										<ColumnDefinition Width="2*"/>
 									</Grid.ColumnDefinitions>
 
-									<Label Grid.Row="0" Grid.Column="0" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Text="{Binding Title}" LineBreakMode="WordWrap" />
-									<Label Grid.Row="0" Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="End" FontSize="24" Text=">" />
+									<Label Grid.Row="0" Grid.Column="0" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Text="{Binding Title}" TextColor="{Binding Color}" LineBreakMode="WordWrap" />
+									<Label Grid.Row="0" Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="End" FontSize="24" Text=">" TextColor="{Binding Color}" />
 								</Grid>
              				</ViewCell>
           				</DataTemplate>
