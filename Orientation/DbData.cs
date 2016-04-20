@@ -8,7 +8,7 @@ namespace Orientation {
       SQLiteConnection con = DependencyService.Get<IDatabaseHandler>().getDBConnection();
 
       try {
-        con.CreateTable<EventData>();
+        con.CreateTable<Event>();
       } catch (Exception ex) {
 
       }

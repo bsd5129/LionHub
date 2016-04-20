@@ -3,13 +3,13 @@ using Xamarin.Forms;
 namespace Orientation {
   public class ServiceCell : TextCell {
 
-    public ServiceData service { get; set; }
+    public Service service { get; set; }
     public string Title { get; set; }
 
-    public ServiceCell(ServiceData service) : this(service, false) {
+    public ServiceCell(Service service) : this(service, false) {
     }
 
-    public ServiceCell(ServiceData service, bool isCategory) {
+    public ServiceCell(Service service, bool isCategory) {
       this.service = service;
 
       if (isCategory)

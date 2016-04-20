@@ -39,8 +39,8 @@ namespace Orientation
 			float curLon = (float)position.Longitude;
 
 			SQLiteConnection connection = DependencyService.Get<IDatabaseHandler>().getDBConnection();
-			var latlong = connection.Table<ServiceData>().OrderBy(s => s.coordinatesLatitude);
-			ServiceData nearestBuildingInfo = null;
+			var latlong = connection.Table<Service>().OrderBy(s => s.coordinatesLatitude);
+			Service nearestBuildingInfo = null;
 			float tmpLat = 0, tmpLon = 0;
 			float tmpVal= float.MaxValue;
 

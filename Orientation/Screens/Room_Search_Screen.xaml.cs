@@ -16,7 +16,7 @@ namespace Orientation {
 			roomNumber.WidthRequest = (int)(0.8 * ((Orientation.App)App.Current).getScreenSize().Width);
 			buildingName.WidthRequest = (int)(0.8 * ((Orientation.App)App.Current).getScreenSize().Width);
 
-			queryForRoomData();
+			queryBuildings();
 
 			setTheme();
 		}
@@ -28,11 +28,11 @@ namespace Orientation {
       buildingName.BackgroundColor = Theme.getEntryColor();
     }
 
-    public void queryForRoomData() {
+    public void queryBuildings() {
       SQLiteConnection con = DependencyService.Get<IDatabaseHandler>().getDBConnection();
-      var rooms = con.Table<RoomData>().OrderBy(r => r.buildingName);
+      var rooms = con.Table<Room>().OrderBy(r => r.buildingName);
 
-      foreach (RoomData r in rooms) {
+      foreach (Room r in rooms) {
         if (!buildingName.Items.Contains(r.buildingName))
           buildingName.Items.Add(r.buildingName);
       }
@@ -42,7 +42,7 @@ namespace Orientation {
 
     public void pressSearch(object sender, EventArgs args) {
       SQLiteConnection con = DependencyService.Get<IDatabaseHandler>().getDBConnection();
-      var rooms = con.Table<RoomData>();
+      var rooms = con.Table<Room>();
 	  String building = "";
 	  
 	  if(buildingName.SelectedIndex > -1)
@@ -52,9 +52,9 @@ namespace Orientation {
 	  if(number != null)
 		number.ToUpper().Replace("-", "").Replace(" ", "");
       
-	  RoomData room = null;
+	  Room room = null;
 
-      foreach (RoomData r in rooms) {
+      foreach (Room r in rooms) {
         if (r.buildingName.Equals(building) && r.roomNumber.Equals(number)) {
           room = r;
           break;

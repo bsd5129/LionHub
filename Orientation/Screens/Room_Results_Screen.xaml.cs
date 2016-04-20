@@ -7,7 +7,7 @@ namespace Orientation
 {
 	public partial class Room_Results_Screen : ContentPage
 	{
-		public Room_Results_Screen (RoomData room)
+		public Room_Results_Screen (Room room)
 		{
 			InitializeComponent ();
 			setTheme();

@@ -110,16 +110,16 @@ namespace Orientation
       long latestVersion = version;
 
       try {
-        latestVersion = long.Parse(await new HttpClient().GetStringAsync(new Uri("http://www.draekoon.com/lionhub")));
+        string str = await new HttpClient().GetStringAsync(new Uri("https://drive.google.com/uc?export=download&id=0BxEFbSUhqF_6Wk1XX1plWjQ2cDQ"));
+        latestVersion = long.Parse(str);
       } catch (Exception ex) {
-        await DisplayAlert("Error", ex.Message, "Close");
       }
 
       if (latestVersion != version)
       {
         if (await DisplayAlert("Update Available", "The information database has an update available. Would you like to update?", "Update", "Cancel"))
         {
-          byte[] db = await new HttpClient().GetByteArrayAsync(new Uri("http://www.draekoon.com/lionhub/LionHub.db"));
+          byte[] db = await new HttpClient().GetByteArrayAsync(new Uri("https://drive.google.com/uc?export=download&id=0BxEFbSUhqF_6X2ZVQWhybVlkLXc"));
           DependencyService.Get<IDatabaseHandler>().saveDatabase(latestVersion, db);
           await DisplayAlert("Update Complete!", "", "Close");
         }
