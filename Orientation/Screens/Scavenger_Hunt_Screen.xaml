@@ -6,6 +6,7 @@
 			<Label x:Name="hint" FontSize="14" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" ></Label>
 			
 			<Entry x:Name="solution" Placeholder="Enter Solution" Keyboard="Text" HorizontalOptions="Center" VerticalOptions="StartAndExpand"></Entry>
+			<Label x:Name="geoInfo" FontSize="12" HorizontalOptions="Center" VerticalOptions="StartAndExpand" Text="This is a location based solution. You must move near your answer and press the check solution button." FontAttributes="Bold" IsVisible="false" />
 			<Grid VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
 				<Grid.RowDefinitions>
 					<RowDefinition Height="Auto" />
@@ -14,8 +15,8 @@
 					<ColumnDefinition Width="*" />
 					<ColumnDefinition Width="*" />
 				</Grid.ColumnDefinitions>
-				<Button Text="Extra Hint" Grid.Row="0" Grid.Column="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Clicked="showHint"/>
-				<Button Text="Check Solution" Grid.Row="0" Grid.Column="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Clicked="checkSolutionTapped"/>
+				<Button x:Name="extraHint" Text="Extra Hint" Grid.Row="0" Grid.Column="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Clicked="showHint"/>
+				<Button x:Name="checkSolution" Text="Check Solution" Grid.Row="0" Grid.Column="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Clicked="checkSolutionTapped"/>
 			</Grid>
 
 			<!-- FOR THE TAB MENU -->

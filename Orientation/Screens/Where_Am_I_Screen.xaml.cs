@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using SQLite.Net;
 using Xamarin.Forms;
-using XLabs.Platform.Services.Geolocation;
-using System.Threading.Tasks;
-using System.Threading;
-
 using Plugin.Geolocator;
 
 namespace Orientation
@@ -39,29 +34,29 @@ namespace Orientation
 			float curLon = (float)position.Longitude;
 
 			SQLiteConnection connection = DependencyService.Get<IDatabaseHandler>().getDBConnection();
-			var latlong = connection.Table<Service>().OrderBy(s => s.coordinatesLatitude);
-			Service nearestBuildingInfo = null;
-			float tmpLat = 0, tmpLon = 0;
-			float tmpVal= float.MaxValue;
+			var services = connection.Table<Service>().OrderBy(s => s.coordinatesLatitude);
+			
+      Service nearestBuildingInfo = null;
+      float minDistance = float.MaxValue;
 
-			foreach (var latLon in latlong)
+			foreach (var service in services)
 			{
-				if (latLon.coordinatesLatitude.Equals(null)|| latLon.coordinatesLongitude.Equals(null))
+				if (service.coordinatesLatitude + 999.0f < 0.2f)
 					continue;
-				tmpLat = Math.Abs(latLon.coordinatesLatitude - curLat);
-				tmpLon = Math.Abs(latLon.coordinatesLongitude - curLon);
-				tmpLat += tmpLon;
-				if (tmpLat < tmpVal)
+				
+        float tmpLat = Math.Abs(service.coordinatesLatitude - curLat);
+				float tmpLon = Math.Abs(service.coordinatesLongitude - curLon);
+        float dist;
+
+        if ((dist = distanceFrom(curLat, curLon, tmpLat, tmpLon)) < minDistance)
 				{
-					tmpVal = tmpLat;
-					nearestBuildingInfo = latLon;
+          minDistance = dist;
+					nearestBuildingInfo = service;
 				}
 			}
 			connection.Close();
 
-			float dist = coordToMeters(curLat, curLon, nearestBuildingInfo.coordinatesLatitude, nearestBuildingInfo.coordinatesLongitude);
-
-			if (dist > 400) {
+      if (minDistance > 400) {
 				await DisplayAlert("Too Far Away", "You are too far away from the PSU Harrisburg Campus", "Ok");
 				await ((NavigationPage)App.Current.MainPage).PopAsync();
 			} else {
@@ -73,7 +68,7 @@ namespace Orientation
 		}
 
 
-		public float coordToMeters(float lat1, float lon1, float lat2, float lon2)
+		public float distanceFrom(float lat1, float lon1, float lat2, float lon2)
 		{
 			float dLat = (lat2 - lat1) * (float)(Math.PI / 180);
 			float dLon = (lon2 - lon1) * (float)(Math.PI / 180);

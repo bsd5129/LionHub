@@ -3,7 +3,7 @@
 	<ContentPage.Content>
 		<StackLayout x:Name="stackLayout" Orientation="Vertical">
 			<StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
-            	<Entry x:Name="roomNumber" Placeholder="Enter Room Number" Keyboard="Text"></Entry>
+            	<Entry x:Name="roomNumber" Placeholder="Enter Room Number (Ex. W255)" Keyboard="Text"></Entry>
             	<Picker x:Name="buildingName" Title="Choose a Building"></Picker> 
    				<Button Text="Search" HorizontalOptions="Center" Clicked="pressSearch" />
    			</StackLayout>
