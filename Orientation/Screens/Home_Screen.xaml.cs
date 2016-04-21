@@ -127,7 +127,7 @@ namespace Orientation
           try {
             byte[] db = await new HttpClient().GetByteArrayAsync(new Uri("https://drive.google.com/uc?export=download&id=0BxEFbSUhqF_6X2ZVQWhybVlkLXc"));
             DependencyService.Get<IDatabaseHandler>().saveDatabase(latestVersion, db);
-            await DisplayAlert("Update Complete!", "", "Close");
+            await DisplayAlert("Update Complete!", "The information database has been updated to version " + latestVersion + "!", "Close");
           } catch (Exception) {
             await DisplayAlert("Failed to Update", "There was an issue downloading the update from the server. Please try again later.", "OK");
           }

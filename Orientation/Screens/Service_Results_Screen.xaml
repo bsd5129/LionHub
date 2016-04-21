@@ -7,7 +7,7 @@
 					<Grid.RowDefinitions>
 						<RowDefinition Height="2*"></RowDefinition>
 						<RowDefinition Height="2*"></RowDefinition>
-						<RowDefinition Height="2*"></RowDefinition>
+						<RowDefinition Height="4*"></RowDefinition>
 						<RowDefinition Height="19*"></RowDefinition>
 					</Grid.RowDefinitions>
 
@@ -20,7 +20,7 @@
 					<Label Grid.Row="0" Grid.Column="1" x:Name="name" FontSize="14" HorizontalOptions="StartAndExpand"></Label>
 					<Label Grid.Row="1" Grid.Column="0" x:Name="phoneLabel" Text="Phone:" FontSize="15" FontAttributes="Bold" HorizontalOptions="StartAndExpand"></Label>
 					<Label Grid.Row="1" Grid.Column="1" x:Name="phoneNumber" FontSize="14" HorizontalOptions="StartAndExpand"></Label>
-					<Label Grid.Row="2" Grid.Column="0" x:Name="websiteLabel" Text="Website:" FontSize="15" FontAttributes="Bold" HorizontalOptions="StartAndExpand"></Label>
+					<Label Grid.Row="2" Grid.Column="0" x:Name="websiteLabel" Text="Website:" FontSize="15" FontAttributes="Bold" HorizontalOptions="StartAndExpand" LineBreakMode="CharacterWrap"></Label>
 					<Label Grid.Row="2" Grid.Column="1" x:Name="website" FontSize="14" HorizontalOptions="StartAndExpand"></Label>
 					<Label Grid.Row="3" Grid.Column="0" x:Name="descriptionLabel" Text="Description:" FontSize="15" FontAttributes="Bold" HorizontalOptions="StartAndExpand"></Label>
 					<ScrollView Grid.Row="3" Grid.Column="1" VerticalOptions="FillAndExpand"><Label x:Name="description" FontSize="14" HorizontalOptions="StartAndExpand"></Label></ScrollView>

@@ -85,7 +85,7 @@ namespace Orientation
 
         string[] coords = currentSolution.solution.Split(new char[] { ',' });
 
-        if (distanceFrom(curLat, curLon, float.Parse(coords[0]), float.Parse(coords[1])) <= 5) {
+        if (distanceFrom(curLat, curLon, float.Parse(coords[0]), float.Parse(coords[1])) <= 12) {
           SQLiteConnection connection = DependencyService.Get<IDatabaseHandler>().getDBConnection();
           currentSolution.solved = true;
           connection.Update(currentSolution);

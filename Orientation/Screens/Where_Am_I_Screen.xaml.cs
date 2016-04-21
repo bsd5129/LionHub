@@ -34,21 +34,16 @@ namespace Orientation
 			float curLon = (float)position.Longitude;
 
 			SQLiteConnection connection = DependencyService.Get<IDatabaseHandler>().getDBConnection();
-			var services = connection.Table<Service>().OrderBy(s => s.coordinatesLatitude);
+      var services = connection.Table<Service>().Where(s => s.coordinatesLatitude > -998.0f);
 			
       Service nearestBuildingInfo = null;
       float minDistance = float.MaxValue;
 
 			foreach (var service in services)
 			{
-				if (service.coordinatesLatitude + 999.0f < 0.2f)
-					continue;
-				
-        float tmpLat = Math.Abs(service.coordinatesLatitude - curLat);
-				float tmpLon = Math.Abs(service.coordinatesLongitude - curLon);
-        float dist;
+        float dist = distanceFrom(curLat, curLon, service.coordinatesLatitude, service.coordinatesLongitude);
 
-        if ((dist = distanceFrom(curLat, curLon, tmpLat, tmpLon)) < minDistance)
+        if (dist < minDistance)
 				{
           minDistance = dist;
 					nearestBuildingInfo = service;
@@ -57,7 +52,7 @@ namespace Orientation
 			connection.Close();
 
       if (minDistance > 400) {
-				await DisplayAlert("Too Far Away", "You are too far away from the PSU Harrisburg Campus", "Ok");
+				await DisplayAlert("Too Far Away", "You are too far away from the PSU Harrisburg Campus", "OK");
 				await ((NavigationPage)App.Current.MainPage).PopAsync();
 			} else {
 				await ((NavigationPage)App.Current.MainPage).PopAsync();

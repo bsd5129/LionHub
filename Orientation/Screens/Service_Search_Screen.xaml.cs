@@ -12,8 +12,7 @@ namespace Orientation
 		public Service_Search_Screen(string category)
 		{
 			InitializeComponent();
-			NavigationPage.SetHasBackButton(this, false);
-      NavigationPage.SetBackButtonTitle(this, "Search");
+      NavigationPage.SetBackButtonTitle(this, "Back");
 			bottomLayout.Children.Add(new TabMenu(1));
 
       this.category = category;
@@ -21,6 +20,7 @@ namespace Orientation
 			setTheme();
 
       if (category == null) {
+        NavigationPage.SetHasBackButton(this, false);
         queryListOfCategories();
       } else {
         queryListOfServices();
