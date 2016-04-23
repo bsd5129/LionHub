@@ -2,3 +2,13 @@
 	color: #0000FF;
 	font-size: 22px;
 }
+
+#icon {
+	max-height: 50px;
+	float: left;
+}
+
+#butn {
+	padding-top: 25px;
+	padding-bottom: 40px;
+}
