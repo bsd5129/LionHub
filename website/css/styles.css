@@ -5,10 +5,15 @@
 
 #icon {
 	max-height: 50px;
+	padding-right: 20px;
 	float: left;
 }
 
 #butn {
 	padding-top: 25px;
 	padding-bottom: 40px;
+}
+
+.h3 {
+	color: blue;
 }
