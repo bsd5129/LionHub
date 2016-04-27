@@ -1,6 +1,6 @@
 .navbar-default .navbar-brand {
-	color: #0000FF;
-	font-size: 26px;
+	color: #4884B8;
+	font-size: 28px;
 }
 
 #icon {
@@ -16,4 +16,10 @@
 
 .h3 {
 	color: blue;
+}
+
+#screenshot {
+	max-height: 400px;
+	padding-bottom: 10px;
+	padding-top: 25px;
 }
