@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Orientation.RoomListScreen" Title="Find A Room">
+	<ContentPage.Content>
+		<StackLayout Orientation="Vertical">
+			<StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand">
+				<ListView x:Name="roomsList" ItemTapped="pressRoomListItem" HasUnevenRows="true">
+					<ListView.ItemTemplate>
+                    	<DataTemplate>
+                        	<ViewCell>
+								<Grid Padding="15,8,0,8" MinimumHeightRequest="40">
+									<Grid.RowDefinitions><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="18*"/>
+										<ColumnDefinition Width="2*"/>
+									</Grid.ColumnDefinitions>
+
+									<Label Grid.Row="0" Grid.Column="0" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Text="{Binding Title}" TextColor="{Binding Color}" LineBreakMode="WordWrap" />
+									<Label Grid.Row="0" Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="End" FontSize="24" Text=">" TextColor="{Binding Color}" />
+								</Grid>
+             				</ViewCell>
+          				</DataTemplate>
+					</ListView.ItemTemplate>
+				</ListView>
+			</StackLayout>
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>

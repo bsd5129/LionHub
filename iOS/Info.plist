@@ -27,7 +27,7 @@
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
 	<key>XSAppIconAssets</key>
-	<string>Resources/Images.xcassets/AppIcons.appiconset</string>
+	<string>Assets.xcassets/AppIcons.appiconset</string>
 	<key>CFBundleName</key>
 	<string>LionHub</string>
 	<key>XSLaunchImageAssets</key>

@@ -30,6 +30,7 @@ namespace Orientation
 			hint.TextColor = Theme.getTextColor();
 			solution.BackgroundColor = Theme.getEntryColor();
 			solution.PlaceholderColor = Theme.getEntryPlaceholderColor();
+      geoInfo.TextColor = Theme.getTextColor();
 		}
 
 		public void queryClues()
@@ -85,7 +86,7 @@ namespace Orientation
 
         string[] coords = currentSolution.solution.Split(new char[] { ',' });
 
-        if (distanceFrom(curLat, curLon, float.Parse(coords[0]), float.Parse(coords[1])) <= 12) {
+        if (distanceFrom(curLat, curLon, float.Parse(coords[0]), float.Parse(coords[1])) <= 13) {
           SQLiteConnection connection = DependencyService.Get<IDatabaseHandler>().getDBConnection();
           currentSolution.solved = true;
           connection.Update(currentSolution);

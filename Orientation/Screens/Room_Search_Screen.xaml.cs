@@ -41,16 +41,23 @@ namespace Orientation {
     }
 
     public void pressSearch(object sender, EventArgs args) {
+
+      if (buildingName.SelectedIndex < 0)
+        return;
+
       SQLiteConnection con = DependencyService.Get<IDatabaseHandler>().getDBConnection();
       var rooms = con.Table<Room>();
-	    String building = "";
-	  
-	    if(buildingName.SelectedIndex > -1)
-	  	  building = buildingName.Items[buildingName.SelectedIndex];
- 	  
-  	  String number = roomNumber.Text;
-  	  if(number != null)
-  		number.ToUpper().Replace("-", "").Replace(" ", "");
+	    
+      String building = buildingName.Items[buildingName.SelectedIndex];
+      String number = roomNumber.Text;
+
+      if (number == null || number.Length == 0) {
+        con.Close();
+        ((NavigationPage)App.Current.MainPage).PushAsync(new RoomListScreen(building));
+        return;
+      }
+
+      number.ToUpper().Replace("-", "").Replace(" ", "");
         
   	  Room room = null;
 
@@ -74,59 +81,6 @@ namespace Orientation {
 
       if (room != null)
       {
-        if (room.buildingName.Equals("Olmsted")) {
-          if (Regex.IsMatch(room.roomNumber, "C1\\d{2}[A-Z]?")) {
-            room.directions = "In the center of the 1st floor of the Olmsted Building";
-          } else if (Regex.IsMatch(room.roomNumber, "C2\\d{2}[A-Z]?")) {
-            room.directions = "In the center of the 2nd floor of the Olmsted Building";
-          } else if (Regex.IsMatch(room.roomNumber, "C3\\d{2}[A-Z]?")) {
-            room.directions = "In the center of the 3rd floor of the Olmsted Building";
-          } else if (Regex.IsMatch(room.roomNumber, "C\\d{1}[A-Z]?") || Regex.IsMatch(room.roomNumber, "C\\d{2}[A-Z]?")) {
-            room.directions = "On the basement level of the Olmsted Building";
-          } else if (Regex.IsMatch(room.roomNumber, "E1\\d{2}[A-Z]?")) {
-            room.directions = "In the east side of the 1st floor of the Olmsted Building";
-          } else if (Regex.IsMatch(room.roomNumber, "E2\\d{2}[A-Z]?")) {
-            room.directions = "In the east side of the 2nd floor of the Olmsted Building";
-          } else if (Regex.IsMatch(room.roomNumber, "E3\\d{2}[A-Z]?")) {
-            room.directions = "In the east side of the 3rd floor of the Olmsted Building";
-          } else if (room.roomNumber.StartsWith("E")) {
-            room.directions = "In the east side of the Olmsted Building";
-          } else if (Regex.IsMatch(room.roomNumber, "W1\\d{2}[A-Z]?")) {
-            room.directions = "In the west side of the 1st floor of the Olmsted Building";
-          } else if (Regex.IsMatch(room.roomNumber, "W2\\d{2}[A-Z]?")) {
-            room.directions = "In the west side of the 2nd floor of the Olmsted Building";
-          } else if (Regex.IsMatch(room.roomNumber, "W3\\d{2}[A-Z]?")) {
-            room.directions = "In the west side of the 3rd floor of the Olmsted Building";
-          } else if (room.roomNumber.StartsWith("W")) {
-            room.directions = "In the west side of the Olmsted Building";
-          }
-        } else {
-          Match match = Regex.Match(room.roomNumber, "\\w*(\\d)\\d{2}\\w*");
-
-          if (match.Success) {
-            string floor = null;
-
-            switch (match.Groups[1].Value) {
-              case "1":
-                floor = "1st";
-                break;
-              case "2":
-                floor = "2nd";
-                break;
-              case "3":
-                floor = "3rd";
-                break;
-            }
-
-            if (floor != null)
-              room.directions = "On the " + floor + " floor of the " + room.buildingName + " building";
-            else
-              room.directions = "In the " + room.buildingName + " building...";
-          } else {
-            room.directions = "In the " + room.buildingName + " building";
-          }
-        }
-
         ((NavigationPage)App.Current.MainPage).PushAsync(new Room_Results_Screen(room));
       }
       else

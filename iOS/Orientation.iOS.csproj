@@ -186,5 +186,11 @@
     <BundleResource Include="Resources\psuLogo.png" />
     <BundleResource Include="Resources\campus_outside.jpg" />
     <BundleResource Include="Resources\search_icon.png" />
+    <BundleResource Include="Resources\scavengerHuntMain.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon-60%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon-60%403x.png" />
   </ItemGroup>
 </Project>

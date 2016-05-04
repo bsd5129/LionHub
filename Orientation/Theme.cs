@@ -4,64 +4,66 @@ using Xamarin.Forms;
 
 namespace Orientation
 {
-	public class Theme
-	{
-		private static bool isDark = false;
+  public class Theme {
+    private static int activeThemeIndex = 0;
+    private static Theme[] themes = {
+      new Theme("Normal", "#EEEEEE", "#000000", "#FFFFFF", "#BBBBBB", "#0000EE", false),
+      new Theme("Dark 1", "#303030", "#BBBBBB", "#BBBBBB", "#303030", "#007AFF", true),
+      new Theme("Dark 2", "#000000", "#FFFFFF", "#FFFFFF", "#303030", "#007AFF", true)
+    };
 
-		private static Color lightThemeBackgroundColor = Color.FromHex("#EEEEEE");
-		private static Color lightThemeTextColor = Color.FromHex("#000000");
-		private static Color lightThemeEntryColor = Color.FromHex("#FFFFFF");
-		private static Color lightThemeEntryPlaceholderColor = Color.FromHex("#BBBBBB");
-    private static Color lightThemeLinkColor = Color.FromHex("#0000EE");
+    private String name;
+    private Color backgroundColor;
+    private Color textColor;
+    private Color entryColor;
+    private Color entryPlaceholderColor;
+    private Color linkColor;
+    private bool isDark;
 
-		private static Color darkThemeBackgroundColor = Color.FromHex("#303030");
-		private static Color darkThemeTextColor = Color.FromHex("#BBBBBB");
-		private static Color darkThemeEntryColor = Color.FromHex("#BBBBBB");
-		private static Color darkThemeEntryPlaceholderColor = Color.FromHex("#303030");
-    private static Color darkThemeLinkColor = Color.FromHex("#007AFF");
+    private Theme(string name, string background, string text, string entry, string entryPlaceholder, string link, bool dark) {
+      this.name = name;
+      backgroundColor = Color.FromHex(background);
+      textColor = Color.FromHex(text);
+      entryColor = Color.FromHex(entry);
+      entryPlaceholderColor = Color.FromHex(entryPlaceholder);
+      linkColor = Color.FromHex(link);
+      isDark = dark;
+    }
+
+    public static string getActiveThemeName() {
+      return themes[activeThemeIndex].name;
+    }
 
 		public static Color getBackgroundColor() {
-			if (isDark)
-				return darkThemeBackgroundColor;
-			else
-				return lightThemeBackgroundColor;
+      return themes[activeThemeIndex].backgroundColor;
 		}
 
 		public static Color getTextColor() {
-			if (isDark)
-				return darkThemeTextColor;
-			else
-				return lightThemeTextColor;
+      return themes[activeThemeIndex].textColor;
 		}
 
 		public static Color getEntryColor() {
-			if (isDark)
-				return darkThemeEntryColor;
-			else
-				return lightThemeEntryColor;
+      return themes[activeThemeIndex].entryColor;
 		}
 
 		public static Color getEntryPlaceholderColor() {
-			if (isDark)
-				return darkThemeEntryPlaceholderColor;
-			else
-				return lightThemeEntryPlaceholderColor;
+      return themes[activeThemeIndex].entryPlaceholderColor;
 		}
 
     public static Color getLinkColor() {
-      if (isDark)
-        return darkThemeLinkColor;
-      else
-        return lightThemeLinkColor;
+      return themes[activeThemeIndex].linkColor;
     }
 
-		public static void setDarkTheme(bool darkTheme) {
-			isDark = darkTheme;
+		public static void cycleTheme() {
+      activeThemeIndex++;
+
+      if (activeThemeIndex >= themes.Length)
+        activeThemeIndex = 0;
 		}
 
-		public static bool isDarkTheme() {
-			return isDark;
-		}
+    public static bool isDarkTheme() {
+      return themes[activeThemeIndex].isDark;
+    }
 	}
 }
 

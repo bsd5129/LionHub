@@ -9,8 +9,8 @@ namespace Orientation {
 
     public Settings_Screen() {
       InitializeComponent();
-      darkThemeStatus.Text = Theme.isDarkTheme() ? "Enabled" : "Disabled";
-      darkThemeStatus.TextColor = Theme.isDarkTheme() ? Color.Green : Color.Red;
+      themeStatus.Text = Theme.getActiveThemeName();
+      themeStatus.TextColor = Color.Green;
 
       SQLiteConnection con = DependencyService.Get<IDatabaseHandler>().getDBConnection();
       version.Text = "Database Version: " + con.Table<Info>().Where(i => i.key.Equals("dbVersion")).FirstOrDefault().value;
@@ -25,9 +25,8 @@ namespace Orientation {
       BackgroundColor = Theme.getBackgroundColor();
       tableView.BackgroundColor = Theme.getBackgroundColor();
 
-      darkThemeText.TextColor = Theme.getTextColor();
-      darkThemeDetail.TextColor = Theme.getTextColor();
-      //darkThemeSwitch.BackgroundColor = Theme.getBackgroundColor();
+      themeText.TextColor = Theme.getTextColor();
+      themeDetail.TextColor = Theme.getTextColor();
 
       version.TextColor = Theme.getTextColor();
       version.DetailColor = Theme.getTextColor();
@@ -36,8 +35,8 @@ namespace Orientation {
       credits.DetailColor = Theme.getTextColor();
     }
 
-    public void pressDarkThemeButton(object sender, EventArgs args) {
-      Theme.setDarkTheme(!Theme.isDarkTheme());
+    public void pressCycleThemeButton(object sender, EventArgs args) {
+      Theme.cycleTheme();
       NavigationPage page = new NavigationPage(new Home_Screen());
       page.PushAsync(new Settings_Screen());
       ((Orientation.App)App.Current).setMainPage(page);

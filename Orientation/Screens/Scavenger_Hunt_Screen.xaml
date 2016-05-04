@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Orientation.Scavenger_Hunt_Screen" Title="Scavenger Hunt">
 	<ContentPage.Content>
 		<StackLayout>
-			<Image Source="psuLogo.png" />
+			<Image Source="scavengerHuntMain.png" />
 			<Label x:Name="hint" FontSize="14" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" ></Label>
 			
 			<Entry x:Name="solution" Placeholder="Enter Solution" Keyboard="Text" HorizontalOptions="Center" VerticalOptions="StartAndExpand"></Entry>

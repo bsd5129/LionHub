@@ -4,14 +4,14 @@
 		<TableView x:Name="tableView">
 			<TableRoot>
 				<TableSection Title="Settings">
-					<ViewCell Tapped="pressDarkThemeButton">
+					<ViewCell Tapped="pressCycleThemeButton">
 						<StackLayout Orientation="Horizontal" Padding="15, 0, 15, 0">
 							<StackLayout Orientation="Vertical">
-								<Label x:Name="darkThemeText" Text="Dark Theme"></Label>
-								<Label x:Name="darkThemeDetail" Text="Toggles the dark and light themes" FontSize="12"></Label>
+								<Label x:Name="themeText" Text="Theme"></Label>
+								<Label x:Name="themeDetail" Text="Press to cycle through themes" FontSize="12"></Label>
 							</StackLayout>
 
-							<Label x:Name="darkThemeStatus" VerticalOptions="Center" HorizontalOptions="EndAndExpand"></Label>
+							<Label x:Name="themeStatus" VerticalOptions="Center" HorizontalOptions="EndAndExpand"></Label>
 						</StackLayout>
 					</ViewCell>
 					<TextCell x:Name="version"></TextCell>
