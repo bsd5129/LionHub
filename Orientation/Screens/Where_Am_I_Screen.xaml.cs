@@ -29,8 +29,17 @@ namespace Orientation
 		{
 			var locator = CrossGeolocator.Current;
 			locator.DesiredAccuracy = 5;
-			var position = await locator.GetPositionAsync(timeoutMilliseconds: (1000 * 60 * 2));
-			float curLat = (float)position.Latitude;
+      Plugin.Geolocator.Abstractions.Position position = null;
+
+      try {
+        position = await locator.GetPositionAsync(timeoutMilliseconds: (1000 * 60 * 2));
+      } catch (Exception) {
+        await DisplayAlert("GPS is Disabled", "You must enable GPS to use this feature", "OK");
+        await ((NavigationPage)App.Current.MainPage).PopAsync();
+        return;
+      }
+
+      float curLat = (float)position.Latitude;
 			float curLon = (float)position.Longitude;
 
 			SQLiteConnection connection = DependencyService.Get<IDatabaseHandler>().getDBConnection();

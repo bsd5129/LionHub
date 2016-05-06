@@ -37,6 +37,13 @@ namespace Orientation {
 
     public void pressCycleThemeButton(object sender, EventArgs args) {
       Theme.cycleTheme();
+
+      SQLiteConnection con = DependencyService.Get<IDatabaseHandler>().getDBConnection();
+      var theme = con.Table<Info>().Where(i => i.key.Equals("theme")).FirstOrDefault();
+      theme.value = Theme.getActiveThemeId();
+      con.Update(theme);
+      con.Close();
+
       NavigationPage page = new NavigationPage(new Home_Screen());
       page.PushAsync(new Settings_Screen());
       ((Orientation.App)App.Current).setMainPage(page);

@@ -10,7 +10,8 @@ namespace Orientation
 {
 	public partial class Home_Screen : ContentPage
 	{
-		
+    private bool hasDatabase = false;
+
 		public Home_Screen()
 		{
 			InitializeComponent();
@@ -39,8 +40,14 @@ namespace Orientation
       checkForDbUpdate(dbVersion, false);
 		}
 
-		public void pressHomeListItem(string name)
+		public async void pressHomeListItem(string name)
 		{
+      if (!hasDatabase) {
+        await DisplayAlert("No Database", "You must update your database before continuing", "OK");
+        checkForDbUpdate(-1, true);
+        return;
+      }
+
 			switch (name) {
 			case "Services":
 				pressServicesHomeListItem();
@@ -119,21 +126,22 @@ namespace Orientation
         latestVersion = long.Parse(str);
       } catch (Exception) {
         if (displayResult)
-          await DisplayAlert("Failed to Update", "There was an issue determining the latest version from the server. Please try again later.", "OK");
+          await DisplayAlert("Failed to Update", "There was an issue determining the latest version from the server. Check your internet connection", "OK");
       }
 
-      if (latestVersion != version) {
+      if (latestVersion > version) {
         if (await DisplayAlert("Update Available", "The information database has an update available. Would you like to update?", "Update", "Cancel")) {
           try {
             byte[] db = await new HttpClient().GetByteArrayAsync(new Uri("https://drive.google.com/uc?export=download&id=0BxEFbSUhqF_6X2ZVQWhybVlkLXc"));
             DependencyService.Get<IDatabaseHandler>().saveDatabase(latestVersion, db);
             await DisplayAlert("Update Complete!", "The information database has been updated to version " + latestVersion + "!", "Close");
+            hasDatabase = true;
           } catch (Exception) {
-            await DisplayAlert("Failed to Update", "There was an issue downloading the update from the server. Please try again later.", "OK");
+            await DisplayAlert("Failed to Update", "There was an issue downloading the update from the server. Check your internet connection", "OK");
           }
         }
-      } else if (displayResult) {
-        await DisplayAlert("No Update Available", "You have the latest version of the database.", "Close");
+      } else if (latestVersion != -1) {
+        hasDatabase = true;
       }
     }
 	}

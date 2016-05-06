@@ -30,6 +30,14 @@ namespace Orientation
       isDark = dark;
     }
 
+    public static int getActiveThemeId() {
+      return activeThemeIndex;
+    }
+
+    public static void setActiveThemeId(int id) {
+      activeThemeIndex = id;
+    }
+
     public static string getActiveThemeName() {
       return themes[activeThemeIndex].name;
     }
