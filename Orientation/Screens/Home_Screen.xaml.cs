@@ -11,6 +11,8 @@ namespace Orientation
 	public partial class Home_Screen : ContentPage
 	{
     private bool hasDatabase = false;
+    private bool hasCheckedForUpdateOnce = false;
+    private bool isCheckingUpdate = false;
 
 		public Home_Screen()
 		{
@@ -37,11 +39,14 @@ namespace Orientation
       con.Close();
 
       //Check for a db update
-      checkForDbUpdate(dbVersion, false);
+      checkForDbUpdate(dbVersion, true);
 		}
 
 		public async void pressHomeListItem(string name)
 		{
+      if (!hasCheckedForUpdateOnce || isCheckingUpdate)
+        return;
+
       if (!hasDatabase) {
         await DisplayAlert("No Database", "You must update your database before continuing", "OK");
         checkForDbUpdate(-1, true);
@@ -119,6 +124,11 @@ namespace Orientation
 
     public async void checkForDbUpdate(long version, bool displayResult)
     {
+      if (isCheckingUpdate)
+        return;
+
+      isCheckingUpdate = true;
+
       long latestVersion = version;
 
       try {
@@ -143,6 +153,9 @@ namespace Orientation
       } else if (latestVersion != -1) {
         hasDatabase = true;
       }
+
+      hasCheckedForUpdateOnce = true;
+      isCheckingUpdate = false;
     }
 	}
 }
